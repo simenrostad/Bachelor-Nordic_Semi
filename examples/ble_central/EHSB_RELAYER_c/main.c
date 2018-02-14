@@ -54,7 +54,7 @@ static ble_gap_scan_params_t const m_scan_params =
     #endif
 };
 
-/**@brief NUS uuid. */
+/**@brief ehsb uuid. */
 static ble_uuid_t const m_ehsb_uuid =
 {
     .uuid = BLE_UUID_EHSB_SERVICE,
@@ -150,12 +150,14 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 
                 if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
                 {
+                  scan_stop();
                   nrf_gpio_pin_clear(LED_2);
                   NRF_LOG_INFO("Button Detected\r\n");
                   sd_ble_gap_adv_start(&m_adv_params, APP_BLE_CONN_CFG_TAG);
                   nrf_delay_ms(5000);
                   sd_ble_gap_adv_stop();
                   nrf_gpio_pin_set(LED_2);
+                  scan_start();
                 }
 }
 
@@ -267,13 +269,12 @@ int main(void)
     power_init();
     application_timer_init();
     leds_init();
-//    buttons_init();
     ble_stack_init();
     add_ehsb_c_init();
     advertising_init();       // initializing advertisement
 
     // Start scanning for peripherals and initiate connection
-    // with devices that advertise NUS UUID.
+    // with devices that advertise EHSB UUID.
     NRF_LOG_INFO("Energy Harvesting Stop Button");
     scan_start();
 
