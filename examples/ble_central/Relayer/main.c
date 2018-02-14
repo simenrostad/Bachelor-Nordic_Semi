@@ -311,7 +311,7 @@ int main(void)
     buttons_init();
     ble_stack_init();
     add_ehsb_c_init();
-    advertising_init();
+    advertising_init();       // initializing advertisement
 
     // Start scanning for peripherals and initiate connection
     // with devices that advertise NUS UUID.
