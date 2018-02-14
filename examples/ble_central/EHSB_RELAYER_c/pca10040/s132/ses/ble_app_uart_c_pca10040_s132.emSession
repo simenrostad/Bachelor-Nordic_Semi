@@ -52,8 +52,12 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
+<<<<<<< HEAD:examples/ble_central/Relayer/pca10040/s132/ses/ble_app_uart_c_pca10040_s132.emSession
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="313" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="57" codecName="Default"/>
+=======
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="149" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="118" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/util/sdk_macros.h" debugPath="../../../../../../components/libraries/util/sdk_macros.h" selected="0" top="105" codecName="Default"/>
+>>>>>>> 18b1899d1cf1bda8a3b2e90d7a19489af82ec5e9:examples/ble_central/EHSB_RELAYER_c/pca10040/s132/ses/ble_app_uart_c_pca10040_s132.emSession
  </Files>
  <ARMCrossStudioWindow activeProject="ble_app_uart_c_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
