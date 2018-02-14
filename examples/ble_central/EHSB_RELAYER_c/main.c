@@ -61,6 +61,11 @@ static ble_uuid_t const m_ehsb_uuid =
     .type = EHSB_SERVICE_UUID_TYPE
 };
 
+static ble_uuid_t m_adv_uuids[] = {
+
+    {BLE_UUID_EHSB_SERVICE,EHSB_SERVICE_UUID_TYPE}
+};
+
 /**@brief Function for asserts in the SoftDevice.
  *
  * @details This function will be called in case of an assert in the SoftDevice.
@@ -246,8 +251,8 @@ static void advertising_init(void)
     memset(&advdata, 0, sizeof(advdata));
 
     advdata.flags                   = flags;
-    advdata.uuids_complete.uuid_cnt = sizeof(m_ehsb_uuid) / sizeof(m_ehsb_uuid[0]);
-    advdata.uuids_complete.p_uuids  = m_ehsb_uuid;
+    advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
+    advdata.uuids_complete.p_uuids  = m_adv_uuids;
 
     err_code = ble_advdata_set(&advdata, NULL);
     APP_ERROR_CHECK(err_code);
