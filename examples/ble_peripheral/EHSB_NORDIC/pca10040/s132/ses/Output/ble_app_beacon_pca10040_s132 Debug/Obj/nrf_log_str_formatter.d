@@ -1,5 +1,5 @@
 Output/ble_app_beacon_pca10040_s132\ Debug/Obj/nrf_log_str_formatter.o: \
- /Users/simenrostad/Desktop/Nordi_Semi/Bachelor/components/libraries/experimental_log/src/nrf_log_str_formatter.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/experimental_log/src/nrf_log_str_formatter.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -46,7 +46,7 @@ Output/ble_app_beacon_pca10040_s132\ Debug/Obj/nrf_log_str_formatter.o: \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
  ../../../../../../components/libraries/util/app_error_weak.h \
  ../../../../../../components/libraries/util/app_util.h \
- /Users/simenrostad/Desktop/Nordi_Semi/Bachelor/components/libraries/experimental_log/src/nrf_log_internal.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/experimental_log/src/nrf_log_internal.h \
  ../../../../../../components/libraries/experimental_log/nrf_log_ctrl.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/ctype.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h

@@ -1,5 +1,5 @@
 Output/ble_app_beacon_pca10040_s132\ Debug/Obj/main.o: \
- /Users/simenrostad/Desktop/Nordi_Semi/nRF5_SDK_14.2.0_17b948a/examples/ble_peripheral/EHSB_NORDIC/main.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/examples/ble_peripheral/EHSB_NORDIC/main.c \
  ../../../../../../components/softdevice/s132/headers/nrf_soc.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \

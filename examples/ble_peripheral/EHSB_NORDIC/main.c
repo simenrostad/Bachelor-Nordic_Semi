@@ -77,7 +77,7 @@ static void ble_stack_init(void)
     err_code = nrf_sdh_ble_enable(&ram_start);
     APP_ERROR_CHECK(err_code);
 
-    sd_ble_gap_tx_power_set(-20);             //Setting TXPOWER to -20dbm. Higher values are unessescary. 
+//    sd_ble_gap_tx_power_set(-20);             //Setting TXPOWER to -20dbm. 
 }
 
 /**@brief Function for initializing logging. */
