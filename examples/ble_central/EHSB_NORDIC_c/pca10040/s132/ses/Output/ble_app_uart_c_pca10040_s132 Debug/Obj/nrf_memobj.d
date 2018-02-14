@@ -1,6 +1,6 @@
 Output/ble_app_uart_c_pca10040_s132\ Debug/Obj/nrf_memobj.o: \
- /Users/simenrostad/Desktop/Nordi_Semi/Bachelor/components/libraries/experimental_memobj/nrf_memobj.c \
- /Users/simenrostad/Desktop/Nordi_Semi/Bachelor/components/libraries/experimental_memobj/nrf_memobj.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/experimental_memobj/nrf_memobj.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/experimental_memobj/nrf_memobj.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdlib.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \

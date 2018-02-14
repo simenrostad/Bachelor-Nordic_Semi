@@ -1,5 +1,5 @@
 Output/ble_app_uart_c_pca10040_s132\ Debug/Obj/retarget.o: \
- /Users/simenrostad/Desktop/Nordi_Semi/Bachelor/components/libraries/uart/retarget.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/uart/retarget.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -27,7 +27,7 @@ Output/ble_app_uart_c_pca10040_s132\ Debug/Obj/retarget.o: \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
- /Users/simenrostad/Desktop/Nordi_Semi/Bachelor/components/libraries/uart/app_uart.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/uart/app_uart.h \
  ../../../../../../components/libraries/util/app_util_platform.h \
  ../../../../../../components/softdevice/s132/headers/nrf_soc.h \
  ../../../../../../components/softdevice/s132/headers/nrf_svc.h \

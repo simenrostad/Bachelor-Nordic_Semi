@@ -20,7 +20,7 @@
 #define APP_BLE_CONN_CFG_TAG    1                                       /**< A tag that refers to the BLE stack configuration we set with @ref sd_ble_cfg_set. Default tag is @ref BLE_CONN_CFG_TAG_DEFAULT. */
 #define APP_BLE_OBSERVER_PRIO   3                                       /**< Application's BLE observer priority. You shoulnd't need to modify this value. */
 
-#define NUS_SERVICE_UUID_TYPE   BLE_UUID_TYPE_VENDOR_BEGIN              /**< UUID type for the Nordic UART Service (vendor specific). */
+#define EHSB_SERVICE_UUID_TYPE   BLE_UUID_TYPE_VENDOR_BEGIN              /**< UUID type for the Nordic UART Service (vendor specific). */
 
 #define SCAN_INTERVAL           0x00A0                                  /**< Determines scan interval in units of 0.625 millisecond. */
 #define SCAN_WINDOW             0x0050                                  /**< Determines scan window in units of 0.625 millisecond. */
@@ -30,7 +30,7 @@
 
 #define EHSB_BASE_UUID          {{0x9F, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x00, 0x00, 0x40, 0x6E}} /**< Used vendor specific UUID. */
 
-#define BLE_UUID_NUS_SERVICE    0x0001                                   /**< The UUID of the Nordic UART Service. */
+#define BLE_UUID_EHSB_SERVICE    0x0001                                   /**< The UUID of the Nordic UART Service. */
 
 APP_TIMER_DEF(m_led_timer_id);                                           //  Macro for timer id
 
@@ -53,8 +53,8 @@ static ble_gap_scan_params_t const m_scan_params =
 /**@brief NUS uuid. */
 static ble_uuid_t const m_ehsb_uuid =
 {
-    .uuid = BLE_UUID_NUS_SERVICE,
-    .type = NUS_SERVICE_UUID_TYPE
+    .uuid = BLE_UUID_EHSB_SERVICE,
+    .type = EHSB_SERVICE_UUID_TYPE
 };
 
 /**@brief Function for asserts in the SoftDevice.
