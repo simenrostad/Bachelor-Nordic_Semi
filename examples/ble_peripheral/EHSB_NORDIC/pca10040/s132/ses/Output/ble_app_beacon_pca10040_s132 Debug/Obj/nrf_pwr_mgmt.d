@@ -56,6 +56,5 @@ Output/ble_app_beacon_pca10040_s132\ Debug/Obj/nrf_pwr_mgmt.o: \
  ../../../../../../components/libraries/util/nrf_assert.h \
  ../../../../../../components/libraries/experimental_log/nrf_log.h \
  ../../../../../../components/libraries/experimental_section_vars/nrf_section.h \
- ../../../../../../components/libraries/strerror/nrf_strerror.h \
  ../../../../../../components/libraries/experimental_log/src/nrf_log_internal.h \
  ../../../../../../components/softdevice/common/nrf_sdh.h
