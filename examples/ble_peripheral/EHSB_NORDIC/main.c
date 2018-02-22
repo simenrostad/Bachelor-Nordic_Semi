@@ -1,3 +1,4 @@
+#include "nrf_soc.h"
 #include "nrf_sdh.h"
 #include "nrf_sdh_ble.h"
 #include "ble_advdata.h"
@@ -85,6 +86,13 @@ static void log_init(void)
     NRF_LOG_DEFAULT_BACKENDS_INIT();
 }
 
+/**@brief Function for doing power management. */
+static void power_manage(void)
+{
+    ret_code_t err_code = sd_app_evt_wait();
+    APP_ERROR_CHECK(err_code);
+}
+
 int main(void)
 {
     // Initialize.
@@ -93,6 +101,11 @@ int main(void)
     advertising_init();
     advertising_start();
 
-    // Start execution.
-    NRF_LOG_INFO("Energy Harvesting Stop Button");
+    for (;; )
+    {
+        if (NRF_LOG_PROCESS() == false)
+        {
+            power_manage();
+        }
+    }
 }
