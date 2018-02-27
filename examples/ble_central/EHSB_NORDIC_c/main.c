@@ -30,7 +30,7 @@
 
 #define EHSB_BASE_UUID          {{0x9F, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x00, 0x00, 0x40, 0x6E}} /**< Used vendor specific UUID. */
 
-#define BLE_UUID_EHSB_SERVICE    0x0001                                   /**< The UUID of the Nordic UART Service. */
+#define BLE_UUID_EHSB_SERVICE    0x0002                                   /**< The UUID of the Nordic UART Service. */
 
 APP_TIMER_DEF(m_led_timer_id);                                           //  Macro for timer id
 
@@ -162,6 +162,17 @@ static void buttons_init()
     APP_ERROR_CHECK(err_code);
 }
 
+static void on_write(void)
+{
+    ble_gatts_evt_write_t const * p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
+    
+    // Custom Value Characteristic Written to.
+    if (p_evt_write->handle == p_cus->custom_value_handles.value_handle)
+    {
+        nrf_gpio_pin_toggle(LED_4);
+
+    }
+
 /**@brief Function for handling BLE events.
  *
  * @param[in]   p_ble_evt   Bluetooth stack event.
@@ -169,15 +180,115 @@ static void buttons_init()
  */
 static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 {
-            ble_gap_evt_t const * p_gap_evt = &p_ble_evt->evt.gap_evt;
+    ret_code_t            err_code;
+    ble_gap_evt_t const * p_gap_evt = &p_ble_evt->evt.gap_evt;
+
+    switch (p_ble_evt->header.evt_id)
+    {
+        case BLE_GAP_EVT_ADV_REPORT:
+        {
             ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
 
-                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
+            if (is_uuid_present(&m_nus_uuid, p_adv_report))
+            {
+
+                err_code = sd_ble_gap_connect(&p_adv_report->peer_addr,
+                                              &m_scan_params,
+                                              &m_connection_param,
+                                              APP_BLE_CONN_CFG_TAG);
+
+                if (err_code == NRF_SUCCESS)
                 {
-                  nrf_gpio_pin_clear(LED_2);
-                  NRF_LOG_INFO("Button Detected\r\n");
-                  scan_stop();
+                    // scan is automatically stopped by the connect
+                    err_code = bsp_indication_set(BSP_INDICATE_IDLE);
+                    APP_ERROR_CHECK(err_code);
+                    NRF_LOG_INFO("Connecting to target %02x%02x%02x%02x%02x%02x",
+                             p_adv_report->peer_addr.addr[0],
+                             p_adv_report->peer_addr.addr[1],
+                             p_adv_report->peer_addr.addr[2],
+                             p_adv_report->peer_addr.addr[3],
+                             p_adv_report->peer_addr.addr[4],
+                             p_adv_report->peer_addr.addr[5]
+                             );
                 }
+            }
+        }break; // BLE_GAP_EVT_ADV_REPORT
+
+        case BLE_GAP_EVT_CONNECTED:
+            NRF_LOG_INFO("Connected to target");
+            err_code = ble_nus_c_handles_assign(&m_ble_nus_c, p_ble_evt->evt.gap_evt.conn_handle, NULL);
+            APP_ERROR_CHECK(err_code);
+
+            err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
+            APP_ERROR_CHECK(err_code);
+
+            // start discovery of services. The NUS Client waits for a discovery result
+            err_code = ble_db_discovery_start(&m_db_disc, p_ble_evt->evt.gap_evt.conn_handle);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        case BLE_GAP_EVT_TIMEOUT:
+            if (p_gap_evt->params.timeout.src == BLE_GAP_TIMEOUT_SRC_SCAN)
+            {
+                NRF_LOG_INFO("Scan timed out.");
+                scan_start();
+            }
+            else if (p_gap_evt->params.timeout.src == BLE_GAP_TIMEOUT_SRC_CONN)
+            {
+                NRF_LOG_INFO("Connection Request timed out.");
+            }
+            break;
+
+        case BLE_GATTS_EVT_WRITE:
+            on_write(p_cus, p_ble_evt);
+            break;
+
+        case BLE_GAP_EVT_SEC_PARAMS_REQUEST:
+            // Pairing not supported
+            err_code = sd_ble_gap_sec_params_reply(p_ble_evt->evt.gap_evt.conn_handle, BLE_GAP_SEC_STATUS_PAIRING_NOT_SUPP, NULL, NULL);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        case BLE_GAP_EVT_CONN_PARAM_UPDATE_REQUEST:
+            // Accepting parameters requested by peer.
+            err_code = sd_ble_gap_conn_param_update(p_gap_evt->conn_handle,
+                                                    &p_gap_evt->params.conn_param_update_request.conn_params);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+#ifndef S140
+        case BLE_GAP_EVT_PHY_UPDATE_REQUEST:
+        {
+            NRF_LOG_DEBUG("PHY update request.");
+            ble_gap_phys_t const phys =
+            {
+                .rx_phys = BLE_GAP_PHY_AUTO,
+                .tx_phys = BLE_GAP_PHY_AUTO,
+            };
+            err_code = sd_ble_gap_phy_update(p_ble_evt->evt.gap_evt.conn_handle, &phys);
+            APP_ERROR_CHECK(err_code);
+        } break;
+#endif
+
+        case BLE_GATTC_EVT_TIMEOUT:
+            // Disconnect on GATT Client timeout event.
+            NRF_LOG_DEBUG("GATT Client Timeout.");
+            err_code = sd_ble_gap_disconnect(p_ble_evt->evt.gattc_evt.conn_handle,
+                                             BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        case BLE_GATTS_EVT_TIMEOUT:
+            // Disconnect on GATT Server timeout event.
+            NRF_LOG_DEBUG("GATT Server Timeout.");
+            err_code = sd_ble_gap_disconnect(p_ble_evt->evt.gatts_evt.conn_handle,
+                                             BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        default:
+            break;
+    }
 }
 
 /**@brief Function for initializing the BLE stack.
