@@ -74,6 +74,7 @@
 #include "sensorsim.h"
 #include "ble_conn_state.h"
 #include "nrf_ble_gatt.h"
+#include "ble_nus.h"
 
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
@@ -576,7 +577,6 @@ static void application_timers_start(void)
 
 }
 
-
 /**@brief Function for putting the chip into sleep mode.
  *
  * @note This function will not return.
@@ -661,11 +661,24 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
              ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
 //             ble_gatts_evt_write_t const * p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
 
-             if (is_uuid_present(&m_nus_uuid, p_adv_report))
+             if (is_uuid_present(m_nus_uuid, p_adv_report))
              {
                NRF_LOG_INFO("BUTTON_DETECTED");
                err_code = bsp_indication_set(BSP_INDICATE_ALERT_3);
                APP_ERROR_CHECK(err_code);
+
+
+                
+
+//    uint8_t data_buffer;
+//    ble_gatts_value_t rx_data;
+//    rx_data.len = 1;
+//    rx_data.p_value = &data_buffer;
+//
+//        sd_ble_gatts_value_set(p_ble_evt->conn_handle, p_ble_evt->char_handles.value_handle, &rx_data);
+
+
+//               ble_nus_string_send(&m_cus, data_array, index);
 //               *p_evt_write->data == 0x01;
 
                //SEND NOTIFICATION TO CENTRAL
