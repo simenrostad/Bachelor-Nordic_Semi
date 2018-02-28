@@ -46,20 +46,16 @@ static void advertising_init(void)
 
     m_adv_params.type        = BLE_GAP_ADV_TYPE_ADV_NONCONN_IND;          /**< Scannable undirected event, only allowed to respond to scan requests. */
     m_adv_params.p_peer_addr = NULL;                                      /**< Undirected advertisement. */
-    m_adv_params.fp          = BLE_GAP_ADV_FP_ANY;                        /**< Allow scan requests and connect requests from any device. remove, possible problem */
+    m_adv_params.fp          = BLE_GAP_ADV_FP_ANY;                        /**< Allow scan requests and connect requests from any device. */
     m_adv_params.interval    = BLE_GAP_ADV_INTERVAL_MIN;                  /**< Setting min advertising interval 20ms */
     m_adv_params.timeout     = 0;                                         /**< Never time out. Want to send as soon as the chip is powered */
-}
-
-static void advertising_start(void)                                       /**@brief Function for starting advertising.  */
-{
-    ret_code_t err_code;
 
     err_code = sd_ble_gap_adv_start(&m_adv_params, APP_BLE_CONN_CFG_TAG);
     APP_ERROR_CHECK(err_code);
 }
 
-static void ble_stack_init(void)                                          /**@brief Function for initializing the BLE stack. */
+/**@brief Function for initializing the BLE stack. */
+static void ble_stack_init(void)                                          
 {
     ret_code_t err_code;
 
@@ -99,8 +95,9 @@ int main(void)
     log_init();
     ble_stack_init();
     advertising_init();
-    advertising_start();
-
+    
+    NRF_LOG_INFO("Starting EHSB project");
+/**< Sleep between advertising intervals */
     for (;; )
     {
         if (NRF_LOG_PROCESS() == false)
