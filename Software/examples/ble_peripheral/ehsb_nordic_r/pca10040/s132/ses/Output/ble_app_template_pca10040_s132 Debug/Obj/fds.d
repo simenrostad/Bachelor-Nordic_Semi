@@ -1,5 +1,5 @@
 Output/ble_app_template_pca10040_s132\ Debug/Obj/fds.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/fds/fds.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/fds/fds.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,7 +26,7 @@ Output/ble_app_template_pca10040_s132\ Debug/Obj/fds.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/fds/fds.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/fds/fds.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/util/app_util_platform.h \
  ../../../../../../components/softdevice/s132/headers/nrf_soc.h \
@@ -38,7 +38,7 @@ Output/ble_app_template_pca10040_s132\ Debug/Obj/fds.o: \
  ../../../../../../components/libraries/util/app_error.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
  ../../../../../../components/libraries/util/app_error_weak.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/fds/fds_internal_defs.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/fds/fds_internal_defs.h \
  ../../../../../../components/libraries/atomic/nrf_atomic.h \
  ../../../../../../components/libraries/atomic/nrf_atomic_internal.h \
  ../../../../../../components/libraries/atomic_fifo/nrf_atfifo.h \

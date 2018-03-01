@@ -1,5 +1,5 @@
 Output/ble_app_template_pca10040_s132\ Debug/Obj/nrf_drv_uart.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/drivers_nrf/uart/nrf_drv_uart.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/drivers_nrf/uart/nrf_drv_uart.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,7 +26,7 @@ Output/ble_app_template_pca10040_s132\ Debug/Obj/nrf_drv_uart.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/drivers_nrf/uart/nrf_drv_uart.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/drivers_nrf/uart/nrf_drv_uart.h \
  ../../../../../../components/drivers_nrf/hal/nrf_peripherals.h \
  ../../../../../../components/device/nrf52832_peripherals.h \
  ../../../../../../components/drivers_nrf/hal/nrf_uart.h \

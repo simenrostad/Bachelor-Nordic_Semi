@@ -1,5 +1,5 @@
 Output/ble_app_template_pca10040_s132\ Debug/Obj/app_error.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/util/app_error.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/util/app_error.c \
  ../../../../../../components/device/nrf.h \
  ../../../../../../components/device/nrf52.h \
  ../../../../../../components/toolchain/cmsis/include/core_cm4.h \
@@ -15,10 +15,10 @@ Output/ble_app_template_pca10040_s132\ Debug/Obj/app_error.o: \
  ../../../../../../components/device/compiler_abstraction.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/util/app_error.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/util/app_error.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/util/sdk_errors.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/util/sdk_errors.h \
  ../../../../../../components/softdevice/s132/headers/nrf_error.h \
  ../config/sdk_config.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/util/nordic_common.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/util/app_error_weak.h
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/util/nordic_common.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/util/app_error_weak.h

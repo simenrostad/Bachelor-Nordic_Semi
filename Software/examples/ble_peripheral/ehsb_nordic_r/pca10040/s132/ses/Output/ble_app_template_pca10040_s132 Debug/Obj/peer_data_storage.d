@@ -1,5 +1,5 @@
 Output/ble_app_template_pca10040_s132\ Debug/Obj/peer_data_storage.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/ble/peer_manager/peer_data_storage.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/ble/peer_manager/peer_data_storage.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,13 +26,13 @@ Output/ble_app_template_pca10040_s132\ Debug/Obj/peer_data_storage.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/ble/peer_manager/peer_data_storage.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/ble/peer_manager/peer_data_storage.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/softdevice/s132/headers/ble_gap.h \
  ../../../../../../components/softdevice/s132/headers/ble_types.h \
  ../../../../../../components/softdevice/s132/headers/ble_ranges.h \
  ../../../../../../components/softdevice/s132/headers/nrf_svc.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/ble/peer_manager/peer_manager_types.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/ble/peer_manager/peer_manager_types.h \
  ../../../../../../components/softdevice/s132/headers/ble_hci.h \
  ../../../../../../components/ble/common/ble_gatt_db.h \
  ../../../../../../components/softdevice/s132/headers/ble.h \
@@ -53,6 +53,6 @@ Output/ble_app_template_pca10040_s132\ Debug/Obj/peer_data_storage.o: \
  ../../../../../../components/libraries/util/app_error.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
  ../../../../../../components/libraries/util/app_error_weak.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/ble/peer_manager/peer_manager_internal.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/ble/peer_manager/peer_id.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/ble/peer_manager/peer_manager_internal.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/ble/peer_manager/peer_id.h \
  ../../../../../../components/libraries/fds/fds.h

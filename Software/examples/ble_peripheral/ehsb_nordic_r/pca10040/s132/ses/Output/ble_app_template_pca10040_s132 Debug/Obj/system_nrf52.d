@@ -1,5 +1,5 @@
 Output/ble_app_template_pca10040_s132\ Debug/Obj/system_nrf52.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/toolchain/system_nrf52.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/toolchain/system_nrf52.c \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  ../../../../../../components/device/nrf.h \
@@ -14,4 +14,4 @@ Output/ble_app_template_pca10040_s132\ Debug/Obj/system_nrf52.o: \
  ../../../../../../components/device/nrf51_to_nrf52.h \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/toolchain/system_nrf52.h
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/toolchain/system_nrf52.h

@@ -1,5 +1,5 @@
 Output/ble_app_template_pca10040_s132\ Debug/Obj/main.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/examples/ble_peripheral/ehsb_nordic_r/main.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/examples/ble_peripheral/ehsb_nordic_r/main.c \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \

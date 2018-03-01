@@ -1,7 +1,7 @@
 Output/ble_app_template_pca10040_s132\ Debug/Obj/nrf_fstorage.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/fstorage/nrf_fstorage.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/fstorage/nrf_fstorage.c \
  ../config/sdk_config.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/fstorage/nrf_fstorage.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/fstorage/nrf_fstorage.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  ../../../../../../components/libraries/util/sdk_errors.h \

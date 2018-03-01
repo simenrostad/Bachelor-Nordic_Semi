@@ -81,11 +81,6 @@
 #include "nrf_log_default_backends.h"
 #include "ble_cus.h"
 
-#define CENTRAL_SCANNING_LED            BSP_BOARD_LED_2
-#define CENTRAL_CONNECTED_LED           BSP_BOARD_LED_3
-#define PERIPHERAL_ADVERTISING_LED      BSP_BOARD_LED_4
-//#define PERIPHERAL_CONNECTED_LED        BSP_BOARD_LED_4
-
 #define APP_FEATURE_NOT_SUPPORTED       BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2    /**< Reply when unsupported features are requested. */
 
 #define DEVICE_NAME                     "Nordic_Template"                       /**< Name of device. Will be included in the advertising data. */
@@ -118,7 +113,7 @@
 
 #define SCAN_INTERVAL           160                                     /**< Determines scan interval in units of 0.625 millisecond. */
 #define SCAN_WINDOW             80                                      /**< Determines scan window in units of 0.625 millisecond. */
-#define SCAN_TIMEOUT            0x0000                                  /**< Timout when scanning. 0x0000 disables timeout. */
+#define SCAN_TIMEOUT            0                                       /**< Timout when scanning. 0x0000 disables timeout. */
 
 #define UUID128_SIZE                    16
 
@@ -174,7 +169,6 @@ static ble_gap_scan_params_t const m_scan_params =
     #endif
 };
 
-
 static void advertising_start(bool erase_bonds);
 
 
@@ -207,8 +201,8 @@ static void scan_start(void)
     ret = sd_ble_gap_scan_start(&m_scan_params);
     APP_ERROR_CHECK(ret);
 
-//    ret = bsp_indication_set(BSP_INDICATE_ALERT_0);
-//    APP_ERROR_CHECK(ret);
+    ret = bsp_indication_set(BSP_INDICATE_ALERT_0);
+    APP_ERROR_CHECK(ret);
 }
 
 /**@brief Function to start scanning. */
@@ -660,51 +654,16 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
     {
         case BLE_GAP_EVT_CONNECTED:
             NRF_LOG_INFO("Connected.");
-            bsp_board_led_off(CENTRAL_SCANNING_LED);
             err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
-
-//            scan_start();
             break;
                 
         case BLE_GAP_EVT_DISCONNECTED:
-//            scan_stop();
             NRF_LOG_INFO("Disconnected.");
             err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING);
             APP_ERROR_CHECK(err_code);
-//            scan_stop();
             break;
-
-         case BLE_GAP_EVT_ADV_REPORT:
-        {
-            ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
-
-            if (is_uuid_present(m_adv_uuids, p_adv_report))
-            {
-
-                err_code = sd_ble_gap_connect(&p_adv_report->peer_addr,
-                                              &m_scan_params,
-                                              &m_connection_param,
-                                              APP_BLE_CONN_CFG_TAG);
-
-                if (err_code == NRF_SUCCESS)
-                {
-                    // scan is automatically stopped by the connect
-                    err_code = bsp_indication_set(BSP_INDICATE_IDLE);
-                    APP_ERROR_CHECK(err_code);
-                    NRF_LOG_INFO("Connecting to target %02x%02x%02x%02x%02x%02x",
-                             p_adv_report->peer_addr.addr[0],
-                             p_adv_report->peer_addr.addr[1],
-                             p_adv_report->peer_addr.addr[2],
-                             p_adv_report->peer_addr.addr[3],
-                             p_adv_report->peer_addr.addr[4],
-                             p_adv_report->peer_addr.addr[5]
-                             );
-                }
-            }
-        }break; // BLE_GAP_EVT_ADV_REPORT
-            
         
 //        case BLE_GAP_EVT_ADV_REPORT:
 //        {
@@ -993,24 +952,6 @@ static void advertising_start(bool erase_bonds)
     }
 }
 
-/**@brief Function for initiating advertising and scanning.
- */
-static void adv_scan_start(void)
-{
-    ret_code_t err_code;
-
-        scan_start();
-
-        // Turn on the LED to signal scanning.
-        bsp_board_led_on(CENTRAL_SCANNING_LED);
-
-        // Start advertising.
-        err_code = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
-        APP_ERROR_CHECK(err_code);
-
-        NRF_LOG_INFO("Advertising");
-    }
-
 /**@brief Function for application main entry.
  */
 int main(void)
@@ -1032,30 +973,11 @@ int main(void)
     NRF_LOG_INFO("Template example started.");
     application_timers_start();
 
-//    advertising_start(erase_bonds);
-
-    if (erase_bonds == true)
-    {
-        delete_bonds();
-        // Scanning and advertising is started by PM_EVT_PEERS_DELETE_SUCEEDED.
-    }
-    else
-    {
-        adv_scan_start();
-    }
-
-
-
-
-
+    advertising_start(erase_bonds);
 
     // Enter main loop.
     for (;;)
     {
-//      if (nrf_gpio_pin_read(13) == 1)
-//      {
-//        sd_ble_gap_keypress_notify();
-//      }
         if (NRF_LOG_PROCESS() == false)
         {
             power_manage();

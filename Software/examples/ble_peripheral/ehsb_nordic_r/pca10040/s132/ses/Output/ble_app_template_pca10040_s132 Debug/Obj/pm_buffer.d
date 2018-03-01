@@ -1,5 +1,5 @@
 Output/ble_app_template_pca10040_s132\ Debug/Obj/pm_buffer.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/ble/peer_manager/pm_buffer.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/ble/peer_manager/pm_buffer.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,6 +26,6 @@ Output/ble_app_template_pca10040_s132\ Debug/Obj/pm_buffer.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/ble/peer_manager/pm_buffer.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/ble/peer_manager/pm_buffer.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/ble/peer_manager/pm_mutex.h
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/ble/peer_manager/pm_mutex.h

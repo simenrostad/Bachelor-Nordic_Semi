@@ -1,5 +1,5 @@
 Output/ble_app_template_pca10040_s132\ Debug/Obj/nrf_log_backend_uart.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/experimental_log/src/nrf_log_backend_uart.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/experimental_log/src/nrf_log_backend_uart.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -43,10 +43,10 @@ Output/ble_app_template_pca10040_s132\ Debug/Obj/nrf_log_backend_uart.o: \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
  ../../../../../../components/libraries/util/app_error_weak.h \
  ../../../../../../components/libraries/util/app_util.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/experimental_log/src/nrf_log_backend_serial.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/experimental_log/src/nrf_log_backend_serial.h \
  ../../../../../../components/libraries/experimental_log/nrf_log_backend_interface.h \
  ../../../../../../external/fprintf/nrf_fprintf.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/experimental_log/src/nrf_log_internal.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/experimental_log/src/nrf_log_internal.h \
  ../../../../../../components/drivers_nrf/uart/nrf_drv_uart.h \
  ../../../../../../components/drivers_nrf/hal/nrf_peripherals.h \
  ../../../../../../components/device/nrf52832_peripherals.h \
