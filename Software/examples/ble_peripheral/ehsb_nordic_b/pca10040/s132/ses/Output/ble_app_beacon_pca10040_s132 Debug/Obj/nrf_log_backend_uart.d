@@ -1,5 +1,5 @@
 Output/ble_app_beacon_pca10040_s132\ Debug/Obj/nrf_log_backend_uart.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/libraries/experimental_log/src/nrf_log_backend_uart.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/experimental_log/src/nrf_log_backend_uart.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \

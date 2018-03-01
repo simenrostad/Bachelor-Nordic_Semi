@@ -20,13 +20,13 @@ static ble_uuid_t m_adv_uuids[]          =                                /**< U
     {BLE_UUID_EHSB_SERVICE, EHSB_SERVICE_UUID_TYPE}
 };
 
-static ble_gap_adv_params_t m_adv_params;                                 /**< Parameters to be passed to the stack when starting advertising. */
-
+                               /**< Parameters to be passed to the stack when starting advertising. */
 static void advertising_init(void)
 {
-    uint32_t        err_code;
-    ble_advdata_t   advdata;
-    uint8_t         flags = BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED;
+    uint32_t             err_code;
+    ble_advdata_t        advdata;
+    uint8_t              flags = BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED;
+    ble_gap_adv_params_t m_adv_params;  
 
     // Build and set advertising data.
     memset(&advdata, 0, sizeof(advdata));
