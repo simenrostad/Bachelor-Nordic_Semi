@@ -6,3 +6,6 @@ We are working on a bachelor asgingment under guidence of Nordic Semi Conductor 
 using the NRF52 and  Bluetooth Low Energy (BLE).
 
 The asginment is split in to tow piezes, Hardware And Software.
+
+
+potetmos
