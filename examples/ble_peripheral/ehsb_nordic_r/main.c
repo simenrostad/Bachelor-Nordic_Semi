@@ -81,6 +81,11 @@
 #include "nrf_log_default_backends.h"
 #include "ble_cus.h"
 
+#define CENTRAL_SCANNING_LED            BSP_BOARD_LED_2
+#define CENTRAL_CONNECTED_LED           BSP_BOARD_LED_3
+#define PERIPHERAL_ADVERTISING_LED      BSP_BOARD_LED_4
+//#define PERIPHERAL_CONNECTED_LED        BSP_BOARD_LED_4
+
 #define APP_FEATURE_NOT_SUPPORTED       BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2    /**< Reply when unsupported features are requested. */
 
 #define DEVICE_NAME                     "Nordic_Template"                       /**< Name of device. Will be included in the advertising data. */
@@ -91,10 +96,10 @@
 #define APP_BLE_OBSERVER_PRIO           1                                       /**< Application's BLE observer priority. You shouldn't need to modify this value. */
 #define APP_BLE_CONN_CFG_TAG            1                                       /**< A tag identifying the SoftDevice BLE configuration. */
 
-#define MIN_CONN_INTERVAL               MSEC_TO_UNITS(100, UNIT_1_25_MS)        /**< Minimum acceptable connection interval (0.1 seconds). */
-#define MAX_CONN_INTERVAL               MSEC_TO_UNITS(200, UNIT_1_25_MS)        /**< Maximum acceptable connection interval (0.2 second). */
-#define SLAVE_LATENCY                   0                                       /**< Slave latency. */
-#define CONN_SUP_TIMEOUT                MSEC_TO_UNITS(4000, UNIT_10_MS)         /**< Connection supervisory timeout (4 seconds). */
+#define MIN_CONNECTION_INTERVAL         (uint16_t) MSEC_TO_UNITS(7.5, UNIT_1_25_MS)     /**< Determines minimum connection interval in milliseconds. */
+#define MAX_CONNECTION_INTERVAL         (uint16_t) MSEC_TO_UNITS(30, UNIT_1_25_MS)      /**< Determines maximum connection interval in milliseconds. */
+#define SLAVE_LATENCY                   0                                               /**< Determines slave latency in terms of connection events. */
+#define SUPERVISION_TIMEOUT             (uint16_t) MSEC_TO_UNITS(500, UNIT_10_MS)       /**< Determines supervision time-out in units of 10 milliseconds. */
 
 #define FIRST_CONN_PARAMS_UPDATE_DELAY  APP_TIMER_TICKS(5000)                   /**< Time from initiating event (connect or start of notification) to first time sd_ble_gap_conn_param_update is called (5 seconds). */
 #define NEXT_CONN_PARAMS_UPDATE_DELAY   APP_TIMER_TICKS(30000)                  /**< Time between each call to sd_ble_gap_conn_param_update after the first call (30 seconds). */
@@ -111,14 +116,21 @@
 #define SEC_PARAM_MIN_KEY_SIZE          7                                       /**< Minimum encryption key size. */
 #define SEC_PARAM_MAX_KEY_SIZE          16                                      /**< Maximum encryption key size. */
 
-#define SCAN_INTERVAL           0x00A0                                  /**< Determines scan interval in units of 0.625 millisecond. */
-#define SCAN_WINDOW             0x0050                                  /**< Determines scan window in units of 0.625 millisecond. */
+#define SCAN_INTERVAL           160                                     /**< Determines scan interval in units of 0.625 millisecond. */
+#define SCAN_WINDOW             80                                      /**< Determines scan window in units of 0.625 millisecond. */
 #define SCAN_TIMEOUT            0x0000                                  /**< Timout when scanning. 0x0000 disables timeout. */
 
 #define UUID128_SIZE                    16
 
 #define DEAD_BEEF                       0xDEADBEEF                              /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
+static ble_gap_conn_params_t const m_connection_param =
+{
+    (uint16_t)MIN_CONNECTION_INTERVAL,  // Minimum connection
+    (uint16_t)MAX_CONNECTION_INTERVAL,  // Maximum connection
+    (uint16_t)SLAVE_LATENCY,            // Slave latency
+    (uint16_t)SUPERVISION_TIMEOUT       // Supervision time-out
+};
 
 NRF_BLE_GATT_DEF(m_gatt);                                                       /**< GATT module instance. */
 BLE_CUS_DEF(m_cus);
@@ -190,19 +202,27 @@ static void led_scan_timeout_handler(void * p_context)
 /**@brief Function to start scanning. */
 static void scan_start(void)
 {
-    ret_code_t err_code;
-    sd_ble_gap_scan_start(&m_scan_params);
-    err_code = bsp_indication_set(BSP_INDICATE_ALERT_0);
-    APP_ERROR_CHECK(err_code);
+    ret_code_t ret;
+
+    ret = sd_ble_gap_scan_start(&m_scan_params);
+    APP_ERROR_CHECK(ret);
+
+//    ret = bsp_indication_set(BSP_INDICATE_ALERT_0);
+//    APP_ERROR_CHECK(ret);
 }
-/**@brief Function to stop scanning */
+
+/**@brief Function to start scanning. */
 static void scan_stop(void)
 {
-    ret_code_t err_code;
-    sd_ble_gap_scan_stop();
-    err_code = bsp_indication_set(BSP_INDICATE_ALERT_OFF);
-    APP_ERROR_CHECK(err_code);
+    ret_code_t ret;
+
+    ret = sd_ble_gap_scan_stop();
+    APP_ERROR_CHECK(ret);
+
+//    ret = bsp_indication_set(BSP_INDICATE_SCANNING);
+//    APP_ERROR_CHECK(ret);
 }
+
 /**@brief Function to search for the desired UUID */
 static bool is_uuid_present(ble_uuid_t               const * p_target_uuid,
                             ble_gap_evt_adv_report_t const * p_adv_report)
@@ -407,10 +427,10 @@ static void gap_params_init(void)
 
     memset(&gap_conn_params, 0, sizeof(gap_conn_params));
 
-    gap_conn_params.min_conn_interval = MIN_CONN_INTERVAL;
-    gap_conn_params.max_conn_interval = MAX_CONN_INTERVAL;
+    gap_conn_params.min_conn_interval = MIN_CONNECTION_INTERVAL;
+    gap_conn_params.max_conn_interval = MAX_CONNECTION_INTERVAL;
     gap_conn_params.slave_latency     = SLAVE_LATENCY;
-    gap_conn_params.conn_sup_timeout  = CONN_SUP_TIMEOUT;
+    gap_conn_params.conn_sup_timeout  = SUPERVISION_TIMEOUT;
 
     err_code = sd_ble_gap_ppcp_set(&gap_conn_params);
     APP_ERROR_CHECK(err_code);
@@ -640,36 +660,67 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
     {
         case BLE_GAP_EVT_CONNECTED:
             NRF_LOG_INFO("Connected.");
+            bsp_board_led_off(CENTRAL_SCANNING_LED);
             err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
 
-            scan_start();
+//            scan_start();
             break;
                 
         case BLE_GAP_EVT_DISCONNECTED:
-            scan_stop();
+//            scan_stop();
             NRF_LOG_INFO("Disconnected.");
             err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING);
             APP_ERROR_CHECK(err_code);
-            scan_stop();
+//            scan_stop();
             break;
-        
-        case BLE_GAP_EVT_ADV_REPORT:
-        {
-             ret_code_t err_code;
-             ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
 
-             if (is_uuid_present(m_nus_uuid, p_adv_report))
-             {
-               NRF_LOG_INFO("BUTTON_DETECTED");
-               err_code = bsp_indication_set(BSP_INDICATE_ALERT_3);
-               APP_ERROR_CHECK(err_code);
-  
-               //Send information to central, wait for answer and resume search
-                
-             }
+         case BLE_GAP_EVT_ADV_REPORT:
+        {
+            ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
+
+            if (is_uuid_present(m_adv_uuids, p_adv_report))
+            {
+
+                err_code = sd_ble_gap_connect(&p_adv_report->peer_addr,
+                                              &m_scan_params,
+                                              &m_connection_param,
+                                              APP_BLE_CONN_CFG_TAG);
+
+                if (err_code == NRF_SUCCESS)
+                {
+                    // scan is automatically stopped by the connect
+                    err_code = bsp_indication_set(BSP_INDICATE_IDLE);
+                    APP_ERROR_CHECK(err_code);
+                    NRF_LOG_INFO("Connecting to target %02x%02x%02x%02x%02x%02x",
+                             p_adv_report->peer_addr.addr[0],
+                             p_adv_report->peer_addr.addr[1],
+                             p_adv_report->peer_addr.addr[2],
+                             p_adv_report->peer_addr.addr[3],
+                             p_adv_report->peer_addr.addr[4],
+                             p_adv_report->peer_addr.addr[5]
+                             );
+                }
+            }
         }break; // BLE_GAP_EVT_ADV_REPORT
+            
+        
+//        case BLE_GAP_EVT_ADV_REPORT:
+//        {
+//             ret_code_t err_code;
+//             ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
+//
+//             if (is_uuid_present(m_nus_uuid, p_adv_report))
+//             {
+//               NRF_LOG_INFO("BUTTON_DETECTED");
+//               err_code = bsp_indication_set(BSP_INDICATE_ALERT_3);
+//               APP_ERROR_CHECK(err_code);
+//  
+//               //Send information to central, wait for answer and resume search
+//                
+//             }
+//        }break; // BLE_GAP_EVT_ADV_REPORT
             
 
 #if defined(S132)
@@ -942,6 +993,23 @@ static void advertising_start(bool erase_bonds)
     }
 }
 
+/**@brief Function for initiating advertising and scanning.
+ */
+static void adv_scan_start(void)
+{
+    ret_code_t err_code;
+
+        scan_start();
+
+        // Turn on the LED to signal scanning.
+        bsp_board_led_on(CENTRAL_SCANNING_LED);
+
+        // Start advertising.
+        err_code = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
+        APP_ERROR_CHECK(err_code);
+
+        NRF_LOG_INFO("Advertising");
+    }
 
 /**@brief Function for application main entry.
  */
@@ -964,7 +1032,22 @@ int main(void)
     NRF_LOG_INFO("Template example started.");
     application_timers_start();
 
-    advertising_start(erase_bonds);
+//    advertising_start(erase_bonds);
+
+    if (erase_bonds == true)
+    {
+        delete_bonds();
+        // Scanning and advertising is started by PM_EVT_PEERS_DELETE_SUCEEDED.
+    }
+    else
+    {
+        adv_scan_start();
+    }
+
+
+
+
+
 
     // Enter main loop.
     for (;;)
