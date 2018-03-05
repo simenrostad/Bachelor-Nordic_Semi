@@ -228,8 +228,13 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 
         NRF_LOG_DEBUG("Received data from BLE NUS. Writing data on UART.");
         NRF_LOG_HEXDUMP_DEBUG(p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
-        nrf_gpio_pin_set(LED_4);
+
+
+        if (p_evt->params.rx_data.p_data[0] == '5' && p_evt->params.rx_data.p_data[1] == '6')
+        {
+        NRF_LOG_INFO("NUMBER ACCEPTED");
         scan_start();
+        }
 
         for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
         {
@@ -440,10 +445,12 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
         
                   err_code = ble_nus_string_send(&m_nus, string, &length);
                   APP_ERROR_CHECK(err_code);
-                  nrf_gpio_pin_clear(LED_4);
-            }
+                  bsp_indication_set(BSP_INDICATE_ALERT_OFF);
 
-        }break; // BLE_GAP_EVT_ADV_REPORT
+            }break; // BLE_GAP_EVT_ADV_REPORT
+
+        }
+             
 
             
 #ifndef S140
@@ -673,7 +680,7 @@ void uart_event_handle(app_uart_evt_t * p_event)
         case APP_UART_FIFO_ERROR:
             APP_ERROR_HANDLER(p_event->data.error_code);
             break;
-
+             
         default:
             break;
     }
