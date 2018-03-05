@@ -99,10 +99,19 @@
 #define NEXT_CONN_PARAMS_UPDATE_DELAY   APP_TIMER_TICKS(30000)                      /**< Time between each call to sd_ble_gap_conn_param_update after the first call (30 seconds). */
 #define MAX_CONN_PARAMS_UPDATE_COUNT    3                                           /**< Number of attempts before giving up the connection parameter negotiation. */
 
+#define SCAN_INTERVAL           0x00A0                                  /**< Determines scan interval in units of 0.625 millisecond. */
+#define SCAN_WINDOW             0x0050                                  /**< Determines scan window in units of 0.625 millisecond. */
+#define SCAN_TIMEOUT            0x0000                                  /**< Timout when scanning. 0x0000 disables timeout. */
+
+#define UUID128_SIZE                    16
+
 #define DEAD_BEEF                       0xDEADBEEF                                  /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
 #define UART_TX_BUF_SIZE                256                                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE                256                                         /**< UART RX buffer size. */
+
+#define BLE_UUID_EHSB_SERVICE 0x0001                      /**< The UUID of the Nordic UART Service. */
+
 
 
 BLE_NUS_DEF(m_nus);                                                                 /**< BLE NUS service instance. */
@@ -111,11 +120,35 @@ BLE_ADVERTISING_DEF(m_advertising);                                             
 
 static uint16_t   m_conn_handle          = BLE_CONN_HANDLE_INVALID;                 /**< Handle of the current connection. */
 static uint16_t   m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - 3;            /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
+
 static ble_uuid_t m_adv_uuids[]          =                                          /**< Universally unique service identifier. */
+
 {
     {BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}
 };
 
+/**@brief NUS uuid. */
+static ble_uuid_t const m_nus_uuid =
+{
+    .uuid = BLE_UUID_EHSB_SERVICE,
+    .type = NUS_SERVICE_UUID_TYPE
+};
+
+/** @brief Parameters used when scanning. */
+static ble_gap_scan_params_t const m_scan_params =
+{
+    .active   = 1,
+    .interval = SCAN_INTERVAL,
+    .window   = SCAN_WINDOW,
+    .timeout  = SCAN_TIMEOUT,
+    #if (NRF_SD_BLE_API_VERSION <= 2)
+        .selective   = 0,
+        .p_whitelist = NULL,
+    #endif
+    #if (NRF_SD_BLE_API_VERSION >= 3)
+        .use_whitelist = 0,
+    #endif
+};
 
 /**@brief Function for assert macro callback.
  *
@@ -163,6 +196,18 @@ static void gap_params_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
+static void scan_start(void)
+{
+  sd_ble_gap_scan_start(&m_scan_params);
+  bsp_indication_set(BSP_INDICATE_ALERT_0);
+}
+
+static void scan_stop(void)
+{
+  sd_ble_gap_scan_stop();
+  bsp_indication_set(BSP_INDICATE_ALERT_OFF);
+}
+
 
 /**@brief Function for handling the data from the Nordic UART Service.
  *
@@ -183,6 +228,8 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 
         NRF_LOG_DEBUG("Received data from BLE NUS. Writing data on UART.");
         NRF_LOG_HEXDUMP_DEBUG(p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
+        nrf_gpio_pin_set(LED_4);
+        scan_start();
 
         for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
         {
@@ -321,6 +368,36 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
     }
 }
 
+static bool is_uuid_present(ble_uuid_t               const * p_target_uuid,
+                            ble_gap_evt_adv_report_t const * p_adv_report)
+{
+    ret_code_t   err_code;
+    ble_uuid_t   extracted_uuid;
+    uint16_t     index  = 0;
+    uint8_t    * p_data = (uint8_t *)p_adv_report->data;
+
+    while (index < p_adv_report->dlen)
+    {
+        uint8_t field_length = p_data[index];
+        uint8_t field_type   = p_data[index + 1];
+
+        if (   (field_type == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_MORE_AVAILABLE)
+                 || (field_type == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE))
+        {
+            err_code = sd_ble_uuid_decode(UUID128_SIZE, &p_data[index + 2], &extracted_uuid);
+            if (err_code == NRF_SUCCESS)
+            {
+                if (   (extracted_uuid.uuid == p_target_uuid->uuid)
+                    && (extracted_uuid.type == p_target_uuid->type))
+                {
+                    return true;
+                }
+            }
+        }
+        index += field_length + 1;
+    }
+    return false;
+}
 
 /**@brief Function for handling BLE events.
  *
@@ -330,6 +407,7 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
 static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 {
     uint32_t err_code;
+    ble_gap_evt_t const * p_gap_evt = &p_ble_evt->evt.gap_evt;
 
     switch (p_ble_evt->header.evt_id)
     {
@@ -338,14 +416,36 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
+            scan_start();
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
             NRF_LOG_INFO("Disconnected");
             // LED indication will be changed when advertising starts.
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
+            scan_stop();
             break;
 
+        
+        case BLE_GAP_EVT_ADV_REPORT:
+        {
+            ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
+
+            if (is_uuid_present(&m_nus_uuid, p_adv_report))
+            {
+                  NRF_LOG_INFO("BUTTON DETECTED");
+                  scan_stop();
+                  uint8_t string[] = "1234\n\r";
+                  uint16_t length = sizeof(string);
+        
+                  err_code = ble_nus_string_send(&m_nus, string, &length);
+                  APP_ERROR_CHECK(err_code);
+                  nrf_gpio_pin_clear(LED_4);
+            }
+
+        }break; // BLE_GAP_EVT_ADV_REPORT
+
+            
 #ifndef S140
         case BLE_GAP_EVT_PHY_UPDATE_REQUEST:
         {
