@@ -2995,7 +2995,7 @@
  
 
 #ifndef NRF_CLI_ECHO_STATUS
-#define NRF_CLI_ECHO_STATUS 1
+#define NRF_CLI_ECHO_STATUS 0
 #endif
 
 // <o> NRF_CLI_PRINTF_BUFF_SIZE - Maximum print buffer size. 

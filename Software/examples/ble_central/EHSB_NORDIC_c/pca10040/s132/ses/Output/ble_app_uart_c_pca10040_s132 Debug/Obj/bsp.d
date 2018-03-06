@@ -1,6 +1,6 @@
 Output/ble_app_uart_c_pca10040_s132\ Debug/Obj/bsp.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\bsp\bsp.c \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\bsp\bsp.h \
+ C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\libraries\bsp\bsp.c \
+ C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\libraries\bsp\bsp.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  ../../../../../../components/boards/boards.h \
@@ -34,7 +34,7 @@ Output/ble_app_uart_c_pca10040_s132\ Debug/Obj/bsp.o: \
  ../../../../../../components/libraries/util/app_error.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
  ../../../../../../components/libraries/util/nordic_common.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\bsp\bsp_config.h \
+ C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\libraries\bsp\bsp_config.h \
  ../../../../../../components/libraries/timer/app_timer.h \
  ../../../../../../components/libraries/util/app_util.h \
  ../../../../../../components/device/compiler_abstraction.h

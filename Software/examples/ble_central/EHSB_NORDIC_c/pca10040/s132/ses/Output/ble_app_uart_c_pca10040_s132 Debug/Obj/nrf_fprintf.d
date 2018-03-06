@@ -1,5 +1,5 @@
 Output/ble_app_uart_c_pca10040_s132\ Debug/Obj/nrf_fprintf.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\external\fprintf\nrf_fprintf.c \
+ C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\external\fprintf\nrf_fprintf.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -31,5 +31,5 @@ Output/ble_app_uart_c_pca10040_s132\ Debug/Obj/nrf_fprintf.o: \
  ../../../../../../components/libraries/util/app_error.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
  ../../../../../../components/libraries/util/app_error_weak.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\external\fprintf\nrf_fprintf_format.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\external\fprintf\nrf_fprintf.h
+ C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\external\fprintf\nrf_fprintf_format.h \
+ C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\external\fprintf\nrf_fprintf.h
