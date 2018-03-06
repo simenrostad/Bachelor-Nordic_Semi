@@ -99,9 +99,9 @@
 #define NEXT_CONN_PARAMS_UPDATE_DELAY   APP_TIMER_TICKS(30000)                      /**< Time between each call to sd_ble_gap_conn_param_update after the first call (30 seconds). */
 #define MAX_CONN_PARAMS_UPDATE_COUNT    3                                           /**< Number of attempts before giving up the connection parameter negotiation. */
 
-#define SCAN_INTERVAL           0x00A0                                  /**< Determines scan interval in units of 0.625 millisecond. */
-#define SCAN_WINDOW             0x0050                                  /**< Determines scan window in units of 0.625 millisecond. */
-#define SCAN_TIMEOUT            0x0000                                  /**< Timout when scanning. 0x0000 disables timeout. */
+#define SCAN_INTERVAL           0x00A0                                              /**< Determines scan interval in units of 0.625 millisecond. */
+#define SCAN_WINDOW             0x0050                                              /**< Determines scan window in units of 0.625 millisecond. */
+#define SCAN_TIMEOUT            0x0000                                              /**< Timeout when scanning. 0x0000 disables timeout. */
 
 #define UUID128_SIZE                    16
 
@@ -110,7 +110,7 @@
 #define UART_TX_BUF_SIZE                256                                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE                256                                         /**< UART RX buffer size. */
 
-#define BLE_UUID_EHSB_SERVICE 0x0001                      /**< The UUID of the Nordic UART Service. */
+#define BLE_UUID_EHSB_SERVICE 0x0001                                                /**< The UUID of the Nordic UART Service. */
 
 
 
@@ -228,13 +228,8 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 
         NRF_LOG_DEBUG("Received data from BLE NUS. Writing data on UART.");
         NRF_LOG_HEXDUMP_DEBUG(p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
+        scan_start();                                                                       //Scan start when data received
 
-
-        if (p_evt->params.rx_data.p_data[0] == '5' && p_evt->params.rx_data.p_data[1] == '6')
-        {
-        NRF_LOG_INFO("NUMBER ACCEPTED");
-        scan_start();
-        }
 
         for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
         {
@@ -445,7 +440,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
         
                   err_code = ble_nus_string_send(&m_nus, string, &length);
                   APP_ERROR_CHECK(err_code);
-                  bsp_indication_set(BSP_INDICATE_ALERT_OFF);
+                  bsp_indication_set(BSP_INDICATE_ALERT_3);
 
             }break; // BLE_GAP_EVT_ADV_REPORT
 
