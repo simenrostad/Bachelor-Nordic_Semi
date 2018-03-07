@@ -1,10 +1,10 @@
 Output/ble_app_uart_c_pca10040_s132\ Debug/Obj/ble_advdata.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/ble/common/ble_advdata.c \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/ble/common/ble_advdata.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
+ C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\ble\common\ble_advdata.c \
+ C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\ble\common\ble_advdata.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
  ../../../../../../components/softdevice/s132/headers/ble.h \
  ../../../../../../components/softdevice/s132/headers/ble_ranges.h \
  ../../../../../../components/softdevice/s132/headers/ble_types.h \
@@ -29,11 +29,11 @@ Output/ble_app_uart_c_pca10040_s132\ Debug/Obj/ble_advdata.o: \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/softdevice/s132/headers/ble_gatts.h \
  ../../../../../../components/libraries/util/app_util.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/nordic_common.h \
  ../../../../../../components/softdevice/s132/headers/ble_gap.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/components/ble/common/ble_srv_common.h \
+ C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\ble\common\ble_srv_common.h \
  ../../../../../../components/softdevice/s132/headers/ble_types.h \
  ../../../../../../components/softdevice/s132/headers/ble_gatt.h \
  ../../../../../../components/libraries/util/sdk_common.h \
