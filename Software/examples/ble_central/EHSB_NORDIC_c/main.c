@@ -89,6 +89,7 @@
 #define BLE_EHSB_SERVICE        0x0001
 
 APP_TIMER_DEF(m_led_timer_id);                                           //  Macro for timer id
+APP_TIMER_DEF(add_button_timer_id);
 
 BLE_NUS_C_DEF(m_ble_nus_c);                                             /**< BLE NUS service client instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                               /**< GATT module instance. */
@@ -98,7 +99,8 @@ static uint16_t m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - OPCODE_LENGT
 
 bool reset = false;
 bool reset_r = false;
-bool scan = false;
+bool scanning = false;
+bool add_button = false;
 
 /**@brief Connection parameters requested for connection. */
 static ble_gap_conn_params_t const m_connection_param =
@@ -132,7 +134,7 @@ static ble_uuid_t const m_nus_uuid =
     .type = NUS_SERVICE_UUID_TYPE
 };
 
-/**@brief NUS uuid. */
+/**@brief EHSB uuid. */
 static ble_uuid_t const m_ehsb_uuid =
 {
     .uuid = BLE_EHSB_SERVICE,
@@ -161,6 +163,11 @@ static void led_timeout_handler(void * p_context)
   nrf_gpio_pin_toggle(LED_1);
 }
 
+static void add_button_timeout_handler(void * p_context)
+{
+  nrf_gpio_pin_toggle(LED_4);
+}
+
 /**@brief Function to start scanning. */
 static void scan_start(void)
 {
@@ -173,7 +180,7 @@ static void scan_start(void)
 //    APP_ERROR_CHECK(ret);
 
     app_timer_start(m_led_timer_id,APP_TIMER_TICKS(1000),led_timeout_handler);
-    scan = true;
+    scanning = true;
 }
 
 static void scan_stop(void)
@@ -181,7 +188,7 @@ static void scan_stop(void)
     sd_ble_gap_scan_stop();
     app_timer_stop(m_led_timer_id);
     nrf_gpio_pin_set(LED_1);
-    scan = false;
+    scanning = false;
 }
 
 
@@ -339,7 +346,7 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
         case BLE_NUS_C_EVT_DISCONNECTED:
             NRF_LOG_INFO("Disconnected.");
             nrf_gpio_pin_set(LED_3);
-            if(!scan)
+            if(!scanning)
             {
             scan_start();
             }
@@ -444,9 +451,11 @@ static bool is_uuid_present(ble_uuid_t               const * p_target_uuid,
         else if (   (field_type == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_MORE_AVAILABLE)
                  || (field_type == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE))
         {
+
             err_code = sd_ble_uuid_decode(UUID128_SIZE, &p_data[index + 2], &extracted_uuid);
             if (err_code == NRF_SUCCESS)
             {
+
                 if (   (extracted_uuid.uuid == p_target_uuid->uuid)
                     && (extracted_uuid.type == p_target_uuid->type))
                 {
@@ -474,35 +483,72 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
     {
         case BLE_GAP_EVT_ADV_REPORT:
         {
-            ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
+                ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
 
-            //When stop button is found: turn on stop sign(led) and stop scanning
-            if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
+            if(!add_button)
             {
-              nrf_gpio_pin_clear(LED_2);
-              scan_stop();
-              reset = true;
-            }
-            
-            if (is_uuid_present(&m_nus_uuid, p_adv_report))
-            {
-
-                err_code = sd_ble_gap_connect(&p_adv_report->peer_addr,
-                                              &m_scan_params,
-                                              &m_connection_param,
-                                              APP_BLE_CONN_CFG_TAG);
-
-                if (err_code == NRF_SUCCESS)
+                //When stop button is found: turn on stop sign(led) and stop scanning
+                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
                 {
-                    // scan is automatically stopped by the connect
-                    NRF_LOG_INFO("Connecting to target %02x%02x%02x%02x%02x%02x",
-                             p_adv_report->peer_addr.addr[0],
-                             p_adv_report->peer_addr.addr[1],
-                             p_adv_report->peer_addr.addr[2],
-                             p_adv_report->peer_addr.addr[3],
-                             p_adv_report->peer_addr.addr[4],
-                             p_adv_report->peer_addr.addr[5]
-                             );
+                NRF_LOG_INFO("rssi =%d dBm\n", p_ble_evt->evt.gap_evt.params.adv_report.rssi);
+
+                  nrf_gpio_pin_clear(LED_2);
+                  scan_stop();
+                  reset = true;
+                }
+            
+                if (is_uuid_present(&m_nus_uuid, p_adv_report))
+                {
+
+                    err_code = sd_ble_gap_connect(&p_adv_report->peer_addr,
+                                                  &m_scan_params,
+                                                  &m_connection_param,
+                                                  APP_BLE_CONN_CFG_TAG);
+
+                    if (err_code == NRF_SUCCESS)
+                    {
+                        // scan is automatically stopped by the connect
+                        NRF_LOG_INFO("Connecting to target %02x%02x%02x%02x%02x%02x",
+                                 p_adv_report->peer_addr.addr[0],
+                                 p_adv_report->peer_addr.addr[1],
+                                 p_adv_report->peer_addr.addr[2],
+                                 p_adv_report->peer_addr.addr[3],
+                                 p_adv_report->peer_addr.addr[4],
+                                 p_adv_report->peer_addr.addr[5]
+                                 );
+                    }
+                }
+            }
+            else if(add_button)
+            {
+                if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -40)
+                {
+                    if(p_adv_report->data[2] == 4 && p_adv_report->data[4] == 7)
+                    {
+                        NRF_LOG_INFO("UUID: %x%x%x%x%x%x", 
+                                    p_adv_report->data[5],
+                                    p_adv_report->data[6],
+                                    p_adv_report->data[7],
+                                    p_adv_report->data[8],
+                                    p_adv_report->data[9],
+                                    p_adv_report->data[10]
+                                    );
+                        NRF_LOG_INFO("%x%x%x%x%x%x",
+                                    p_adv_report->data[11],
+                                    p_adv_report->data[12],
+                                    p_adv_report->data[13],
+                                    p_adv_report->data[14],
+                                    p_adv_report->data[15],
+                                    p_adv_report->data[16]
+                                    );
+                        NRF_LOG_INFO("%x%x%x%x",
+                                    p_adv_report->data[17],
+                                    p_adv_report->data[18],
+                                    p_adv_report->data[19],
+                                    p_adv_report->data[20]
+                                    );
+                        NRF_LOG_INFO("Hei");
+                    }
                 }
             }
         }break; // BLE_GAP_EVT_ADV_REPORT
@@ -733,7 +779,7 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
 
           nrf_gpio_pin_set(LED_2);
           nrf_gpio_pin_set(LED_4);
-          if(!scan)
+          if(!scanning)
           {
               scan_start();
           }
@@ -741,20 +787,43 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
           reset = false;
       }
    }
+   if(pin_no == BUTTON_2 && button_action == APP_BUTTON_PUSH)
+   {
+       app_timer_start(add_button_timer_id, APP_TIMER_TICKS(500), add_button_timeout_handler);
+       add_button = true;
+       if(!scanning)
+       {
+          scan_start();
+       }
+       NRF_LOG_INFO("Hola");
+   }
+   if(pin_no == BUTTON_2 && button_action == APP_BUTTON_RELEASE)
+   {
+      NRF_LOG_INFO("button3");
+      app_timer_stop(add_button_timer_id);
+      nrf_gpio_pin_set(LED_4);
+      add_button = false;
+   }
 }
 
 static void buttons_init()
 {
     ret_code_t err_code;
 
-    static app_button_cfg_t button_cfg[2] = {
+    static app_button_cfg_t button_cfg[3] ={ {
         BUTTON_1,
         APP_BUTTON_ACTIVE_LOW,
         NRF_GPIO_PIN_PULLUP,
         button_handler
-    };
+        },
+        {
+        BUTTON_2,
+        APP_BUTTON_ACTIVE_LOW,
+        NRF_GPIO_PIN_PULLUP,
+        button_handler
+        } };
 
-    err_code = app_button_init(button_cfg,1,5);
+    err_code = app_button_init(button_cfg,2,5);
     APP_ERROR_CHECK(err_code);
 
     err_code = app_button_enable();
@@ -778,6 +847,9 @@ static void application_timer_init(void)
     APP_ERROR_CHECK(err_code);
 
     err_code = app_timer_create(&m_led_timer_id,APP_TIMER_MODE_REPEATED, led_timeout_handler);
+    APP_ERROR_CHECK(err_code);
+
+    err_code = app_timer_create(&add_button_timer_id,APP_TIMER_MODE_REPEATED, add_button_timeout_handler);
     APP_ERROR_CHECK(err_code);
 }
 

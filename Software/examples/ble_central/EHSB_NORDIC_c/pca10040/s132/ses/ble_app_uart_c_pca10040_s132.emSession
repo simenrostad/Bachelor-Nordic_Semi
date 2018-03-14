@@ -1,7 +1,9 @@
 <!DOCTYPE CrossStudio_Session_File>
 <session>
  <Bookmarks/>
- <Breakpoints groups="Breakpoints" active_group="Breakpoints"/>
+ <Breakpoints groups="Breakpoints" active_group="Breakpoints">
+  <Exceptions set="MemManage;UsageFault_Coprocessor;UsageFault_CheckingError;UsageFault_StateError;BusFault;ExceptionEntryReturnFault;HardFault"/>
+ </Breakpoints>
  <ExecutionProfileWindow/>
  <FrameBufferWindow>
   <FrameBufferWindow bufferHeight="-1" addressSpace="" addressText="" bufferWidth="-1"/>
@@ -53,10 +55,10 @@
  </TraceWindow>
  <Watch1>
   <Watches active="1" update="Never">
-   <Watchpoint numelements="0" expression="ret" evalMode="0" name="ret" radix="16" linenumber="171" filename="../../../main.c" list=""/>
-   <Watchpoint numelements="0" expression="scan" evalMode="0" name="scan" radix="-1" linenumber="736" filename="../../../main.c" list=""/>
-   <Watchpoint numelements="0" expression="reset_r" evalMode="0" name="reset_r" radix="-1" linenumber="100" filename="../../../main.c" list=""/>
-   <Watchpoint numelements="0" expression="reset" evalMode="0" name="reset" radix="-1" linenumber="99" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="ret" evalMode="0" name="ret" radix="16" linenumber="178" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="scan" evalMode="0" name="scan" radix="-1" linenumber="780" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="reset_r" evalMode="0" name="reset_r" radix="-1" linenumber="101" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="reset" evalMode="0" name="reset" radix="-1" linenumber="100" filename="../../../main.c" list=""/>
   </Watches>
  </Watch1>
  <Watch2>
@@ -69,7 +71,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="67" y="838" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="810" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="17" y="460" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="507" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="ble_ehsb_c_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="ble_ehsb_c_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
