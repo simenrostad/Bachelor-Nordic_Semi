@@ -1,13 +1,13 @@
 Output/ble_app_uart_pca10040_s132\ Debug/Obj/sdk_mapped_flags.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/util/sdk_mapped_flags.c \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/util/sdk_mapped_flags.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/libraries/util/sdk_mapped_flags.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/libraries/util/sdk_mapped_flags.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/util/app_util.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/libraries/util/app_util.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
  ../../../../../../components/device/compiler_abstraction.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/util/nordic_common.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/libraries/util/nordic_common.h \
  ../../../../../../components/device/nrf.h \
  ../../../../../../components/device/nrf52.h \
  ../../../../../../components/toolchain/cmsis/include/core_cm4.h \

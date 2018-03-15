@@ -1,5 +1,5 @@
 Output/ble_app_uart_pca10040_s132\ Debug/Obj/nrf_sdh.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/softdevice/common/nrf_sdh.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/softdevice/common/nrf_sdh.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,7 +26,7 @@ Output/ble_app_uart_pca10040_s132\ Debug/Obj/nrf_sdh.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/softdevice/common/nrf_sdh.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/softdevice/common/nrf_sdh.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/experimental_section_vars/nrf_section_iter.h \
  ../../../../../../components/libraries/experimental_section_vars/nrf_section.h \

@@ -1,8 +1,8 @@
 Output/ble_app_uart_pca10040_s132\ Debug/Obj/nrf_drv_common.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/drivers_nrf/common/nrf_drv_common.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/drivers_nrf/common/nrf_drv_common.c \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/drivers_nrf/common/nrf_drv_common.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/drivers_nrf/common/nrf_drv_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  ../../../../../../components/device/nrf.h \

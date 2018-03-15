@@ -134,6 +134,7 @@ static ble_uuid_t const m_nus_uuid =
     .type = NUS_SERVICE_UUID_TYPE
 };
 
+
 /** @brief Parameters used when scanning. */
 static ble_gap_scan_params_t const m_scan_params =
 {
@@ -228,7 +229,26 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 
         NRF_LOG_DEBUG("Received data from BLE NUS. Writing data on UART.");
         NRF_LOG_HEXDUMP_DEBUG(p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
-        scan_start();                                                                       //Scan start when data received
+        scan_start();
+
+//        if (p_evt->params.rx_data.length == '31')
+//        {
+//
+//            uint32_t newuuid = rx.data.string;
+//            NRF_LOG_INFO("newuuid");
+//            //Add UUID to database 
+//            //add UUID count
+//        }
+//
+////        if (params.rx_data.p_data == '0')
+////        {
+////          scan_start();
+////        }
+////
+////        if ( )
+////        {
+////          //delete aux UUID list
+////        }
 
 
         for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
@@ -427,24 +447,24 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             break;
 
         
-        case BLE_GAP_EVT_ADV_REPORT:
-        {
-            ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
-
-            if (is_uuid_present(&m_nus_uuid, p_adv_report))
-            {
-                  NRF_LOG_INFO("BUTTON DETECTED");
-                  scan_stop();
-                  uint8_t string[] = "1234\n\r";
-                  uint16_t length = sizeof(string);
-        
-                  err_code = ble_nus_string_send(&m_nus, string, &length);
-                  APP_ERROR_CHECK(err_code);
-                  bsp_indication_set(BSP_INDICATE_ALERT_3);
-
-            }break; // BLE_GAP_EVT_ADV_REPORT
-
-        }
+//        case BLE_GAP_EVT_ADV_REPORT:
+//        {
+//            ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
+//
+//            if (is_uuid_present(&m_nus_uuid, p_adv_report))
+//            {
+//                  NRF_LOG_INFO("BUTTON DETECTED");
+//                  scan_stop();
+//                  uint8_t string[] = "1234\n\r";
+//                  uint16_t length = sizeof(string);
+//        
+//                  err_code = ble_nus_string_send(&m_nus, string, &length);
+//                  APP_ERROR_CHECK(err_code);
+//                  bsp_indication_set(BSP_INDICATE_ALERT_3);
+//
+//            }break; // BLE_GAP_EVT_ADV_REPORT
+//
+//        }
              
 
             

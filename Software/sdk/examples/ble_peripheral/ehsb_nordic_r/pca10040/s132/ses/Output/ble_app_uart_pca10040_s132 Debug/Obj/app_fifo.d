@@ -1,5 +1,5 @@
 Output/ble_app_uart_pca10040_s132\ Debug/Obj/app_fifo.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/fifo/app_fifo.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/libraries/fifo/app_fifo.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,5 +26,5 @@ Output/ble_app_uart_pca10040_s132\ Debug/Obj/app_fifo.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/fifo/app_fifo.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/libraries/fifo/app_fifo.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdlib.h
