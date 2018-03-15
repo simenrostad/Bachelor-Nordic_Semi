@@ -338,9 +338,12 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
 //            {
 //                nrf_gpio_pin_clear(LED_2);
 //            }
+              if(!add_button)
+              {
               nrf_gpio_pin_clear(LED_4);
               scan_stop();
               reset_r = true;
+              }
             break;
 
         case BLE_NUS_C_EVT_DISCONNECTED:
@@ -525,29 +528,61 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                 {
                     if(p_adv_report->data[2] == 4 && p_adv_report->data[4] == 7)
                     {
-                        NRF_LOG_INFO("UUID: %x%x%x%x%x%x", 
-                                    p_adv_report->data[5],
-                                    p_adv_report->data[6],
-                                    p_adv_report->data[7],
-                                    p_adv_report->data[8],
-                                    p_adv_report->data[9],
-                                    p_adv_report->data[10]
-                                    );
-                        NRF_LOG_INFO("%x%x%x%x%x%x",
-                                    p_adv_report->data[11],
-                                    p_adv_report->data[12],
-                                    p_adv_report->data[13],
-                                    p_adv_report->data[14],
-                                    p_adv_report->data[15],
-                                    p_adv_report->data[16]
-                                    );
-                        NRF_LOG_INFO("%x%x%x%x",
-                                    p_adv_report->data[17],
-                                    p_adv_report->data[18],
-                                    p_adv_report->data[19],
-                                    p_adv_report->data[20]
-                                    );
-                        NRF_LOG_INFO("Hei");
+                        uint64_t button_UUID[16];
+                        uint32_t lenght = sizeof(button_UUID);
+                        uint64_t buf[16];
+                        uint64_t hei = 0xabcdeffe;
+                        for(uint8_t i = 0; i < 16; i++)
+                        {
+                          button_UUID[i] = p_adv_report->data[i + 5];                     
+                        }
+                        sprintf(buf, "%x", button_UUID);
+                        ble_nus_c_string_send(&m_ble_nus_c, (uint64_t*) buf, strlen(buf));
+                        NRF_LOG_INFO("%x", 
+                                      button_UUID
+//                                      button_UUID[1],
+//                                      button_UUID[2],
+//                                      button_UUID[3],
+//                                      button_UUID[4],
+//                                      button_UUID[5]
+                                      );
+//                        NRF_LOG_INFO("%x%X%X%X%X%X", 
+//                                      button_UUID[6],
+//                                      button_UUID[7],
+//                                      button_UUID[8],
+//                                      button_UUID[9],
+//                                      button_UUID[10],
+//                                      button_UUID[11]
+//                                      );
+//                         NRF_LOG_INFO("%x%X%X%X%X%X", 
+//                                      button_UUID[12],
+//                                      button_UUID[13],
+//                                      button_UUID[14],
+//                                      button_UUID[15]
+//                                      );
+//                        NRF_LOG_INFO("UUID: %x%x%x%x%x%x", 
+//                                    p_adv_report->data[5],
+//                                    p_adv_report->data[6],
+//                                    p_adv_report->data[7],
+//                                    p_adv_report->data[8],
+//                                    p_adv_report->data[9],
+//                                    p_adv_report->data[10]
+//                                    );
+//                        NRF_LOG_INFO("%x%x%x%x%x%x",
+//                                    p_adv_report->data[11],
+//                                    p_adv_report->data[12],
+//                                    p_adv_report->data[13],
+//                                    p_adv_report->data[14],
+//                                    p_adv_report->data[15],
+//                                    p_adv_report->data[16]
+//                                    );
+//                        NRF_LOG_INFO("%x%x%x%x",
+//                                    p_adv_report->data[17],
+//                                    p_adv_report->data[18],
+//                                    p_adv_report->data[19],
+//                                    p_adv_report->data[20]
+//                                    );
+//                        NRF_LOG_INFO("Hei");
                     }
                 }
             }
@@ -677,35 +712,6 @@ void gatt_init(void)
     err_code = nrf_ble_gatt_att_mtu_central_set(&m_gatt, NRF_SDH_BLE_GATT_MAX_MTU_SIZE);
     APP_ERROR_CHECK(err_code);
 }
-
-
-/**@brief Function for handling events from the BSP module.
- *
- * @param[in] event  Event generated by button press.
- */
-//void bsp_event_handler(bsp_event_t event)
-//{
-//    ret_code_t err_code;
-//
-//    switch (event)
-//    {
-//        case BSP_EVENT_SLEEP:
-//            nrf_pwr_mgmt_shutdown(NRF_PWR_MGMT_SHUTDOWN_GOTO_SYSOFF);
-//            break;
-//
-//        case BSP_EVENT_DISCONNECT:
-//            err_code = sd_ble_gap_disconnect(m_ble_nus_c.conn_handle,
-//                                             BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
-//            if (err_code != NRF_ERROR_INVALID_STATE)
-//            {
-//                APP_ERROR_CHECK(err_code);
-//            }
-//            break;
-//
-//        default:
-//            break;
-//    }
-//}
 
 /**@brief Function for initializing the UART. */
 static void uart_init(void)
