@@ -490,7 +490,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 
             if(!add_button)
             {
-                //When stop button is found: turn on stop sign(led) and stop scanning
+                //If stop button is found: turn on stop sign(LED1 for now) and stop scanning
                 if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
                 {
                 NRF_LOG_INFO("rssi =%d dBm\n", p_ble_evt->evt.gap_evt.params.adv_report.rssi);
@@ -526,63 +526,31 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             {
                 if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -40)
                 {
-                    if(p_adv_report->data[2] == 4 && p_adv_report->data[4] == 7)
+                    if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
+                       && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
                     {
-                        uint64_t button_UUID[16];
-                        uint32_t lenght = sizeof(button_UUID);
-                        uint64_t buf[16];
-                        uint64_t hei = 0xabcdeffe;
-                        for(uint8_t i = 0; i < 16; i++)
-                        {
-                          button_UUID[i] = p_adv_report->data[i + 5];                     
-                        }
-                        sprintf(buf, "%x", button_UUID);
-                        ble_nus_c_string_send(&m_ble_nus_c, (uint64_t*) buf, strlen(buf));
-                        NRF_LOG_INFO("%x", 
-                                      button_UUID
-//                                      button_UUID[1],
-//                                      button_UUID[2],
-//                                      button_UUID[3],
-//                                      button_UUID[4],
-//                                      button_UUID[5]
-                                      );
-//                        NRF_LOG_INFO("%x%X%X%X%X%X", 
-//                                      button_UUID[6],
-//                                      button_UUID[7],
-//                                      button_UUID[8],
-//                                      button_UUID[9],
-//                                      button_UUID[10],
-//                                      button_UUID[11]
-//                                      );
-//                         NRF_LOG_INFO("%x%X%X%X%X%X", 
-//                                      button_UUID[12],
-//                                      button_UUID[13],
-//                                      button_UUID[14],
-//                                      button_UUID[15]
-//                                      );
-//                        NRF_LOG_INFO("UUID: %x%x%x%x%x%x", 
-//                                    p_adv_report->data[5],
-//                                    p_adv_report->data[6],
-//                                    p_adv_report->data[7],
-//                                    p_adv_report->data[8],
-//                                    p_adv_report->data[9],
-//                                    p_adv_report->data[10]
-//                                    );
-//                        NRF_LOG_INFO("%x%x%x%x%x%x",
-//                                    p_adv_report->data[11],
-//                                    p_adv_report->data[12],
-//                                    p_adv_report->data[13],
-//                                    p_adv_report->data[14],
-//                                    p_adv_report->data[15],
-//                                    p_adv_report->data[16]
-//                                    );
-//                        NRF_LOG_INFO("%x%x%x%x",
-//                                    p_adv_report->data[17],
-//                                    p_adv_report->data[18],
-//                                    p_adv_report->data[19],
-//                                    p_adv_report->data[20]
-//                                    );
-//                        NRF_LOG_INFO("Hei");
+                        NRF_LOG_INFO("UUID: %x%x%x%x%x%x%x", 
+                                    p_adv_report->data[5],
+                                    p_adv_report->data[6],
+                                    p_adv_report->data[7],
+                                    p_adv_report->data[8],
+                                    p_adv_report->data[9],
+                                    p_adv_report->data[10]
+                                    );
+                        NRF_LOG_INFO("%x%x%x%x%x%x",
+                                    p_adv_report->data[11],
+                                    p_adv_report->data[12],
+                                    p_adv_report->data[13],
+                                    p_adv_report->data[14],
+                                    p_adv_report->data[15],
+                                    p_adv_report->data[16]
+                                    );
+                        NRF_LOG_INFO("%x%x%x%x",
+                                    p_adv_report->data[17],
+                                    p_adv_report->data[18],
+                                    p_adv_report->data[19],
+                                    p_adv_report->data[20]
+                                    );
                     }
                 }
             }
