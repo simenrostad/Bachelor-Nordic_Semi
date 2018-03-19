@@ -1,0 +1,31 @@
+0,504100 
+
+0,603950 
+
+Hardware points of intrest:
+
+Et ferdigstilt programm\rutine (måte og gjøre)  databehandling på. 
+slik at vi får en fin arbeidsflyt fra testing til datalogging.
+altså: 
+	- sette op forskjelige kretser og komonenter for måling.
+	- samle data fra utstyr som solilioskop og multimeter i filtyper som vi lett kan behanldle.
+	- eventeuelt logge data for hond på ark eller digitalt.
+	- ha en liste på hva som er testet og hvordan samt med hvilke instillinger og parametereintillinger.
+
+Ferdigstille kretsen for test settuppet vårdt.
+altså:
+	- ha sjemategning for hele systemet
+	- ha pcb layaouts till hele systemet og de forskjlige verjsonen vi tester på.
+	- teste på pcb vi har får igjenom Elektra VG. 
+	- logge og beskrive hvordan testingen og hva vi lærer av pcb testingen.
+
+Lære seg kondensatoer og finne beste mulig kondis for energilagring samt hvilke kondensatoer vi ellers trenger.
+(afrotecmods har en vidio)
+
+bestille alt vi trenge av koponenter til det komplette produktet.
+
+Generell points of intrest:-------
+oppdatere gant og github, inkluderprosjekt delen.
+
+
+	
