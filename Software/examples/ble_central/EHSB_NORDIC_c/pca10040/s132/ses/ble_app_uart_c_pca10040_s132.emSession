@@ -30,10 +30,15 @@
   <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;Application"/>
   <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;Board Definition"/>
   <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;Board Support"/>
+  <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;Device"/>
   <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;nRF_BLE"/>
   <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;nRF_BLE_Services"/>
+  <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;nRF_Drivers"/>
   <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;nRF_Libraries"/>
   <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;nRF_Log"/>
+  <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;nRF_Segger_RTT"/>
+  <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;nRF_SoftDevice"/>
+  <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;Segger Startup Files"/>
  </Project>
  <Register1>
   <RegisterWindow visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" binaryNodes="" asciiNodes="" openNodes="CPU - Current Context" name="ble_app_uart_c_pca10040_s132" decimalNodes="" octalNodes="" unsignedNodes=""/>
@@ -56,11 +61,11 @@
  </TraceWindow>
  <Watch1>
   <Watches active="1" update="Never">
-   <Watchpoint numelements="0" expression="ret" evalMode="0" name="ret" radix="16" linenumber="178" filename="../../../main.c" list=""/>
-   <Watchpoint numelements="0" expression="scan" evalMode="0" name="scan" radix="-1" linenumber="749" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="ret" evalMode="0" name="ret" radix="16" linenumber="188" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="scan" evalMode="0" name="scan" radix="-1" linenumber="820" filename="../../../main.c" list=""/>
    <Watchpoint numelements="0" expression="reset_r" evalMode="0" name="reset_r" radix="-1" linenumber="101" filename="../../../main.c" list=""/>
    <Watchpoint numelements="0" expression="reset" evalMode="0" name="reset" radix="-1" linenumber="100" filename="../../../main.c" list=""/>
-   <Watchpoint numelements="0" expression="button_UUID" evalMode="0" name="button_UUID" radix="16" linenumber="541" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="button_UUID" evalMode="0" name="button_UUID" radix="16" linenumber="625" filename="../../../main.c" list=""/>
   </Watches>
  </Watch1>
  <Watch2>
@@ -73,13 +78,16 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="31" y="524" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="508" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="49" y="588" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="561" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="45" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.c" debugPath="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.c" selected="0" top="33" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.h" debugPath="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.h" selected="0" top="105" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="45" y="88" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.h" debugPath="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.h" selected="0" top="66" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="515" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/softdevice/s132/headers/ble.h" debugPath="../../../../../../components/softdevice/s132/headers/ble.h" selected="0" top="464" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="39" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/common/ble_advdata.c" debugPath="../../../../../../components/ble/common/ble_advdata.c" selected="0" top="42" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/common/ble_advdata.h" debugPath="../../../../../../components/ble/common/ble_advdata.h" selected="0" top="54" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="195" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/softdevice/s132/headers/ble_types.h" debugPath="../../../../../../components/softdevice/s132/headers/ble_types.h" selected="0" top="168" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="8" y="98" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/softdevice/s132/headers/ble_types.h" debugPath="../../../../../../components/softdevice/s132/headers/ble_types.h" selected="0" top="71" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/include/stdio.h" debugPath="C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/include/stdio.h" selected="0" top="3" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/include/stdint.h" debugPath="C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/include/stdint.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="96" useTextEdit="1" useBinaryEdit="0" left="0" path="C:/Nordic_semi/nRF5_SDK_14.2.0_17b948a/components/libraries/util/app_error_weak.c" debugPath="C:/Nordic_semi/nRF5_SDK_14.2.0_17b948a/components/libraries/util/app_error_weak.c" selected="0" top="69" codecName=""/>
  </Files>
  <ARMCrossStudioWindow activeProject="ble_ehsb_c_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
