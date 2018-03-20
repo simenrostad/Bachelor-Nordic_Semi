@@ -798,13 +798,14 @@ static void nus_c_init(void)
 
 void button_handler(uint8_t pin_no, uint8_t button_action)
 {
+   ret_code_t err_code;
+
    if(pin_no == BUTTON_1 && button_action == APP_BUTTON_PUSH)
    {
       if(reset || reset_r)
       {   
           if(reset_r)
-          {
-              ret_code_t err_code;
+          {             
               uint8_t string[] = "69\n\r";
               uint16_t length = sizeof(string);
 
@@ -843,19 +844,9 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
       if(new_button_added)
       {
           NRF_LOG_INFO("hei")
-          ret_code_t err_code;
-          for (uint32_t i = 0; i < 16; i++)
-          {
-                do
-                {
-                    err_code = app_uart_put(whitelist[button_number][i]);
-                    if ((err_code != NRF_SUCCESS) && (err_code != NRF_ERROR_BUSY))
-                    {
-                        NRF_LOG_ERROR("Failed Error 0x%x. ", err_code);
-                        APP_ERROR_CHECK(err_code);
-                    }
-                } while (err_code == NRF_ERROR_BUSY);
-          }
+          uint8_t k = 2;
+          err_code = ble_nus_c_string_send(&m_ble_nus_c, &k, 8);
+          APP_ERROR_CHECK(err_code);
 
           button_number += 1;
           new_button_added = false;
@@ -867,7 +858,7 @@ static void buttons_init()
 {
     ret_code_t err_code;
 
-    static app_button_cfg_t button_cfg[3] ={ {
+    static app_button_cfg_t button_cfg[2] ={ {
         BUTTON_1,
         APP_BUTTON_ACTIVE_LOW,
         NRF_GPIO_PIN_PULLUP,
