@@ -121,6 +121,10 @@ BLE_ADVERTISING_DEF(m_advertising);                                             
 static uint16_t   m_conn_handle          = BLE_CONN_HANDLE_INVALID;                 /**< Handle of the current connection. */
 static uint16_t   m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - 3;            /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
 
+uint8_t button_number = 0;
+// Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
+uint8_t whitelist[3][16] = {0};    
+
 static ble_uuid_t m_adv_uuids[]          =                                          /**< Universally unique service identifier. */
 
 {
@@ -229,26 +233,41 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 
         NRF_LOG_DEBUG("Received data from BLE NUS. Writing data on UART.");
         NRF_LOG_HEXDUMP_DEBUG(p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
-        scan_start();
-
-//        if (p_evt->params.rx_data.length == '31')
-//        {
 //
-//            uint32_t newuuid = rx.data.string;
-//            NRF_LOG_INFO("newuuid");
-//            //Add UUID to database 
-//            //add UUID count
+//
+//        if(p_evt->params.rx_data.p_data[0] == 'O' && p_evt->params.rx_data.p_data[1] == 'K')
+//        {
+//          scan_start();
 //        }
 //
-////        if (params.rx_data.p_data == '0')
-////        {
-////          scan_start();
-////        }
-////
-////        if ( )
-////        {
-////          //delete aux UUID list
-////        }
+//        if (p_evt->params.rx_data.length == 16)
+//        {
+//
+//        memcpy(&whitelist[button_number], &p_evt->params.rx_data.p_data[0], 16);
+//
+//        NRF_LOG_INFO("whitelist: %x%x%x%x%x%x", 
+//                                    whitelist[0][0],
+//                                    whitelist[0][1],
+//                                    whitelist[0][2],
+//                                    whitelist[0][3],
+//                                    whitelist[0][4],
+//                                    whitelist[0][5]
+//                                    );
+//                        NRF_LOG_INFO("%x%x%x%x%x%x",
+//                                    whitelist[0][6],
+//                                    whitelist[0][7],
+//                                    whitelist[0][8],
+//                                    whitelist[0][9],
+//                                    whitelist[0][10],
+//                                    whitelist[0][11]
+//                                    );
+//                        NRF_LOG_INFO("%x%x%x%x",
+//                                    whitelist[0][12],
+//                                    whitelist[0][13],
+//                                    whitelist[0][14],
+//                                    whitelist[0][15]
+//                                    );
+//        }
 
 
         for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
@@ -427,6 +446,8 @@ static bool is_uuid_present(ble_uuid_t               const * p_target_uuid,
 static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 {
     uint32_t err_code;
+    uint8_t string[] = "Button Found!!\n\r";
+    uint16_t length = sizeof(string);
     ble_gap_evt_t const * p_gap_evt = &p_ble_evt->evt.gap_evt;
 
     switch (p_ble_evt->header.evt_id)
@@ -446,28 +467,42 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             scan_stop();
             break;
 
-        
+
 //        case BLE_GAP_EVT_ADV_REPORT:
 //        {
-//            ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
 //
-//            if (is_uuid_present(&m_nus_uuid, p_adv_report))
-//            {
-//                  NRF_LOG_INFO("BUTTON DETECTED");
-//                  scan_stop();
-//                  uint8_t string[] = "1234\n\r";
-//                  uint16_t length = sizeof(string);
-//        
-//                  err_code = ble_nus_string_send(&m_nus, string, &length);
-//                  APP_ERROR_CHECK(err_code);
-//                  bsp_indication_set(BSP_INDICATE_ALERT_3);
+//             ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
 //
-//            }break; // BLE_GAP_EVT_ADV_REPORT
+//             uint8_t adv_uuid[16] = {0};
+//             memcpy(&adv_uuid[0], &p_adv_report->data[5], 16);
+//             
+//              
+//             if (is_uuid_present(&m_nus_uuid, p_adv_report))
+//             {
+//                        scan_stop();
+//                        err_code = ble_nus_string_send(&m_nus, string, &length);
+//                        APP_ERROR_CHECK(err_code);
+//                        bsp_indication_set(BSP_INDICATE_ALERT_3);
 //
-//        }
-             
+//             }
+//
+//             for(int8_t i = 0; i < button_number; i++)
+//             {  
+//                 if(memcmp(adv_uuid, whitelist[i], sizeof(adv_uuid)) == 0)
+//                 {
+//                        scan_stop();
+//                        err_code = ble_nus_string_send(&m_nus, string, &length);
+//                        APP_ERROR_CHECK(err_code);
+//                        bsp_indication_set(BSP_INDICATE_ALERT_3);
+//                 }
+//     
+//             }
+//
+//
+//
+//        }break;
 
-            
+     
 #ifndef S140
         case BLE_GAP_EVT_PHY_UPDATE_REQUEST:
         {
