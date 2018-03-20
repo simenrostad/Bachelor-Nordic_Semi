@@ -104,13 +104,8 @@ bool add_button = false;
 bool new_button_added = false;
 uint8_t button_number = 0;
 
-
-    // Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable. This array will hold 2 arrays of 16 bytes each.
-    uint8_t whitelist[2][16] = {0};
-  
-    // Dummy data to be copied into the whitelist array
-    uint8_t data[21] = {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0D,0x0E,0x0F,0x10,0x11,0x12,0x13,0x14};
-    
+    // Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
+    uint8_t whitelist[3][16] = {0};    
 
 /**@brief Connection parameters requested for connection. */
 static ble_gap_conn_params_t const m_connection_param =
@@ -493,23 +488,22 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
         {
                 ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
 
-                uint8_t adv_uuid[1][16] = {0};
-                memcpy(&adv_uuid[0], &p_adv_report->data[5], 16);
+
 
             if(!add_button)
             {
-                
-if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -40)                
-{                
-                //If stop button is found: turn on stop sign(LED1 for now) and stop scanning
-                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
-                {
-                NRF_LOG_INFO("rssi =%d dBm\n", p_ble_evt->evt.gap_evt.params.adv_report.rssi);
 
-                  nrf_gpio_pin_clear(LED_2);
-                  scan_stop();
-                  reset = true;
-                }
+if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -35)
+{                                
+                //If stop button is found: turn on stop sign(LED1 for now) and stop scanning
+//                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
+//                {
+//                NRF_LOG_INFO("rssi =%d dBm\n", p_ble_evt->evt.gap_evt.params.adv_report.rssi);
+//
+//                  nrf_gpio_pin_clear(LED_2);
+//                  scan_stop();
+//                  reset = true;
+//                }
             
                 //If relayer is found, connect
                 if (is_uuid_present(&m_nus_uuid, p_adv_report))
@@ -534,72 +528,72 @@ if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -40)
                     }
                 }
 
-NRF_LOG_INFO("whitelist: %x%x%x%x%x%x", 
-                                    whitelist[0][0],
-                                    whitelist[0][1],
-                                    whitelist[0][2],
-                                    whitelist[0][3],
-                                    whitelist[0][4],
-                                    whitelist[0][5]
-                                    );
-                        NRF_LOG_INFO("%x%x%x%x%x%x",
-                                    whitelist[0][6],
-                                    whitelist[0][7],
-                                    whitelist[0][8],
-                                    whitelist[0][9],
-                                    whitelist[0][10],
-                                    whitelist[0][11]
-                                    );
-                        NRF_LOG_INFO("%x%x%x%x",
-                                    whitelist[0][12],
-                                    whitelist[0][13],
-                                    whitelist[0][14],
-                                    whitelist[0][15]
-                                    );
+               uint8_t adv_uuid[16] = {0};
+               memcpy(&adv_uuid[0], &p_adv_report->data[5], 16);
 
-NRF_LOG_INFO("adv_uuid: %x%x%x%x%x%x", 
-                                    adv_uuid[0],
-                                    adv_uuid[1],
-                                    adv_uuid[2],
-                                    adv_uuid[3],
-                                    adv_uuid[4],
-                                    adv_uuid[5]
-                                    );
-                        NRF_LOG_INFO("%x%x%x%x%x%x",
-                                    adv_uuid[6],
-                                    adv_uuid[7],
-                                    adv_uuid[8],
-                                    adv_uuid[9],
-                                    adv_uuid[10],
-                                    adv_uuid[11]
-                                    );
-                        NRF_LOG_INFO("%x%x%x%x",
-                                    adv_uuid[12],
-                                    adv_uuid[13],
-                                    adv_uuid[14],
-                                    adv_uuid[15]
-                                    );
+               for(int8_t i = 0; i < button_number; i++)
+                {  
+//NRF_LOG_INFO("whitelist: %x%x%x%x%x%x", 
+//                                    whitelist[0][0],
+//                                    whitelist[0][1],
+//                                    whitelist[0][2],
+//                                    whitelist[0][3],
+//                                    whitelist[0][4],
+//                                    whitelist[0][5]
+//                                    );
+//                        NRF_LOG_INFO("%x%x%x%x%x%x",
+//                                    whitelist[0][6],
+//                                    whitelist[0][7],
+//                                    whitelist[0][8],
+//                                    whitelist[0][9],
+//                                    whitelist[0][10],
+//                                    whitelist[0][11]
+//                                    );
+//                        NRF_LOG_INFO("%x%x%x%x",
+//                                    whitelist[0][12],
+//                                    whitelist[0][13],
+//                                    whitelist[0][14],
+//                                    whitelist[0][15]
+//                                    );
+//NRF_LOG_INFO("adv_uuid: %x%x%x%x%x%x", 
+//                                    adv_uuid[0],
+//                                    adv_uuid[1],
+//                                    adv_uuid[2],
+//                                    adv_uuid[3],
+//                                    adv_uuid[4],
+//                                    adv_uuid[5]
+//                                    );
+//                        NRF_LOG_INFO("%x%x%x%x%x%x",
+//                                    adv_uuid[6],
+//                                    adv_uuid[7],
+//                                    adv_uuid[8],
+//                                    adv_uuid[9],
+//                                    adv_uuid[10],
+//                                    adv_uuid[11]
+//                                    );
+//                        NRF_LOG_INFO("%x%x%x%x",
+//                                    adv_uuid[12],
+//                                    adv_uuid[13],
+//                                    adv_uuid[14],
+//                                    adv_uuid[15]
+//                                    );
 
-               for(int8_t i = 0; i < button_number + 1; i++)
-                {
-//                  uint8_t adv_uuid[16] = {0};
-//                  memcpy(&adv_uuid[0], &p_adv_report[5], 16);
-
-              
-                if(*whitelist[i] == *adv_uuid[0])
-                {
-                    nrf_gpio_pin_clear(LED_2);
-                    scan_stop();
-                    reset = true;
-                    NRF_LOG_INFO("Success!");
+                                                  
+                NRF_LOG_INFO("memcmp: %d", memcmp(adv_uuid, whitelist[0], sizeof(adv_uuid)));
+                  if(memcmp(adv_uuid, whitelist[i], sizeof(adv_uuid)) == 0)
+                  {
+                      nrf_gpio_pin_clear(LED_2);
+                      scan_stop();
+                      reset = true;
+                      NRF_LOG_INFO("Success!");
+                  }
                 }
-               }
 }
-
+            
             }
             else if(add_button)
             {
-                if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -40)
+                if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -35)
                 {
                     if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
                        && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)

@@ -11,7 +11,7 @@
 #define EHSB_BASE_UUID                   {{0x9F, 0xCA, 0xDC, 0x24, \
                                            0x0E, 0xE5, 0xA9, 0xE0, \
                                            0x93, 0xF3, 0xA3, 0xB5, \
-                                           0x00, 0x00, 0x40, 0x6F}}       /**< Base UUID */
+                                           0x00, 0x00, 0x40, 0x7F}}       /**< Base UUID */
 
 #define BLE_UUID_EHSB_SERVICE             0x0001                          /**< The UUID of the Nordic UART Service. */
 
