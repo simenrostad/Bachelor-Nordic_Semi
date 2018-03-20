@@ -58,6 +58,9 @@
 #include "ble_nus_c.h"
 #include "nrf_ble_gatt.h"
 
+#include "nrf_fstorage.h"
+#include "nrf_fstorage_sd.h"
+
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
@@ -491,10 +494,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 
 
             if(!add_button)
-            {
-
-if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -35)
-{                                
+            {                                
                 //If stop button is found: turn on stop sign(LED1 for now) and stop scanning
 //                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
 //                {
@@ -579,7 +579,7 @@ if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -35)
 //                                    );
 
                                                   
-                NRF_LOG_INFO("memcmp: %d", memcmp(adv_uuid, whitelist[0], sizeof(adv_uuid)));
+//                NRF_LOG_INFO("memcmp: %d", memcmp(adv_uuid, whitelist[0], sizeof(adv_uuid)));
                   if(memcmp(adv_uuid, whitelist[i], sizeof(adv_uuid)) == 0)
                   {
                       nrf_gpio_pin_clear(LED_2);
@@ -587,9 +587,7 @@ if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -35)
                       reset = true;
                       NRF_LOG_INFO("Success!");
                   }
-                }
-}
-            
+                }       
             }
             else if(add_button)
             {
@@ -844,6 +842,21 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
       add_button = false;
       if(new_button_added)
       {
+          NRF_LOG_INFO("hei")
+          ret_code_t err_code;
+          for (uint32_t i = 0; i < 16; i++)
+          {
+                do
+                {
+                    err_code = app_uart_put(whitelist[button_number][i]);
+                    if ((err_code != NRF_SUCCESS) && (err_code != NRF_ERROR_BUSY))
+                    {
+                        NRF_LOG_ERROR("Failed Error 0x%x. ", err_code);
+                        APP_ERROR_CHECK(err_code);
+                    }
+                } while (err_code == NRF_ERROR_BUSY);
+          }
+
           button_number += 1;
           new_button_added = false;
       }
