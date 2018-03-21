@@ -123,7 +123,7 @@ static uint16_t   m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - 3;        
 
 uint8_t button_number = 0;
 // Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
-uint8_t whitelist[3][16] = {0};    
+uint8_t whitelist[1][16] = {0};    
 
 static ble_uuid_t m_adv_uuids[]          =                                          /**< Universally unique service identifier. */
 
@@ -233,11 +233,12 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 
         NRF_LOG_DEBUG("Received data from BLE NUS. Writing data on UART.");
         NRF_LOG_HEXDUMP_DEBUG(p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
+        scan_start();
 //
 //
 //        if(p_evt->params.rx_data.p_data[0] == 'O' && p_evt->params.rx_data.p_data[1] == 'K')
 //        {
-//          scan_start();
+//
 //        }
 //
 //        if (p_evt->params.rx_data.length == 16)
@@ -446,8 +447,6 @@ static bool is_uuid_present(ble_uuid_t               const * p_target_uuid,
 static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 {
     uint32_t err_code;
-    uint8_t string[] = "Button Found!!\n\r";
-    uint16_t length = sizeof(string);
     ble_gap_evt_t const * p_gap_evt = &p_ble_evt->evt.gap_evt;
 
     switch (p_ble_evt->header.evt_id)
@@ -468,10 +467,31 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             break;
 
 
-//        case BLE_GAP_EVT_ADV_REPORT:
-//        {
-//
-//             ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
+        case BLE_GAP_EVT_ADV_REPORT:
+        {
+             ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
+
+             
+
+             uint32_t string[] = "Button Found!!\n\r";
+             uint16_t length = sizeof(string);
+
+             memcpy(&whitelist[button_number], &p_adv_report->data[5], 16);
+
+
+//                    if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
+//                       && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
+//                    {
+                          
+              
+              err_code = ble_nus_string_send(&m_nus, , &lenght);
+                          
+
+
+
+
+
+
 //
 //             uint8_t adv_uuid[16] = {0};
 //             memcpy(&adv_uuid[0], &p_adv_report->data[5], 16);
