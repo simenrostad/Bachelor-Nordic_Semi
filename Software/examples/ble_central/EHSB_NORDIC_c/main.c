@@ -341,6 +341,7 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
 
         case BLE_NUS_C_EVT_NUS_TX_EVT:
             ble_nus_chars_received_uart_print(p_ble_nus_evt->p_data, p_ble_nus_evt->data_len);
+            NRF_LOG_INFO("%d", p_ble_nus_evt->p_data);
               if(!add_button)
               {
               nrf_gpio_pin_clear(LED_4);
@@ -496,14 +497,14 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             if(!add_button)
             {                                
                 //If stop button is found: turn on stop sign(LED1 for now) and stop scanning
-//                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
-//                {
-//                NRF_LOG_INFO("rssi =%d dBm\n", p_ble_evt->evt.gap_evt.params.adv_report.rssi);
-//
-//                  nrf_gpio_pin_clear(LED_2);
-//                  scan_stop();
-//                  reset = true;
-//                }
+                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
+                {
+                NRF_LOG_INFO("rssi =%d dBm\n", p_ble_evt->evt.gap_evt.params.adv_report.rssi);
+
+                  nrf_gpio_pin_clear(LED_2);
+                  scan_stop();
+                  reset = true;
+                }
             
                 //If relayer is found, connect
                 if (is_uuid_present(&m_nus_uuid, p_adv_report))
@@ -843,11 +844,6 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
       add_button = false;
       if(new_button_added)
       {
-          NRF_LOG_INFO("hei")
-          uint8_t k = 2;
-          err_code = ble_nus_c_string_send(&m_ble_nus_c, &k, 8);
-          APP_ERROR_CHECK(err_code);
-
           button_number += 1;
           new_button_added = false;
       }

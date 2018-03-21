@@ -52,10 +52,10 @@
  <Watch1>
   <Watches active="1" update="Never">
    <Watchpoint numelements="0" expression="ret" evalMode="0" name="ret" radix="16" linenumber="186" filename="../../../main.c" list=""/>
-   <Watchpoint numelements="0" expression="scan" evalMode="0" name="scan" radix="-1" linenumber="813" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="scan" evalMode="0" name="scan" radix="-1" linenumber="814" filename="../../../main.c" list=""/>
    <Watchpoint numelements="0" expression="reset_r" evalMode="0" name="reset_r" radix="-1" linenumber="104" filename="../../../main.c" list=""/>
    <Watchpoint numelements="0" expression="reset" evalMode="0" name="reset" radix="-1" linenumber="103" filename="../../../main.c" list=""/>
-   <Watchpoint numelements="0" expression="button_UUID" evalMode="0" name="button_UUID" radix="16" linenumber="617" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="button_UUID" evalMode="0" name="button_UUID" radix="16" linenumber="618" filename="../../../main.c" list=""/>
   </Watches>
  </Watch1>
  <Watch2>
@@ -68,8 +68,8 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="940" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="823" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="37" y="220" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.c" debugPath="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.c" selected="0" top="186" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="936" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="909" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="220" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.c" debugPath="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.c" selected="0" top="186" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="137" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.h" debugPath="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.h" selected="0" top="110" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="515" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/softdevice/s132/headers/ble.h" debugPath="../../../../../../components/softdevice/s132/headers/ble.h" selected="0" top="464" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="39" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/common/ble_advdata.c" debugPath="../../../../../../components/ble/common/ble_advdata.c" selected="0" top="42" codecName="Default"/>
