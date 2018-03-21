@@ -1,5 +1,5 @@
 Output/ble_ehsb_c_pca10040_s132\ Debug/Obj/hardfault_implementation.o: \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\libraries\hardfault\hardfault_implementation.c \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\hardfault\hardfault_implementation.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \

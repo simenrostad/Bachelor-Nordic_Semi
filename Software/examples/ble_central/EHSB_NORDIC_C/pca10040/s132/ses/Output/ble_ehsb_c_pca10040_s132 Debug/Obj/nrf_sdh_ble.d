@@ -1,5 +1,5 @@
 Output/ble_ehsb_c_pca10040_s132\ Debug/Obj/nrf_sdh_ble.o: \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\softdevice\common\nrf_sdh_ble.c \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\softdevice\common\nrf_sdh_ble.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,7 +26,7 @@ Output/ble_ehsb_c_pca10040_s132\ Debug/Obj/nrf_sdh_ble.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\softdevice\common\nrf_sdh_ble.h \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\softdevice\common\nrf_sdh_ble.h \
  ../../../../../../components/libraries/util/app_util.h \
  ../../../../../../components/softdevice/s132/headers/ble.h \
  ../../../../../../components/softdevice/s132/headers/ble_ranges.h \
@@ -47,7 +47,7 @@ Output/ble_ehsb_c_pca10040_s132\ Debug/Obj/nrf_sdh_ble.o: \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
  ../../../../../../components/libraries/util/app_error_weak.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\softdevice\common\nrf_sdh.h \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\softdevice\common\nrf_sdh.h \
  ../../../../../../components/libraries/util/app_error.h \
  ../../../../../../components/libraries/strerror/nrf_strerror.h \
  ../../../../../../components/libraries/experimental_log/nrf_log.h \

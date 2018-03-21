@@ -1,5 +1,5 @@
 Output/ble_ehsb_c_pca10040_s132\ Debug/Obj/nrf_section_iter.o: \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_section_vars\nrf_section_iter.c \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\experimental_section_vars\nrf_section_iter.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,8 +26,8 @@ Output/ble_ehsb_c_pca10040_s132\ Debug/Obj/nrf_section_iter.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_section_vars\nrf_section_iter.h \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\libraries\experimental_section_vars\nrf_section.h \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\experimental_section_vars\nrf_section_iter.h \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\experimental_section_vars\nrf_section.h \
  ../../../../../../components/libraries/util/nordic_common.h \
  ../../../../../../components/libraries/util/nrf_assert.h \
  ../../../../../../components/libraries/util/app_error.h \

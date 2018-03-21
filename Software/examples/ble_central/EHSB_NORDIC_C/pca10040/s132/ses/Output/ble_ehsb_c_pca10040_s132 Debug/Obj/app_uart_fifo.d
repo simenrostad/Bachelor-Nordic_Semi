@@ -1,5 +1,5 @@
 Output/ble_ehsb_c_pca10040_s132\ Debug/Obj/app_uart_fifo.o: \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\libraries\uart\app_uart_fifo.c \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\uart\app_uart_fifo.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,7 +26,7 @@ Output/ble_ehsb_c_pca10040_s132\ Debug/Obj/app_uart_fifo.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\libraries\uart\app_uart.h \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\uart\app_uart.h \
  ../../../../../../components/libraries/util/app_util_platform.h \
  ../../../../../../components/softdevice/s132/headers/nrf_soc.h \
  ../../../../../../components/softdevice/s132/headers/nrf_svc.h \

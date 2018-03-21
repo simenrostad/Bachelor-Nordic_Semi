@@ -91,6 +91,8 @@
 
 #define BLE_EHSB_SERVICE        0x0001
 
+#define STOP_SIGN               22
+
 APP_TIMER_DEF(m_led_timer_id);                                           //  Macro for timer id
 APP_TIMER_DEF(add_button_timer_id);
 
@@ -341,13 +343,29 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
 
         case BLE_NUS_C_EVT_NUS_TX_EVT:
             ble_nus_chars_received_uart_print(p_ble_nus_evt->p_data, p_ble_nus_evt->data_len);
-            NRF_LOG_INFO("%d", p_ble_nus_evt->p_data);
-              if(!add_button)
-              {
-              nrf_gpio_pin_clear(LED_4);
-              scan_stop();
-              reset_r = true;
-              }
+            if(memcmp(p_ble_nus_evt->p_data, "hei", sizeof("hei")) == 0)
+            {
+                nrf_gpio_pin_set(STOP_SIGN);
+                nrf_gpio_pin_clear(LED_4);
+                scan_stop();
+                reset = true;
+            }
+            if(p_ble_nus_evt->data_len == 16)
+            {
+                if(!add_button)
+                {
+                    for(uint8_t i = 0; i < button_number; i++)
+                    {
+                        if(memcmp(p_ble_nus_evt->p_data, whitelist[i], 16) == 0)
+                        {
+                            nrf_gpio_pin_set(STOP_SIGN);
+                            nrf_gpio_pin_clear(LED_4);
+                            scan_stop();
+                            reset = true;
+                        }
+                    }
+                }
+            }
             break;
 
         case BLE_NUS_C_EVT_DISCONNECTED:
@@ -395,7 +413,7 @@ NRF_PWR_MGMT_HANDLER_REGISTER(shutdown_handler, APP_SHUTDOWN_HANDLER_PRIORITY);
 
 /**@brief Reads an advertising report and checks if a UUID is present in the service list.
  *
- * @details The function is able to search for 16-bit, 32-bit and 128-bit service UUIDs.
+ * @details The function is able to search for 128-bit service UUIDs.
  *          To see the format of a advertisement packet, see
  *          https://www.bluetooth.org/Technical/AssignedNumbers/generic_access_profile.htm
  *
@@ -417,45 +435,7 @@ static bool is_uuid_present(ble_uuid_t               const * p_target_uuid,
         uint8_t field_length = p_data[index];
         uint8_t field_type   = p_data[index + 1];
 
-        if (   (field_type == BLE_GAP_AD_TYPE_16BIT_SERVICE_UUID_MORE_AVAILABLE)
-            || (field_type == BLE_GAP_AD_TYPE_16BIT_SERVICE_UUID_COMPLETE))
-        {
-            for (uint32_t i = 0; i < (field_length / UUID16_SIZE); i++)
-            {
-                err_code = sd_ble_uuid_decode(UUID16_SIZE,
-                                              &p_data[i * UUID16_SIZE + index + 2],
-                                              &extracted_uuid);
-
-                if (err_code == NRF_SUCCESS)
-                {
-                    if (extracted_uuid.uuid == p_target_uuid->uuid)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        else if (   (field_type == BLE_GAP_AD_TYPE_32BIT_SERVICE_UUID_MORE_AVAILABLE)
-                 || (field_type == BLE_GAP_AD_TYPE_32BIT_SERVICE_UUID_COMPLETE))
-        {
-            for (uint32_t i = 0; i < (field_length / UUID32_SIZE); i++)
-            {
-                err_code = sd_ble_uuid_decode(UUID32_SIZE,
-                                              &p_data[i * UUID32_SIZE + index + 2],
-                                              &extracted_uuid);
-
-                if (err_code == NRF_SUCCESS)
-                {
-                    if (   (extracted_uuid.uuid == p_target_uuid->uuid)
-                        && (extracted_uuid.type == p_target_uuid->type))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        else if (   (field_type == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_MORE_AVAILABLE)
+        if (   (field_type == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_MORE_AVAILABLE)
                  || (field_type == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE))
         {
 
@@ -498,9 +478,8 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             {                                
                 //If stop button is found: turn on stop sign(LED1 for now) and stop scanning
                 if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
-                {
-                NRF_LOG_INFO("rssi =%d dBm\n", p_ble_evt->evt.gap_evt.params.adv_report.rssi);
-
+                {                
+                  nrf_gpio_pin_set(STOP_SIGN);
                   nrf_gpio_pin_clear(LED_2);
                   scan_stop();
                   reset = true;
@@ -509,12 +488,10 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                 //If relayer is found, connect
                 if (is_uuid_present(&m_nus_uuid, p_adv_report))
                 {
-
                     err_code = sd_ble_gap_connect(&p_adv_report->peer_addr,
                                                   &m_scan_params,
                                                   &m_connection_param,
                                                   APP_BLE_CONN_CFG_TAG);
-
                     if (err_code == NRF_SUCCESS)
                     {
                         // scan is automatically stopped by the connect
@@ -533,62 +510,15 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                memcpy(&adv_uuid[0], &p_adv_report->data[5], 16);
 
                for(int8_t i = 0; i < button_number; i++)
-                {  
-//NRF_LOG_INFO("whitelist: %x%x%x%x%x%x", 
-//                                    whitelist[0][0],
-//                                    whitelist[0][1],
-//                                    whitelist[0][2],
-//                                    whitelist[0][3],
-//                                    whitelist[0][4],
-//                                    whitelist[0][5]
-//                                    );
-//                        NRF_LOG_INFO("%x%x%x%x%x%x",
-//                                    whitelist[0][6],
-//                                    whitelist[0][7],
-//                                    whitelist[0][8],
-//                                    whitelist[0][9],
-//                                    whitelist[0][10],
-//                                    whitelist[0][11]
-//                                    );
-//                        NRF_LOG_INFO("%x%x%x%x",
-//                                    whitelist[0][12],
-//                                    whitelist[0][13],
-//                                    whitelist[0][14],
-//                                    whitelist[0][15]
-//                                    );
-//NRF_LOG_INFO("adv_uuid: %x%x%x%x%x%x", 
-//                                    adv_uuid[0],
-//                                    adv_uuid[1],
-//                                    adv_uuid[2],
-//                                    adv_uuid[3],
-//                                    adv_uuid[4],
-//                                    adv_uuid[5]
-//                                    );
-//                        NRF_LOG_INFO("%x%x%x%x%x%x",
-//                                    adv_uuid[6],
-//                                    adv_uuid[7],
-//                                    adv_uuid[8],
-//                                    adv_uuid[9],
-//                                    adv_uuid[10],
-//                                    adv_uuid[11]
-//                                    );
-//                        NRF_LOG_INFO("%x%x%x%x",
-//                                    adv_uuid[12],
-//                                    adv_uuid[13],
-//                                    adv_uuid[14],
-//                                    adv_uuid[15]
-//                                    );
-
-                                                  
-//                NRF_LOG_INFO("memcmp: %d", memcmp(adv_uuid, whitelist[0], sizeof(adv_uuid)));
+               {                                                
                   if(memcmp(adv_uuid, whitelist[i], sizeof(adv_uuid)) == 0)
                   {
+                      nrf_gpio_pin_set(STOP_SIGN);
                       nrf_gpio_pin_clear(LED_2);
                       scan_stop();
                       reset = true;
-                      NRF_LOG_INFO("Success!");
                   }
-                }       
+               }       
             }
             else if(add_button)
             {
@@ -599,35 +529,12 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                     {
                         if(!new_button_added)
                         {
-                        //Copy the 16 bytes starting from the 5th element in dummy data array to the first uuid element of the whitelist
+                        //Copy the UUID from advertisement report to the next slot in whitelist
                         memcpy(&whitelist[button_number], &p_adv_report->data[5], 16);
 
                         app_timer_stop(add_button_timer_id);
                         nrf_gpio_pin_clear(LED_4);
                         new_button_added = true;
-
-                        NRF_LOG_INFO("UUID: %x%x%x%x%x%x", 
-                                    whitelist[button_number][0],
-                                    whitelist[button_number][1],
-                                    whitelist[button_number][2],
-                                    whitelist[button_number][3],
-                                    whitelist[button_number][4],
-                                    whitelist[button_number][5]
-                                    );
-                        NRF_LOG_INFO("%x%x%x%x%x%x",
-                                    whitelist[button_number][6],
-                                    whitelist[button_number][7],
-                                    whitelist[button_number][8],
-                                    whitelist[button_number][9],
-                                    whitelist[button_number][10],
-                                    whitelist[button_number][11]
-                                    );
-                        NRF_LOG_INFO("%x%x%x%x",
-                                    whitelist[button_number][12],
-                                    whitelist[button_number][13],
-                                    whitelist[button_number][14],
-                                    whitelist[button_number][15]
-                                    );
                         }
                     }
                 }
@@ -805,19 +712,20 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
    {
       if(reset || reset_r)
       {   
-          if(reset_r)
-          {             
-              uint8_t string[] = "69\n\r";
-              uint16_t length = sizeof(string);
-
-              err_code = ble_nus_c_string_send(&m_ble_nus_c, string, length);
-              APP_ERROR_CHECK(err_code);
-
-              reset_r = false;
-          }
+//          if(reset_r)
+//          {             
+//              uint8_t string[] = "69\n\r";
+//              uint16_t length = sizeof(string);
+//
+//              err_code = ble_nus_c_string_send(&m_ble_nus_c, string, length);
+//              APP_ERROR_CHECK(err_code);
+//
+//              reset_r = false;
+//          }
 
           nrf_gpio_pin_set(LED_2);
           nrf_gpio_pin_set(LED_4);
+          nrf_gpio_pin_set(STOP_SIGN);
           if(!scanning)
           {
               scan_start();
@@ -930,6 +838,7 @@ static void leds_init(void)
     nrf_gpio_cfg_output(i);
     nrf_gpio_pin_set(i);
   }
+  nrf_gpio_cfg_output(STOP_SIGN);
 }
 
 

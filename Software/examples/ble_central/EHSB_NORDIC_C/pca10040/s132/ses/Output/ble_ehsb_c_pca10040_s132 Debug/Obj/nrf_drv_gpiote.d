@@ -1,5 +1,5 @@
 Output/ble_ehsb_c_pca10040_s132\ Debug/Obj/nrf_drv_gpiote.o: \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\gpiote\nrf_drv_gpiote.c \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\drivers_nrf\gpiote\nrf_drv_gpiote.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,7 +26,7 @@ Output/ble_ehsb_c_pca10040_s132\ Debug/Obj/nrf_drv_gpiote.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\gpiote\nrf_drv_gpiote.h \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\drivers_nrf\gpiote\nrf_drv_gpiote.h \
  ../../../../../../components/drivers_nrf/hal/nrf_gpiote.h \
  ../../../../../../components/drivers_nrf/hal/nrf_peripherals.h \
  ../../../../../../components/device/nrf52832_peripherals.h \

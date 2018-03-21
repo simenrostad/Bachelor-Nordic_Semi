@@ -1,8 +1,8 @@
 Output/ble_ehsb_c_pca10040_s132\ Debug/Obj/nrf_drv_common.o: \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\common\nrf_drv_common.c \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\drivers_nrf\common\nrf_drv_common.c \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
- C:\Nordic_semi\nRF5_SDK_14.2.0_17b948a\components\drivers_nrf\common\nrf_drv_common.h \
+ C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\drivers_nrf\common\nrf_drv_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  ../../../../../../components/device/nrf.h \
