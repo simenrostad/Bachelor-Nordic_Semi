@@ -28,4 +28,32 @@ Generell points of intrest:-------
 oppdatere gant og github, inkluderprosjekt delen.
 
 
+
+-------------------------------------
+møte infor\tips:
+ikke white list på både sentral og releay. (dummt men enkelt) kan være mer effektivt.
+hva cis sentralen er nede? hvordan hondtere slike problemer.
+
+
+Hvilken klokke på nrf52'en. 32kHz,32MHz eller intern klokka?
+- finn ut hvilken klokke som fungerer best på de foskjlige spenningen men mins mulig energi. 
+
+- fjerne en pakke fra skatere, ikke 3 men 2 kanaler foreksmeple og måle energi
+
+
+energi speks. inn ut.
+- teoretisk inn og ut
+- hva vi måler inn og ut
+- realsitsik in og ut
+
+hvor domm kan kretsen lages, bare lagre energien på en kondensator, (test kondensatoerer) mål effektiviteten sjølv. 
+
+
+
+
+
+
+
+
+
 	
