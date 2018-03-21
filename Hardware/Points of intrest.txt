@@ -32,7 +32,7 @@ oppdatere gant og github, inkluderprosjekt delen.
 -------------------------------------
 møte infor\tips:
 ikke white list på både sentral og releay. (dummt men enkelt) kan være mer effektivt.
-hva cis sentralen er nede? hvordan hondtere slike problemer.
+hva vis sentralen er nede? hvordan hondtere slike problemer.
 
 
 Hvilken klokke på nrf52'en. 32kHz,32MHz eller intern klokka?
