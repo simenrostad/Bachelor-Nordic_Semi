@@ -107,10 +107,11 @@ bool reset_r = false;
 bool scanning = false;
 bool add_button = false;
 bool new_button_added = false;
+bool existing_button = false;
 uint8_t button_number = 0;
 
-    // Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
-    uint8_t whitelist[3][16] = {0};    
+// Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
+uint8_t whitelist[3][16] = {0};    
 
 /**@brief Connection parameters requested for connection. */
 static ble_gap_conn_params_t const m_connection_param =
@@ -470,9 +471,10 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
     {
         case BLE_GAP_EVT_ADV_REPORT:
         {
-                ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
-
-
+           ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
+            
+           uint8_t adv_uuid[16] = {0};
+           memcpy(&adv_uuid, &p_adv_report->data[5], 16);
 
             if(!add_button)
             {                                
@@ -506,9 +508,6 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                     }
                 }
 
-               uint8_t adv_uuid[16] = {0};
-               memcpy(&adv_uuid[0], &p_adv_report->data[5], 16);
-
                for(int8_t i = 0; i < button_number; i++)
                {                                                
                   if(memcmp(adv_uuid, whitelist[i], sizeof(adv_uuid)) == 0)
@@ -522,21 +521,33 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             }
             else if(add_button)
             {
-                if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -35)
+                if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -35 \
+                   && p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
+                   && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
                 {
-                    if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
-                       && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
-                    {
-                        if(!new_button_added)
-                        {
-                        //Copy the UUID from advertisement report to the next slot in whitelist
-                        memcpy(&whitelist[button_number], &p_adv_report->data[5], 16);
+                      for(uint8_t i = 0; i < button_number; i++)
+                      {
+                          if(memcmp(adv_uuid, whitelist[i], sizeof(adv_uuid)) == 0)
+                          {
+                              app_timer_stop(add_button_timer_id);
+                              nrf_gpio_pin_set(LED_4);
+                              nrf_gpio_pin_clear(LED_2);
+                              existing_button = true;
+                              new_button_added = true;
+                              NRF_LOG_INFO("hit");
+                          }
+                      }
+                      if(!new_button_added)
+                      {
+                          //Copy the UUID from advertisement report to the next slot in whitelist
+                          memcpy(&whitelist[button_number], &p_adv_report->data[5], 16);
 
-                        app_timer_stop(add_button_timer_id);
-                        nrf_gpio_pin_clear(LED_4);
-                        new_button_added = true;
-                        }
-                    }
+                          app_timer_stop(add_button_timer_id);
+                          nrf_gpio_pin_clear(LED_4);
+                          new_button_added = true;
+
+                          NRF_LOG_INFO("åsso hit");
+                      }             
                 }
             }
         }break; // BLE_GAP_EVT_ADV_REPORT
@@ -725,7 +736,7 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
 
           nrf_gpio_pin_set(LED_2);
           nrf_gpio_pin_set(LED_4);
-          nrf_gpio_pin_set(STOP_SIGN);
+          nrf_gpio_pin_clear(STOP_SIGN);
           if(!scanning)
           {
               scan_start();
@@ -747,14 +758,23 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
    if(pin_no == BUTTON_2 && button_action == APP_BUTTON_RELEASE)
    {
       NRF_LOG_INFO("hade");
-      app_timer_stop(add_button_timer_id);
-      nrf_gpio_pin_set(LED_4);
-      add_button = false;
+
+      if(existing_button)
+      {
+          nrf_gpio_pin_set(LED_2);
+          existing_button = false;
+          new_button_added = false;
+      }
+
       if(new_button_added)
       {
+          app_timer_stop(add_button_timer_id);
+          nrf_gpio_pin_set(LED_4);
           button_number += 1;
           new_button_added = false;
       }
+
+      add_button = false;
    }
 }
 
@@ -839,6 +859,7 @@ static void leds_init(void)
     nrf_gpio_pin_set(i);
   }
   nrf_gpio_cfg_output(STOP_SIGN);
+  nrf_gpio_pin_clear(STOP_SIGN);
 }
 
 
