@@ -94,6 +94,7 @@ int main(void)
     // Initialize.
     log_init();
     ble_stack_init();
+    sd_power_dcdc_mode_set( NRF_POWER_DCDC_ENABLE );
     advertising_init();
     
     NRF_LOG_INFO("Starting EHSB project");
