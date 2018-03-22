@@ -24,6 +24,8 @@
 "Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_section_iter.o"
 "Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_strerror.o"
 "Output/ble_ehsb_c_pca10040_s132 Debug/Obj/retarget.o"
+"Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fstorage.o"
+"Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fstorage_sd.o"
 "Output/ble_ehsb_c_pca10040_s132 Debug/Obj/boards.o"
 "Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_clock.o"
 "Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_common.o"

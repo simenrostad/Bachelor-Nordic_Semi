@@ -111,7 +111,17 @@ bool existing_button = false;
 uint8_t button_number = 0;
 
 // Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
-uint8_t whitelist[3][16] = {0};    
+uint8_t whitelist[3][16] = {0};
+
+static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt);
+
+NRF_FSTORAGE_DEF(nrf_fstorage_t whitelist_storage) =
+{
+    /* Set a handler for fstorage events. */
+    .evt_handler = fstorage_evt_handler,
+    .start_addr = 0x3e000,
+    .end_addr   = 0x3ffff,
+}; 
 
 /**@brief Connection parameters requested for connection. */
 static ble_gap_conn_params_t const m_connection_param =
@@ -202,6 +212,42 @@ static void scan_stop(void)
     scanning = false;
 }
 
+/** Function for handling fstorage events*/
+static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt) 
+{
+    if (p_evt->result != NRF_SUCCESS)
+    {
+        NRF_LOG_INFO("--> Event received: ERROR while executing an fstorage operation.");
+        return;
+    }
+
+    switch (p_evt->id)
+    {
+        case NRF_FSTORAGE_EVT_WRITE_RESULT:
+        {
+            NRF_LOG_INFO("--> Event received: wrote %d bytes at address 0x%x.",
+                         p_evt->len, p_evt->addr);
+        } break;
+
+        case NRF_FSTORAGE_EVT_ERASE_RESULT:
+        {
+            NRF_LOG_INFO("--> Event received: erased %d page from address 0x%x.",
+                         p_evt->len, p_evt->addr);
+        } break;
+
+        default:
+            break;
+    }
+}
+
+void wait_for_flash_ready(nrf_fstorage_t const * p_fstorage)
+{
+    /* While fstorage is busy, sleep and wait for an event. */
+//    while (nrf_fstorage_is_busy(p_fstorage))
+//    {
+//        power_manage();
+//    }
+}
 
 /**@brief Function for handling database discovery events.
  *
@@ -546,7 +592,9 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                           nrf_gpio_pin_clear(LED_4);
                           new_button_added = true;
 
-                          NRF_LOG_INFO("åsso hit");
+                          NRF_LOG_INFO("Writing \"%x\" to flash.", whitelist[button_number]);
+                          err_code = nrf_fstorage_write(&whitelist_storage, 0x3e000, whitelist[button_number], sizeof(whitelist[button_number]), NULL);
+                          APP_ERROR_CHECK(err_code);
                       }             
                 }
             }
@@ -865,6 +913,8 @@ static void leds_init(void)
 
 int main(void)
 {
+    ret_code_t rc;
+
     log_init();
     timer_init();
     power_init();
@@ -878,10 +928,17 @@ int main(void)
     gatt_init();
     nus_c_init();
 
+//    nrf_fstorage_api_t * p_fs_api;
+//    p_fs_api = &nrf_fstorage_sd;
+    uint8_t blacklist[16];
+
+    rc = nrf_fstorage_init(&whitelist_storage, &nrf_fstorage_sd, NULL);
+    APP_ERROR_CHECK(rc);
+
+    nrf_fstorage_read(&whitelist_storage, 0x3e000, &blacklist, 16);
 
     // Start scanning for peripherals and initiate connection
-    // with devices that advertise NUS UUID.
-    //printf("BLE UART central example started.\r\n");
+    // with devices that advertise NUS/EHSB UUID.
     NRF_LOG_INFO("BLE UART central example/EHSB Central started.");
     scan_start();
 
