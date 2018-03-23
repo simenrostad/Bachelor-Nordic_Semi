@@ -54,10 +54,12 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="9" y="235" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="208" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="439" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_advertising/ble_advertising.c" debugPath="../../../../../../components/ble/ble_advertising/ble_advertising.c" selected="0" top="428" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="43" y="219" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="209" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="439" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_advertising/ble_advertising.c" debugPath="../../../../../../components/ble/ble_advertising/ble_advertising.c" selected="0" top="422" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="925" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/timer/app_timer.c" debugPath="../../../../../../components/libraries/timer/app_timer.c" selected="0" top="925" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="134" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/bsp/bsp.h" debugPath="../../../../../../components/libraries/bsp/bsp.h" selected="0" top="111" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="129" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_advertising/ble_advertising.h" debugPath="../../../../../../components/ble/ble_advertising/ble_advertising.h" selected="0" top="109" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="265" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/softdevice/s132/headers/ble_gap.h" debugPath="../../../../../../components/softdevice/s132/headers/ble_gap.h" selected="0" top="244" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="ble_app_uart_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="ble_app_uart_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

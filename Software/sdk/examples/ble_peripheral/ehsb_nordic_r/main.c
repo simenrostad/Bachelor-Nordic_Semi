@@ -89,7 +89,6 @@
 #define APP_BLE_OBSERVER_PRIO           3                                           /**< Application's BLE observer priority. You shouldn't need to modify this value. */
 
 #define APP_ADV_INTERVAL                64                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 40 ms). */
-#define APP_ADV_TIMEOUT_IN_SECONDS      180                                         /**< The advertising timeout (in units of seconds). */
 
 #define MIN_CONN_INTERVAL               MSEC_TO_UNITS(20, UNIT_1_25_MS)             /**< Minimum acceptable connection interval (20 ms), Connection interval uses 1.25 ms units. */
 #define MAX_CONN_INTERVAL               MSEC_TO_UNITS(75, UNIT_1_25_MS)             /**< Maximum acceptable connection interval (75 ms), Connection interval uses 1.25 ms units. */
@@ -118,10 +117,6 @@ BLE_ADVERTISING_DEF(m_advertising);                                             
 
 static uint16_t   m_conn_handle          = BLE_CONN_HANDLE_INVALID;                 /**< Handle of the current connection. */
 static uint16_t   m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - 3;            /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
-
-uint8_t button_number = 0;
-// Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
-uint8_t whitelist[1][16] = {0};    
 
 static ble_uuid_t m_adv_uuids[]          =                                          /**< Universally unique service identifier. */
 
@@ -231,14 +226,12 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 
         if (memcmp(p_evt->params.rx_data.p_data, "stop_scan", sizeof("stop_scan")) == 0)
         {
-        NRF_LOG_INFO("HALLO");
         scan_stop();
         }
 
         if (memcmp(p_evt->params.rx_data.p_data, "start_scan", sizeof("start_scan")) == 0)
         {
         scan_start();
-        NRF_LOG_INFO("HADE");
         }
 
         for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
@@ -729,14 +722,14 @@ static void advertising_init(void)
 
     init.advdata.name_type          = BLE_ADVDATA_FULL_NAME;
     init.advdata.include_appearance = false;
-    init.advdata.flags              = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
+    init.advdata.flags              = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
 
     init.srdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
     init.srdata.uuids_complete.p_uuids  = m_adv_uuids;
 
     init.config.ble_adv_fast_enabled  = true;
     init.config.ble_adv_fast_interval = APP_ADV_INTERVAL;
-    init.config.ble_adv_fast_timeout  = APP_ADV_TIMEOUT_IN_SECONDS;
+    init.config.ble_adv_fast_timeout  = 0;
 
     init.evt_handler = on_adv_evt;
 
