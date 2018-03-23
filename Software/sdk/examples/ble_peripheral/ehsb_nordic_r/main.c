@@ -229,6 +229,18 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
         NRF_LOG_DEBUG("Received data from BLE NUS. Writing data on UART.");
         NRF_LOG_HEXDUMP_DEBUG(p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
 
+        if (memcmp(p_evt->params.rx_data.p_data, "stop_scan", sizeof("stop_scan")) == 0)
+        {
+        NRF_LOG_INFO("HALLO");
+        scan_stop();
+        }
+
+        if (memcmp(p_evt->params.rx_data.p_data, "start_scan", sizeof("start_scan")) == 0)
+        {
+        scan_start();
+        NRF_LOG_INFO("HADE");
+        }
+
         for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
         {
             do
@@ -298,7 +310,6 @@ static void conn_params_error_handler(uint32_t nrf_error)
 {
     APP_ERROR_HANDLER(nrf_error);
 }
-
 
 /**@brief Function for initializing the Connection Parameters module.
  */
@@ -406,10 +417,8 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 {
     uint32_t err_code;
 
-    uint8_t gibbalay[16] = {0};
-    uint8_t string[]     = "hei";
-    uint16_t length_1 = sizeof(string);
-    uint16_t length = sizeof(gibbalay);
+    uint8_t adv_rep_uuid[16] = {0};
+    uint8_t string[]     = "button_found";
 
     ble_gap_evt_t const * p_gap_evt = &p_ble_evt->evt.gap_evt;
 
@@ -430,32 +439,26 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             scan_stop();
             break;
 
-
         case BLE_GAP_EVT_ADV_REPORT:
         {
              ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
 
-
              if (is_uuid_present(&m_nus_uuid, p_adv_report))
              {
-                    err_code = ble_nus_string_send(&m_nus, string , &length_1);
+                    err_code = ble_nus_string_send(&m_nus, string , sizeof(string));
                     APP_ERROR_CHECK(err_code);
              }
 
-             if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
+             else if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
                      && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
                   {
+                     memcpy(&adv_rep_uuid[0], &p_adv_report->data[5], 16);
 
-                     memcpy(&gibbalay[0], &p_adv_report->data[5], 16);
-
-                     err_code = ble_nus_string_send(&m_nus, gibbalay , &length);
+                     err_code = ble_nus_string_send(&m_nus, adv_rep_uuid , sizeof(adv_rep_uuid));
                      APP_ERROR_CHECK(err_code);
-                   
                   }
-
         }break;
 
-     
 #ifndef S140
         case BLE_GAP_EVT_PHY_UPDATE_REQUEST:
         {
@@ -586,7 +589,6 @@ void gatt_evt_handler(nrf_ble_gatt_t * p_gatt, nrf_ble_gatt_evt_t const * p_evt)
                   p_gatt->att_mtu_desired_periph);
 }
 
-
 /**@brief Function for initializing the GATT library. */
 void gatt_init(void)
 {
@@ -598,7 +600,6 @@ void gatt_init(void)
     err_code = nrf_ble_gatt_att_mtu_periph_set(&m_gatt, 64);
     APP_ERROR_CHECK(err_code);
 }
-
 
 /**@brief Function for handling events from the BSP module.
  *
@@ -636,7 +637,6 @@ void bsp_event_handler(bsp_event_t event)
             break;
     }
 }
-
 
 /**@brief   Function for handling app_uart events.
  *
@@ -689,7 +689,6 @@ void uart_event_handle(app_uart_evt_t * p_event)
     }
 }
 /**@snippet [Handling the data received over UART] */
-
 
 /**@brief  Function for initializing the UART module.
  */
@@ -784,7 +783,6 @@ static void power_manage(void)
     uint32_t err_code = sd_app_evt_wait();
     APP_ERROR_CHECK(err_code);
 }
-
 
 /**@brief Application main function.
  */
