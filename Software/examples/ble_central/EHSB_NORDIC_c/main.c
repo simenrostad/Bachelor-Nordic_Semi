@@ -243,10 +243,10 @@ static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt)
 void wait_for_flash_ready(nrf_fstorage_t const * p_fstorage)
 {
     /* While fstorage is busy, sleep and wait for an event. */
-//    while (nrf_fstorage_is_busy(p_fstorage))
-//    {
+    while (nrf_fstorage_is_busy(p_fstorage))
+    {
 //        power_manage();
-//    }
+    }
 }
 
 /**@brief Function for handling database discovery events.
@@ -373,9 +373,11 @@ void uart_event_handle(app_uart_evt_t * p_event)
 static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t const * p_ble_nus_evt)
 {
     ret_code_t err_code;
+    uint8_t streng[] = "stop_scan";
+    uint8_t length = sizeof(streng);
 
     switch (p_ble_nus_evt->evt_type)
-    {
+    {        
         case BLE_NUS_C_EVT_DISCOVERY_COMPLETE:
             NRF_LOG_INFO("Discovery complete.");
             err_code = ble_nus_c_handles_assign(p_ble_nus_c, p_ble_nus_evt->conn_handle, &p_ble_nus_evt->handles);
@@ -384,18 +386,21 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
             err_code = ble_nus_c_tx_notif_enable(p_ble_nus_c);
             APP_ERROR_CHECK(err_code);
             NRF_LOG_INFO("Connected to device with Nordic UART Service.");
-
+ 
             nrf_gpio_pin_clear(LED_3);
             break;
 
         case BLE_NUS_C_EVT_NUS_TX_EVT:
             ble_nus_chars_received_uart_print(p_ble_nus_evt->p_data, p_ble_nus_evt->data_len);
-            if(memcmp(p_ble_nus_evt->p_data, "hei", sizeof("hei")) == 0)
+            if(memcmp(p_ble_nus_evt->p_data, "button_f", sizeof("button_f")) == 0)
             {
                 nrf_gpio_pin_set(STOP_SIGN);
                 nrf_gpio_pin_clear(LED_4);
                 scan_stop();
+                err_code = ble_nus_c_string_send(&m_ble_nus_c, streng, length);
+                APP_ERROR_CHECK(err_code);
                 reset = true;
+                reset_r = true;
             }
             if(p_ble_nus_evt->data_len == 16)
             {
@@ -408,7 +413,10 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
                             nrf_gpio_pin_set(STOP_SIGN);
                             nrf_gpio_pin_clear(LED_4);
                             scan_stop();
+                            err_code = ble_nus_c_string_send(&m_ble_nus_c, streng, length);
+                            APP_ERROR_CHECK(err_code);
                             reset = true;
+                            reset_r = true;
                         }
                     }
                 }
@@ -591,10 +599,18 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                           app_timer_stop(add_button_timer_id);
                           nrf_gpio_pin_clear(LED_4);
                           new_button_added = true;
-
+                      NRF_LOG_INFO("1");
+                          static uint32_t flash_addr = 0x3f000;
+                      NRF_LOG_INFO("2");
                           NRF_LOG_INFO("Writing \"%x\" to flash.", whitelist[button_number]);
-                          err_code = nrf_fstorage_write(&whitelist_storage, 0x3e000, whitelist[button_number], sizeof(whitelist[button_number]), NULL);
+                          err_code = nrf_fstorage_write(&whitelist_storage, flash_addr, whitelist[button_number], sizeof(whitelist[button_number]), NULL);
                           APP_ERROR_CHECK(err_code);
+                    NRF_LOG_INFO("hit?");
+                          wait_for_flash_ready(&whitelist_storage);
+                          NRF_LOG_INFO("Done.");
+                    NRF_LOG_INFO("addr: %x", flash_addr);
+                          flash_addr += 0x10;
+                    NRF_LOG_INFO("addr2: %x", flash_addr);
                       }             
                 }
             }
@@ -771,19 +787,19 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
    {
       if(reset || reset_r)
       {   
-//          if(reset_r)
-//          {             
-//              uint8_t string[] = "69\n\r";
-//              uint16_t length = sizeof(string);
-//
-//              err_code = ble_nus_c_string_send(&m_ble_nus_c, string, length);
-//              APP_ERROR_CHECK(err_code);
-//
-//              reset_r = false;
-//          }
+          if(reset_r)
+          {             
+              uint8_t string[] = "start_scan";
+              uint16_t length = sizeof(string);
+
+              err_code = ble_nus_c_string_send(&m_ble_nus_c, string, length);
+              APP_ERROR_CHECK(err_code);
+
+              nrf_gpio_pin_set(LED_4);
+              reset_r = false;
+          }
 
           nrf_gpio_pin_set(LED_2);
-          nrf_gpio_pin_set(LED_4);
           nrf_gpio_pin_clear(STOP_SIGN);
           if(!scanning)
           {
@@ -820,9 +836,19 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
           nrf_gpio_pin_set(LED_4);
           button_number += 1;
           new_button_added = false;
+
+          err_code = nrf_fstorage_erase(&whitelist_storage, 0x3e000, 1, NULL);
+          APP_ERROR_CHECK(err_code);
+          
+          err_code = nrf_fstorage_write(&whitelist_storage, 0x3e000, &button_number, 4, NULL);
+          APP_ERROR_CHECK(err_code);
       }
 
       add_button = false;
+   }
+   if(pin_no == BUTTON_3 && button_action == APP_BUTTON_PUSH)
+   {
+      
    }
 }
 
@@ -830,7 +856,7 @@ static void buttons_init()
 {
     ret_code_t err_code;
 
-    static app_button_cfg_t button_cfg[2] ={ {
+    static app_button_cfg_t button_cfg[3] ={ {
         BUTTON_1,
         APP_BUTTON_ACTIVE_LOW,
         NRF_GPIO_PIN_PULLUP,
@@ -841,9 +867,15 @@ static void buttons_init()
         APP_BUTTON_ACTIVE_LOW,
         NRF_GPIO_PIN_PULLUP,
         button_handler
+        },
+        {
+        BUTTON_3,
+        APP_BUTTON_ACTIVE_LOW,
+        NRF_GPIO_PIN_PULLUP,
+        button_handler
         } };
 
-    err_code = app_button_init(button_cfg,2,5);
+    err_code = app_button_init(button_cfg,3,5);
     APP_ERROR_CHECK(err_code);
 
     err_code = app_button_enable();
@@ -900,7 +932,6 @@ static void db_discovery_init(void)
 
 static void leds_init(void)
 {
-
   for (int i=LED_1; i<= LED_4; i++)
   {
     nrf_gpio_cfg_output(i);
@@ -908,6 +939,31 @@ static void leds_init(void)
   }
   nrf_gpio_cfg_output(STOP_SIGN);
   nrf_gpio_pin_clear(STOP_SIGN);
+}
+
+static void read_memory(void)
+{
+    nrf_fstorage_read(&whitelist_storage, 0x3e000, &whitelist[0], 16);
+
+    printf("g: %x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x\n", 
+            whitelist[0][0],
+            whitelist[0][1],
+            whitelist[0][2],
+            whitelist[0][3],
+            whitelist[0][4],
+            whitelist[0][5],
+            whitelist[0][6],
+            whitelist[0][7],
+            whitelist[0][8],
+            whitelist[0][9],
+            whitelist[0][10],
+            whitelist[0][11],
+            whitelist[0][12],
+            whitelist[0][13],
+            whitelist[0][14],
+            whitelist[0][15]
+            );
+    
 }
 
 
@@ -930,17 +986,26 @@ int main(void)
 
 //    nrf_fstorage_api_t * p_fs_api;
 //    p_fs_api = &nrf_fstorage_sd;
-    uint8_t blacklist[16];
 
+    printf("p: %x%x%x%x%x%x\n", 
+            whitelist[0][0],
+            whitelist[0][1],
+            whitelist[0][2],
+            whitelist[0][3],
+            whitelist[0][4],
+            whitelist[0][5]
+            );
+   
     rc = nrf_fstorage_init(&whitelist_storage, &nrf_fstorage_sd, NULL);
     APP_ERROR_CHECK(rc);
 
-    nrf_fstorage_read(&whitelist_storage, 0x3e000, &blacklist, 16);
+//    read_memory();
 
     // Start scanning for peripherals and initiate connection
     // with devices that advertise NUS/EHSB UUID.
     NRF_LOG_INFO("BLE UART central example/EHSB Central started.");
     scan_start();
+
 
     for (;;)
     {
@@ -948,5 +1013,6 @@ int main(void)
         {
             nrf_pwr_mgmt_run();
         }
+
     }
 }
