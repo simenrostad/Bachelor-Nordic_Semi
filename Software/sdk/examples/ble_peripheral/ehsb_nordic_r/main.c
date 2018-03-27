@@ -89,7 +89,6 @@
 #define APP_BLE_OBSERVER_PRIO           3                                           /**< Application's BLE observer priority. You shouldn't need to modify this value. */
 
 #define APP_ADV_INTERVAL                64                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 40 ms). */
-#define APP_ADV_TIMEOUT_IN_SECONDS      180                                         /**< The advertising timeout (in units of seconds). */
 
 #define MIN_CONN_INTERVAL               MSEC_TO_UNITS(20, UNIT_1_25_MS)             /**< Minimum acceptable connection interval (20 ms), Connection interval uses 1.25 ms units. */
 #define MAX_CONN_INTERVAL               MSEC_TO_UNITS(75, UNIT_1_25_MS)             /**< Maximum acceptable connection interval (75 ms), Connection interval uses 1.25 ms units. */
@@ -118,10 +117,6 @@ BLE_ADVERTISING_DEF(m_advertising);                                             
 
 static uint16_t   m_conn_handle          = BLE_CONN_HANDLE_INVALID;                 /**< Handle of the current connection. */
 static uint16_t   m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - 3;            /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
-
-uint8_t button_number = 0;
-// Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
-uint8_t whitelist[1][16] = {0};    
 
 static ble_uuid_t m_adv_uuids[]          =                                          /**< Universally unique service identifier. */
 
@@ -229,6 +224,16 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
         NRF_LOG_DEBUG("Received data from BLE NUS. Writing data on UART.");
         NRF_LOG_HEXDUMP_DEBUG(p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
 
+        if (memcmp(p_evt->params.rx_data.p_data, "stop_scan", sizeof("stop_scan")) == 0)
+        {
+        scan_stop();
+        }
+
+        if (memcmp(p_evt->params.rx_data.p_data, "start_scan", sizeof("start_scan")) == 0)
+        {
+        scan_start();
+        }
+
         for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
         {
             do
@@ -298,7 +303,6 @@ static void conn_params_error_handler(uint32_t nrf_error)
 {
     APP_ERROR_HANDLER(nrf_error);
 }
-
 
 /**@brief Function for initializing the Connection Parameters module.
  */
@@ -406,10 +410,8 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 {
     uint32_t err_code;
 
-    uint8_t gibbalay[16] = {0};
-    uint8_t string[]     = "hei";
-    uint16_t length_1 = sizeof(string);
-    uint16_t length = sizeof(gibbalay);
+    uint8_t adv_rep_uuid[16] = {0};
+    uint8_t string[]     = "button_found";
 
     ble_gap_evt_t const * p_gap_evt = &p_ble_evt->evt.gap_evt;
 
@@ -430,32 +432,26 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             scan_stop();
             break;
 
-
         case BLE_GAP_EVT_ADV_REPORT:
         {
              ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
 
-
              if (is_uuid_present(&m_nus_uuid, p_adv_report))
              {
-                    err_code = ble_nus_string_send(&m_nus, string , &length_1);
+                    err_code = ble_nus_string_send(&m_nus, string , sizeof(string));
                     APP_ERROR_CHECK(err_code);
              }
 
-             if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
+             else if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
                      && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
                   {
+                     memcpy(&adv_rep_uuid[0], &p_adv_report->data[5], 16);
 
-                     memcpy(&gibbalay[0], &p_adv_report->data[5], 16);
-
-                     err_code = ble_nus_string_send(&m_nus, gibbalay , &length);
+                     err_code = ble_nus_string_send(&m_nus, adv_rep_uuid , sizeof(adv_rep_uuid));
                      APP_ERROR_CHECK(err_code);
-                   
                   }
-
         }break;
 
-     
 #ifndef S140
         case BLE_GAP_EVT_PHY_UPDATE_REQUEST:
         {
@@ -586,7 +582,6 @@ void gatt_evt_handler(nrf_ble_gatt_t * p_gatt, nrf_ble_gatt_evt_t const * p_evt)
                   p_gatt->att_mtu_desired_periph);
 }
 
-
 /**@brief Function for initializing the GATT library. */
 void gatt_init(void)
 {
@@ -598,7 +593,6 @@ void gatt_init(void)
     err_code = nrf_ble_gatt_att_mtu_periph_set(&m_gatt, 64);
     APP_ERROR_CHECK(err_code);
 }
-
 
 /**@brief Function for handling events from the BSP module.
  *
@@ -636,7 +630,6 @@ void bsp_event_handler(bsp_event_t event)
             break;
     }
 }
-
 
 /**@brief   Function for handling app_uart events.
  *
@@ -690,7 +683,6 @@ void uart_event_handle(app_uart_evt_t * p_event)
 }
 /**@snippet [Handling the data received over UART] */
 
-
 /**@brief  Function for initializing the UART module.
  */
 /**@snippet [UART Initialization] */
@@ -730,14 +722,14 @@ static void advertising_init(void)
 
     init.advdata.name_type          = BLE_ADVDATA_FULL_NAME;
     init.advdata.include_appearance = false;
-    init.advdata.flags              = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
+    init.advdata.flags              = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
 
     init.srdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
     init.srdata.uuids_complete.p_uuids  = m_adv_uuids;
 
     init.config.ble_adv_fast_enabled  = true;
     init.config.ble_adv_fast_interval = APP_ADV_INTERVAL;
-    init.config.ble_adv_fast_timeout  = APP_ADV_TIMEOUT_IN_SECONDS;
+    init.config.ble_adv_fast_timeout  = 0;
 
     init.evt_handler = on_adv_evt;
 
@@ -784,7 +776,6 @@ static void power_manage(void)
     uint32_t err_code = sd_app_evt_wait();
     APP_ERROR_CHECK(err_code);
 }
-
 
 /**@brief Application main function.
  */
