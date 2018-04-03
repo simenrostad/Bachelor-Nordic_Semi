@@ -108,7 +108,8 @@ bool scanning = false;
 bool add_button = false;
 bool new_button_added = false;
 bool existing_button = false;
-uint8_t button_number = 0;
+uint32_t button_number = 0;
+uint32_t flash_addr = 0x3f000;
 
 // Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
 uint8_t whitelist[3][16] = {0};
@@ -243,10 +244,10 @@ static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt)
 void wait_for_flash_ready(nrf_fstorage_t const * p_fstorage)
 {
     /* While fstorage is busy, sleep and wait for an event. */
-    while (nrf_fstorage_is_busy(p_fstorage))
-    {
+//    while (nrf_fstorage_is_busy(p_fstorage))
+//    {
 //        power_manage();
-    }
+//    }
 }
 
 /**@brief Function for handling database discovery events.
@@ -599,18 +600,15 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                           app_timer_stop(add_button_timer_id);
                           nrf_gpio_pin_clear(LED_4);
                           new_button_added = true;
-                      NRF_LOG_INFO("1");
-                          static uint32_t flash_addr = 0x3f000;
-                      NRF_LOG_INFO("2");
+
                           NRF_LOG_INFO("Writing \"%x\" to flash.", whitelist[button_number]);
                           err_code = nrf_fstorage_write(&whitelist_storage, flash_addr, whitelist[button_number], sizeof(whitelist[button_number]), NULL);
                           APP_ERROR_CHECK(err_code);
-                    NRF_LOG_INFO("hit?");
+
                           wait_for_flash_ready(&whitelist_storage);
                           NRF_LOG_INFO("Done.");
-                    NRF_LOG_INFO("addr: %x", flash_addr);
+
                           flash_addr += 0x10;
-                    NRF_LOG_INFO("addr2: %x", flash_addr);
                       }             
                 }
             }
@@ -839,9 +837,12 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
 
           err_code = nrf_fstorage_erase(&whitelist_storage, 0x3e000, 1, NULL);
           APP_ERROR_CHECK(err_code);
-          
+          wait_for_flash_ready(&whitelist_storage);
+
+          NRF_LOG_INFO("Writing \"%x\" to flash.", button_number);
           err_code = nrf_fstorage_write(&whitelist_storage, 0x3e000, &button_number, 4, NULL);
           APP_ERROR_CHECK(err_code);
+          wait_for_flash_ready(&whitelist_storage);
       }
 
       add_button = false;
@@ -943,27 +944,29 @@ static void leds_init(void)
 
 static void read_memory(void)
 {
-    nrf_fstorage_read(&whitelist_storage, 0x3e000, &whitelist[0], 16);
+    ret_code_t err_code;
 
-    printf("g: %x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x\n", 
-            whitelist[0][0],
-            whitelist[0][1],
-            whitelist[0][2],
-            whitelist[0][3],
-            whitelist[0][4],
-            whitelist[0][5],
-            whitelist[0][6],
-            whitelist[0][7],
-            whitelist[0][8],
-            whitelist[0][9],
-            whitelist[0][10],
-            whitelist[0][11],
-            whitelist[0][12],
-            whitelist[0][13],
-            whitelist[0][14],
-            whitelist[0][15]
-            );
-    
+    err_code = nrf_fstorage_read(&whitelist_storage, 0x3e000, &button_number, 4);
+    APP_ERROR_CHECK(err_code);
+
+    NRF_LOG_INFO("%d", button_number)
+
+    if(button_number == -1)
+    {
+        button_number = 0;
+    }
+    else
+    {
+        
+        for(uint8_t i = 0; i < button_number; i++)
+        {
+            nrf_fstorage_read(&whitelist_storage, flash_addr, &whitelist[i], 16);
+            flash_addr += 0x10;
+        }
+    } 
+     
+   NRF_LOG_INFO("%x", flash_addr);
+   NRF_LOG_INFO("%d", button_number);
 }
 
 
@@ -976,7 +979,6 @@ int main(void)
     power_init();
     uart_init();
     application_timer_init();
-    //buttons_leds_init();
     buttons_init();
     leds_init();
     db_discovery_init();
@@ -986,20 +988,11 @@ int main(void)
 
 //    nrf_fstorage_api_t * p_fs_api;
 //    p_fs_api = &nrf_fstorage_sd;
-
-    printf("p: %x%x%x%x%x%x\n", 
-            whitelist[0][0],
-            whitelist[0][1],
-            whitelist[0][2],
-            whitelist[0][3],
-            whitelist[0][4],
-            whitelist[0][5]
-            );
    
     rc = nrf_fstorage_init(&whitelist_storage, &nrf_fstorage_sd, NULL);
     APP_ERROR_CHECK(rc);
 
-//    read_memory();
+    read_memory();
 
     // Start scanning for peripherals and initiate connection
     // with devices that advertise NUS/EHSB UUID.
