@@ -227,11 +227,13 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
         if (memcmp(p_evt->params.rx_data.p_data, "stop_scan", sizeof("stop_scan")) == 0)
         {
         scan_stop();
+        NRF_LOG_INFO("Stop_scan");
         }
 
         if (memcmp(p_evt->params.rx_data.p_data, "start_scan", sizeof("start_scan")) == 0)
         {
         scan_start();
+        NRF_LOG_INFO("Start_scan");
         }
 
         for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
@@ -412,6 +414,8 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 
     uint8_t adv_rep_uuid[16] = {0};
     uint8_t string[]     = "button_found";
+    uint16_t string_length = sizeof(string);
+    uint16_t adv_rep_uuid_length = sizeof(adv_rep_uuid);
 
     ble_gap_evt_t const * p_gap_evt = &p_ble_evt->evt.gap_evt;
 
@@ -438,7 +442,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 
              if (is_uuid_present(&m_nus_uuid, p_adv_report))
              {
-                    err_code = ble_nus_string_send(&m_nus, string , sizeof(string));
+                    err_code = ble_nus_string_send(&m_nus, string , &string_length);
                     APP_ERROR_CHECK(err_code);
              }
 
@@ -447,7 +451,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                   {
                      memcpy(&adv_rep_uuid[0], &p_adv_report->data[5], 16);
 
-                     err_code = ble_nus_string_send(&m_nus, adv_rep_uuid , sizeof(adv_rep_uuid));
+                     err_code = ble_nus_string_send(&m_nus, adv_rep_uuid , &adv_rep_uuid_length);
                      APP_ERROR_CHECK(err_code);
                   }
         }break;

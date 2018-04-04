@@ -7245,58 +7245,57 @@ Linker script and memory map
  .text.advertising_init
                 0x0000000000023b7c       0xd0 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
  .text.ble_stack_init
-                0x0000000000023c4c       0x6c Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
+                0x0000000000023c4c       0x74 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
  .text.log_init
-                0x0000000000023cb8       0x28 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
+                0x0000000000023cc0       0x28 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
  .text.power_manage
-                0x0000000000023ce0       0x2c Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
- .text.main     0x0000000000023d0c       0x1a Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
-                0x0000000000023d0c                main
+                0x0000000000023ce8       0x2c Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
+ .text.main     0x0000000000023d14       0x14 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
+                0x0000000000023d14                main
  .text.sd_ble_gap_addr_get
-                0x0000000000023d26        0x8 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000023d28        0x8 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.sd_ble_gap_adv_data_set
-                0x0000000000023d2e        0x8 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000023d30        0x8 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.sd_ble_gap_appearance_get
-                0x0000000000023d36        0x8 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000023d38        0x8 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.sd_ble_gap_device_name_get
-                0x0000000000023d3e        0x8 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000023d40        0x8 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.sd_ble_uuid_encode
-                0x0000000000023d46        0x8 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000023d48        0x8 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.uint16_encode
-                0x0000000000023d4e       0x2c Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000023d50       0x2c Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.ble_device_addr_encode
-                0x0000000000023d7a       0xce Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000023d7c       0xce Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.name_encode
-                0x0000000000023e48      0x13e Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000023e4a      0x13e Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.appearance_encode
-                0x0000000000023f86       0x9c Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000023f88       0x9c Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.flags_encode
-                0x0000000000024022       0x7e Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000024024       0x7e Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.tx_power_level_encode
-                0x00000000000240a0       0x7e Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x00000000000240a2       0x7e Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.uuid_list_sized_encode
-                0x000000000002411e      0x150 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000024120      0x150 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.uuid_list_encode
-                0x000000000002426e       0x66 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000024270       0x66 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.conn_int_check
-                0x00000000000242d4       0x78 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x00000000000242d6       0x78 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.conn_int_encode
-                0x000000000002434c       0xc0 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x000000000002434e       0xc0 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.manuf_specific_data_encode
-                0x000000000002440c       0xe0 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x000000000002440e       0xe0 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.service_data_encode
-                0x00000000000244ec      0x108 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x00000000000244ee      0x108 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.ble_advdata_encode
-                0x00000000000245f4      0x1d2 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
-                0x00000000000245f4                ble_advdata_encode
+                0x00000000000245f6      0x1d2 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x00000000000245f6                ble_advdata_encode
  .text.advdata_check
-                0x00000000000247c6       0x1c Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x00000000000247c8       0x1c Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.srdata_check
-                0x00000000000247e2       0x18 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x00000000000247e4       0x18 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .text.ble_advdata_set
-                0x00000000000247fa       0xb4 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
-                0x00000000000247fa                ble_advdata_set
- *fill*         0x00000000000248ae        0x2 
+                0x00000000000247fc       0xb4 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x00000000000247fc                ble_advdata_set
  .text.NVIC_SystemReset
                 0x00000000000248b0       0x24 Output/ble_app_beacon_pca10040_s132 Debug/Obj/system_nrf52.o
  .text.SystemCoreClockUpdate
