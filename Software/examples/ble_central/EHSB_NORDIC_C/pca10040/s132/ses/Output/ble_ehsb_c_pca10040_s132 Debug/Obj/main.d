@@ -1,5 +1,5 @@
 Output/ble_ehsb_c_pca10040_s132\ Debug/Obj/main.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\examples\ble_central\EHSB_NORDIC_C\main.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\examples\ble_central\EHSB_NORDIC_C\main.c \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \

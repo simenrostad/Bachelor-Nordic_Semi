@@ -95,6 +95,7 @@
 
 APP_TIMER_DEF(m_led_timer_id);                                           //  Macro for timer id
 APP_TIMER_DEF(add_button_timer_id);
+APP_TIMER_DEF(delete_buttons_id);
 
 BLE_NUS_C_DEF(m_ble_nus_c);                                             /**< BLE NUS service client instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                               /**< GATT module instance. */
@@ -108,8 +109,10 @@ bool scanning = false;
 bool add_button = false;
 bool new_button_added = false;
 bool existing_button = false;
+bool connected = false;
 uint32_t button_number = 0;
 uint32_t flash_addr = 0x3f000;
+uint8_t delete_counter = 0;
 
 // Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
 uint8_t whitelist[3][16] = {0};
@@ -190,6 +193,26 @@ static void add_button_timeout_handler(void * p_context)
   nrf_gpio_pin_toggle(LED_4);
 }
 
+static void delete_buttons_timeout_handler(void * p_context)
+{
+  nrf_gpio_pin_toggle(LED_1);
+  nrf_gpio_pin_toggle(LED_2);
+  nrf_gpio_pin_toggle(LED_3);
+  nrf_gpio_pin_toggle(LED_4);
+
+  delete_counter += 1;
+
+  if(delete_counter == 17)
+  {
+      nrf_fstorage_erase(&whitelist_storage, 0x3e000, 1, NULL);
+      nrf_fstorage_erase(&whitelist_storage, 0x3f000, 1, NULL);
+      app_timer_stop(delete_buttons_id);
+      button_number = 0;
+      flash_addr = 0x3f000;
+      NRF_LOG_INFO("Deleted");
+  }
+}
+
 /**@brief Function to start scanning. */
 static void scan_start(void)
 {
@@ -198,11 +221,10 @@ static void scan_start(void)
     ret = sd_ble_gap_scan_start(&m_scan_params);
     APP_ERROR_CHECK(ret);
 
-//    ret = bsp_indication_set(BSP_INDICATE_SCANNING);
-//    APP_ERROR_CHECK(ret);
-
-    app_timer_start(m_led_timer_id,APP_TIMER_TICKS(1000),led_timeout_handler);
+    app_timer_start(m_led_timer_id, APP_TIMER_TICKS(1000), led_timeout_handler);
     scanning = true;
+
+    NRF_LOG_INFO("scanning");
 }
 
 static void scan_stop(void)
@@ -211,6 +233,7 @@ static void scan_stop(void)
     app_timer_stop(m_led_timer_id);
     nrf_gpio_pin_set(LED_1);
     scanning = false;
+    NRF_LOG_INFO("not scanning");
 }
 
 /** Function for handling fstorage events*/
@@ -241,14 +264,14 @@ static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt)
     }
 }
 
-void wait_for_flash_ready(nrf_fstorage_t const * p_fstorage)
-{
-    /* While fstorage is busy, sleep and wait for an event. */
+//void wait_for_flash_ready(nrf_fstorage_t const * p_fstorage)
+//{
+//    /* While fstorage is busy, sleep and wait for an event. */
 //    while (nrf_fstorage_is_busy(p_fstorage))
 //    {
 //        power_manage();
 //    }
-}
+//}
 
 /**@brief Function for handling database discovery events.
  *
@@ -389,6 +412,7 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
             NRF_LOG_INFO("Connected to device with Nordic UART Service.");
  
             nrf_gpio_pin_clear(LED_3);
+            connected = true;
             break;
 
         case BLE_NUS_C_EVT_NUS_TX_EVT:
@@ -427,11 +451,11 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
         case BLE_NUS_C_EVT_DISCONNECTED:
             NRF_LOG_INFO("Disconnected.");
             nrf_gpio_pin_set(LED_3);
-            if(!scanning)
-            {
+
+            scan_stop();
             scan_start();
-            }
-            reset_r = false;
+
+            connected = false;
             break;
     }
 }
@@ -543,7 +567,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                 }
             
                 //If relayer is found, connect
-                if (is_uuid_present(&m_nus_uuid, p_adv_report))
+                else if (is_uuid_present(&m_nus_uuid, p_adv_report))
                 {
                     err_code = sd_ble_gap_connect(&p_adv_report->peer_addr,
                                                   &m_scan_params,
@@ -563,16 +587,19 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                     }
                 }
 
-               for(int8_t i = 0; i < button_number; i++)
-               {                                                
-                  if(memcmp(adv_uuid, whitelist[i], sizeof(adv_uuid)) == 0)
-                  {
-                      nrf_gpio_pin_set(STOP_SIGN);
-                      nrf_gpio_pin_clear(LED_2);
-                      scan_stop();
-                      reset = true;
-                  }
-               }       
+                else
+                {
+                     for(int8_t i = 0; i < button_number; i++)
+                     {                                                
+                        if(memcmp(adv_uuid, whitelist[i], sizeof(adv_uuid)) == 0)
+                        {
+                            nrf_gpio_pin_set(STOP_SIGN);
+                            nrf_gpio_pin_clear(LED_2);
+                            scan_stop();
+                            reset = true;
+                        }
+                     }
+                }
             }
             else if(add_button)
             {
@@ -605,7 +632,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                           err_code = nrf_fstorage_write(&whitelist_storage, flash_addr, whitelist[button_number], sizeof(whitelist[button_number]), NULL);
                           APP_ERROR_CHECK(err_code);
 
-                          wait_for_flash_ready(&whitelist_storage);
+//                          wait_for_flash_ready(&whitelist_storage);
                           NRF_LOG_INFO("Done.");
 
                           flash_addr += 0x10;
@@ -785,7 +812,7 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
    {
       if(reset || reset_r)
       {   
-          if(reset_r)
+          if(reset_r && connected)
           {             
               uint8_t string[] = "start_scan";
               uint16_t length = sizeof(string);
@@ -793,10 +820,10 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
               err_code = ble_nus_c_string_send(&m_ble_nus_c, string, length);
               APP_ERROR_CHECK(err_code);
 
-              nrf_gpio_pin_set(LED_4);
               reset_r = false;
           }
-
+          
+          nrf_gpio_pin_set(LED_4);
           nrf_gpio_pin_set(LED_2);
           nrf_gpio_pin_clear(STOP_SIGN);
           if(!scanning)
@@ -821,6 +848,9 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
    {
       NRF_LOG_INFO("hade");
 
+      app_timer_stop(add_button_timer_id);
+      nrf_gpio_pin_set(LED_4);
+
       if(existing_button)
       {
           nrf_gpio_pin_set(LED_2);
@@ -830,26 +860,34 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
 
       if(new_button_added)
       {
-          app_timer_stop(add_button_timer_id);
-          nrf_gpio_pin_set(LED_4);
           button_number += 1;
           new_button_added = false;
 
           err_code = nrf_fstorage_erase(&whitelist_storage, 0x3e000, 1, NULL);
           APP_ERROR_CHECK(err_code);
-          wait_for_flash_ready(&whitelist_storage);
+//          wait_for_flash_ready(&whitelist_storage);
 
           NRF_LOG_INFO("Writing \"%x\" to flash.", button_number);
           err_code = nrf_fstorage_write(&whitelist_storage, 0x3e000, &button_number, 4, NULL);
           APP_ERROR_CHECK(err_code);
-          wait_for_flash_ready(&whitelist_storage);
+//          wait_for_flash_ready(&whitelist_storage);
       }
 
       add_button = false;
    }
    if(pin_no == BUTTON_3 && button_action == APP_BUTTON_PUSH)
    {
-      
+        scan_stop();
+        app_timer_start(delete_buttons_id, APP_TIMER_TICKS(250), delete_buttons_timeout_handler);
+   }
+
+   if(pin_no == BUTTON_3 && button_action == APP_BUTTON_RELEASE)
+   {
+        nrf_gpio_pin_set(LED_2);
+        nrf_gpio_pin_set(LED_3);
+        nrf_gpio_pin_set(LED_4);
+        scan_start();
+        delete_counter = 0;
    }
 }
 
@@ -899,10 +937,13 @@ static void application_timer_init(void)
     err_code = app_timer_init();
     APP_ERROR_CHECK(err_code);
 
-    err_code = app_timer_create(&m_led_timer_id,APP_TIMER_MODE_REPEATED, led_timeout_handler);
+    err_code = app_timer_create(&m_led_timer_id, APP_TIMER_MODE_REPEATED, led_timeout_handler);
     APP_ERROR_CHECK(err_code);
 
-    err_code = app_timer_create(&add_button_timer_id,APP_TIMER_MODE_REPEATED, add_button_timeout_handler);
+    err_code = app_timer_create(&add_button_timer_id, APP_TIMER_MODE_REPEATED, add_button_timeout_handler);
+    APP_ERROR_CHECK(err_code);
+
+    err_code = app_timer_create(&delete_buttons_id, APP_TIMER_MODE_REPEATED, delete_buttons_timeout_handler);
     APP_ERROR_CHECK(err_code);
 }
 
