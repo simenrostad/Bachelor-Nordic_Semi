@@ -1,5 +1,5 @@
 Output/ble_app_beacon_pca10040_s132\ Debug/Obj/app_scheduler.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\scheduler\app_scheduler.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\scheduler\app_scheduler.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,7 +26,7 @@ Output/ble_app_beacon_pca10040_s132\ Debug/Obj/app_scheduler.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\scheduler\app_scheduler.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\scheduler\app_scheduler.h \
  ../../../../../../components/libraries/util/app_error.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
  ../../../../../../components/libraries/util/app_error_weak.h \

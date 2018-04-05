@@ -1,5 +1,5 @@
 Output/ble_app_beacon_pca10040_s132\ Debug/Obj/app_error.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\util\app_error.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\util\app_error.c \
  ../../../../../../components/device/nrf.h \
  ../../../../../../components/device/nrf52.h \
  ../../../../../../components/toolchain/cmsis/include/core_cm4.h \
@@ -15,10 +15,10 @@ Output/ble_app_beacon_pca10040_s132\ Debug/Obj/app_error.o: \
  ../../../../../../components/device/compiler_abstraction.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\util\app_error.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\util\app_error.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\util\sdk_errors.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\util\sdk_errors.h \
  ../../../../../../components/softdevice/s132/headers/nrf_error.h \
  ../config/sdk_config.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\util\nordic_common.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\util\app_error_weak.h
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\util\nordic_common.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\util\app_error_weak.h

@@ -1,5 +1,5 @@
 Output/ble_app_beacon_pca10040_s132\ Debug/Obj/nrf_drv_clock.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\drivers_nrf\clock\nrf_drv_clock.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\drivers_nrf\clock\nrf_drv_clock.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,7 +26,7 @@ Output/ble_app_beacon_pca10040_s132\ Debug/Obj/nrf_drv_clock.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\drivers_nrf\clock\nrf_drv_clock.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\drivers_nrf\clock\nrf_drv_clock.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/util/nrf_assert.h \
  ../../../../../../components/libraries/util/app_error.h \
@@ -49,4 +49,5 @@ Output/ble_app_beacon_pca10040_s132\ Debug/Obj/nrf_drv_clock.o: \
  ../../../../../../components/softdevice/common/nrf_sdh_soc.h \
  ../../../../../../components/libraries/experimental_log/nrf_log.h \
  ../../../../../../components/libraries/experimental_section_vars/nrf_section.h \
+ ../../../../../../components/libraries/strerror/nrf_strerror.h \
  ../../../../../../components/libraries/experimental_log/src/nrf_log_internal.h

@@ -558,16 +558,17 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             if(!add_button)
             {                                
                 //If stop button is found: turn on stop sign(LED1 for now) and stop scanning
-                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
-                {                
-                  nrf_gpio_pin_set(STOP_SIGN);
-                  nrf_gpio_pin_clear(LED_2);
-                  scan_stop();
-                  reset = true;
-                }
+//                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
+//                {                
+//                  nrf_gpio_pin_set(STOP_SIGN);
+//                  nrf_gpio_pin_clear(LED_2);
+//                  scan_stop();
+//                  reset = true;
+//                }
             
                 //If relayer is found, connect
-                else if (is_uuid_present(&m_nus_uuid, p_adv_report))
+                //else 
+                if (is_uuid_present(&m_nus_uuid, p_adv_report))
                 {
                     err_code = sd_ble_gap_connect(&p_adv_report->peer_addr,
                                                   &m_scan_params,
@@ -830,7 +831,6 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
           {
               scan_start();
           }
-
           reset = false;
       }
    }
@@ -842,12 +842,9 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
        {
           scan_start();
        }
-       NRF_LOG_INFO("Hola");
    }
    if(pin_no == BUTTON_2 && button_action == APP_BUTTON_RELEASE)
    {
-      NRF_LOG_INFO("hade");
-
       app_timer_stop(add_button_timer_id);
       nrf_gpio_pin_set(LED_4);
 
@@ -879,13 +876,17 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
    {
         scan_stop();
         app_timer_start(delete_buttons_id, APP_TIMER_TICKS(250), delete_buttons_timeout_handler);
+        nrf_gpio_pin_set(LED_3);
    }
 
    if(pin_no == BUTTON_3 && button_action == APP_BUTTON_RELEASE)
    {
         nrf_gpio_pin_set(LED_2);
-        nrf_gpio_pin_set(LED_3);
         nrf_gpio_pin_set(LED_4);
+        if(!connected)
+        {
+            nrf_gpio_pin_set(LED_3);
+        }
         scan_start();
         delete_counter = 0;
    }

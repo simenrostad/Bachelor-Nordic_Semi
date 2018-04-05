@@ -6,6 +6,8 @@
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
 
+#include "nrf_nvic.h"         //for å sende eit visst antal pakkar
+
 #define APP_BLE_CONN_CFG_TAG             1                                /**< A tag identifying the SoftDevice BLE configuration. */
 #define EHSB_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN       /**< UUID type for the Nordic UART Service (vendor specific). */  
 #define EHSB_BASE_UUID                   {{0x9F, 0xCA, 0xDC, 0x24,\
@@ -14,6 +16,9 @@
                                            0x00, 0x00, 0x40, 0x7F}}       /**< Base UUID */  //0x9F, 0xCA, 0xDC, 0x24,/ 0x0E, 0xE5, 0xA9, 0xE0,/ 0x93, 0xF3, 0xA3, 0xB5,/ 0x00, 0x00, 0x40, 0x6F
 
 #define BLE_UUID_EHSB_SERVICE             0x0001                          /**< The UUID of the Nordic UART Service. */
+
+uint8_t counter = 0;
+bool is_advertising = false;
 
 static ble_uuid_t m_adv_uuids[]          =                                /**< Universally unique service identifier. */
 {
@@ -89,17 +94,87 @@ static void power_manage(void)
     APP_ERROR_CHECK(err_code);
 }
 
+//static void stop_advertising(void)
+//{
+//uint32_t err_code;
+//            err_code = sd_ble_gap_adv_stop();
+//            APP_ERROR_CHECK(err_code);
+//            NRF_LOG_INFO("stopped");  
+//}
+
+/**@brief Software interrupt 1 IRQ Handler, handles radio notification interrupts.
+ */
+void SWI1_IRQHandler(bool radio_evt)
+{
+//    uint32_t err_code;
+    if (radio_evt)
+    {
+//        static uint8_t counter = 0;
+        counter += 1;
+        NRF_LOG_INFO("%d", counter);
+//        if(counter == 10)
+//        {
+//            NRF_LOG_INFO("hit");
+//            stop_advertising();
+//            err_code = sd_ble_gap_adv_stop();
+//            APP_ERROR_CHECK(err_code);
+//            NRF_LOG_INFO("stopped");
+//        }
+        
+    }
+}
+
+/**@brief Function for initializing Radio Notification Software Interrupts.
+ */
+uint32_t radio_notification_init(uint32_t irq_priority, uint8_t notification_type, uint8_t notification_distance)
+{
+    uint32_t err_code;
+
+    err_code = sd_nvic_ClearPendingIRQ(SWI1_IRQn);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+
+    err_code = sd_nvic_SetPriority(SWI1_IRQn, irq_priority);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+
+    err_code = sd_nvic_EnableIRQ(SWI1_IRQn);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+
+    // Configure the event
+    return sd_radio_notification_cfg_set(notification_type, notification_distance);
+}
+
 int main(void)
 {
     // Initialize.
     log_init();
     ble_stack_init();
-    advertising_init();
+//    advertising_init();
     
+    uint32_t err_code;
+    err_code = radio_notification_init(3, NRF_RADIO_NOTIFICATION_TYPE_INT_ON_INACTIVE, NRF_RADIO_NOTIFICATION_DISTANCE_NONE);   //for å sende eit visst antal pakkar
+    APP_ERROR_CHECK(err_code);
+
+    advertising_init();
+
     NRF_LOG_INFO("Starting EHSB project");
 /**< Sleep between advertising intervals */
     for (;; )
     {
+        if(counter == 8)
+        {
+            err_code = sd_ble_gap_adv_stop();
+            APP_ERROR_CHECK(err_code);
+        }
+
         if (NRF_LOG_PROCESS() == false)
         {
             power_manage();

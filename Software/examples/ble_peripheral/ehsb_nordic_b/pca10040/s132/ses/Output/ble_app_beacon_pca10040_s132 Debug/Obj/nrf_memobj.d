@@ -1,6 +1,6 @@
 Output/ble_app_beacon_pca10040_s132\ Debug/Obj/nrf_memobj.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\experimental_memobj\nrf_memobj.c \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\experimental_memobj\nrf_memobj.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\experimental_memobj\nrf_memobj.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\experimental_memobj\nrf_memobj.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdlib.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \

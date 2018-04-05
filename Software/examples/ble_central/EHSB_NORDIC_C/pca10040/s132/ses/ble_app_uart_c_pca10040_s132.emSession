@@ -1,9 +1,7 @@
 <!DOCTYPE CrossStudio_Session_File>
 <session>
  <Bookmarks/>
- <Breakpoints groups="Breakpoints" active_group="Breakpoints">
-  <Exceptions set="MemManage;UsageFault_Coprocessor;UsageFault_CheckingError;UsageFault_StateError;BusFault;ExceptionEntryReturnFault;HardFault"/>
- </Breakpoints>
+ <Breakpoints groups="Breakpoints" active_group="Breakpoints"/>
  <ExecutionProfileWindow/>
  <FrameBufferWindow>
   <FrameBufferWindow bufferHeight="-1" addressSpace="" addressText="" bufferWidth="-1"/>
@@ -28,7 +26,6 @@
   <ProjectSessionItem path="ble_ehsb_c_pca10040_s132"/>
   <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132"/>
   <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;Application"/>
-  <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;nRF_Libraries"/>
   <ProjectSessionItem path="ble_ehsb_c_pca10040_s132;ble_ehsb_c_pca10040_s132;nRF_Log"/>
  </Project>
  <Register1>
@@ -53,12 +50,12 @@
  <Watch1>
   <Watches active="1" update="Never">
    <Watchpoint numelements="0" expression="ret" evalMode="0" name="ret" radix="16" linenumber="223" filename="../../../main.c" list=""/>
-   <Watchpoint numelements="0" expression="scan" evalMode="0" name="scan" radix="-1" linenumber="823" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="scan" evalMode="0" name="scan" radix="-1" linenumber="824" filename="../../../main.c" list=""/>
    <Watchpoint numelements="0" expression="reset_r" evalMode="0" name="reset_r" radix="-1" linenumber="107" filename="../../../main.c" list=""/>
    <Watchpoint numelements="0" expression="reset" evalMode="0" name="reset" radix="-1" linenumber="106" filename="../../../main.c" list=""/>
-   <Watchpoint numelements="0" expression="button_UUID" evalMode="0" name="button_UUID" radix="16" linenumber="647" filename="../../../main.c" list=""/>
-   <Watchpoint numelements="0" expression="button_number" evalMode="0" name="button_number" radix="-1" linenumber="995" filename="../../../main.c" list=""/>
-   <Watchpoint numelements="0" expression="scanning" evalMode="0" name="scanning" radix="16" linenumber="669" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="button_UUID" evalMode="0" name="button_UUID" radix="16" linenumber="648" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="button_number" evalMode="0" name="button_number" radix="-1" linenumber="996" filename="../../../main.c" list=""/>
+   <Watchpoint numelements="0" expression="scanning" evalMode="0" name="scanning" radix="16" linenumber="670" filename="../../../main.c" list=""/>
   </Watches>
  </Watch1>
  <Watch2>
@@ -71,13 +68,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="453" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="63" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="215" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/fstorage/nrf_fstorage.c" debugPath="../../../../../../components/libraries/fstorage/nrf_fstorage.c" selected="0" top="193" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/timer/app_timer.c" debugPath="../../../../../../components/libraries/timer/app_timer.c" selected="0" top="18" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="93" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/softdevice/s132/headers/ble_gatts.h" debugPath="../../../../../../components/softdevice/s132/headers/ble_gatts.h" selected="0" top="71" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="114" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.h" debugPath="../../../../../../components/ble/ble_services/ble_nus_c/ble_nus_c.h" selected="0" top="92" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="72" y="2022" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/softdevice/s132/headers/ble_gap.h" debugPath="../../../../../../components/softdevice/s132/headers/ble_gap.h" selected="0" top="2005" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="96" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/util/app_error_weak.c" debugPath="../../../../../../components/libraries/util/app_error_weak.c" selected="0" top="74" codecName=""/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="23" y="569" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="542" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="ble_ehsb_c_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="C:/Users/Torus/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/cli" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

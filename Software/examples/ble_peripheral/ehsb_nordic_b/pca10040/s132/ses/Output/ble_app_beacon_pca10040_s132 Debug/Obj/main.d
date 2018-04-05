@@ -1,5 +1,5 @@
 Output/ble_app_beacon_pca10040_s132\ Debug/Obj/main.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\examples\ble_peripheral\ehsb_nordic_b\main.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\examples\ble_peripheral\ehsb_nordic_b\main.c \
  ../../../../../../components/softdevice/s132/headers/nrf_soc.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -53,6 +53,7 @@ Output/ble_app_beacon_pca10040_s132\ Debug/Obj/main.o: \
  ../../../../../../components/libraries/util/app_util.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
  ../../../../../../components/libraries/experimental_section_vars/nrf_section.h \
+ ../../../../../../components/libraries/strerror/nrf_strerror.h \
  ../../../../../../components/libraries/experimental_log/src/nrf_log_internal.h \
  ../../../../../../components/libraries/experimental_log/nrf_log_ctrl.h \
  ../../../../../../components/libraries/experimental_log/src/nrf_log_ctrl_internal.h \

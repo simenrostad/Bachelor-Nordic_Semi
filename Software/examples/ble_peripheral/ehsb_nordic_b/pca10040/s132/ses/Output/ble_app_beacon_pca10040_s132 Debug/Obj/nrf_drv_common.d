@@ -1,8 +1,8 @@
 Output/ble_app_beacon_pca10040_s132\ Debug/Obj/nrf_drv_common.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\drivers_nrf\common\nrf_drv_common.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\drivers_nrf\common\nrf_drv_common.c \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\drivers_nrf\common\nrf_drv_common.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\drivers_nrf\common\nrf_drv_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  ../../../../../../components/device/nrf.h \

@@ -1,6 +1,6 @@
 Output/ble_app_beacon_pca10040_s132\ Debug/Obj/boards.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\boards\boards.c \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\boards\boards.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\boards\boards.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\boards\boards.h \
  ../../../../../../components/drivers_nrf/hal/nrf_gpio.h \
  ../../../../../../components/device/nrf.h \
  ../../../../../../components/device/nrf52.h \
@@ -28,4 +28,4 @@ Output/ble_app_beacon_pca10040_s132\ Debug/Obj/boards.o: \
  ../../../../../../components/libraries/util/nordic_common.h \
  ../../../../../../components/libraries/util/app_error_weak.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdlib.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\boards\pca10040.h
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\boards\pca10040.h

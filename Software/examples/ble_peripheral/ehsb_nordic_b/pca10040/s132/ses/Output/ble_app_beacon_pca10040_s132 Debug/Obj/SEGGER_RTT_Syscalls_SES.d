@@ -1,8 +1,8 @@
 Output/ble_app_beacon_pca10040_s132\ Debug/Obj/SEGGER_RTT_Syscalls_SES.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\external\segger_rtt\SEGGER_RTT_Syscalls_SES.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\external\segger_rtt\SEGGER_RTT_Syscalls_SES.c \
  ../config/sdk_config.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\external\segger_rtt\SEGGER_RTT.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\external\segger_rtt\SEGGER_RTT_Conf.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\external\segger_rtt\SEGGER_RTT.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\external\segger_rtt\SEGGER_RTT_Conf.h \
  ../../../../../../components/libraries/util/nordic_common.h \
  ../../../../../../components/libraries/util/app_util_platform.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \

@@ -1,5 +1,5 @@
 Output/ble_app_beacon_pca10040_s132\ Debug/Obj/hardfault_implementation.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\hardfault\hardfault_implementation.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\hardfault\hardfault_implementation.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
