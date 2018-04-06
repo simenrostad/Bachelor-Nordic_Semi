@@ -6,7 +6,7 @@
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
 
-#include "nrf_nvic.h"         //for å sende eit visst antal pakkar
+#include "nrf_nvic.h"                  //Include for use of Radio Notification Software Interrupts.
 
 #define APP_BLE_CONN_CFG_TAG             1                                /**< A tag identifying the SoftDevice BLE configuration. */
 #define EHSB_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN       /**< UUID type for the Nordic UART Service (vendor specific). */  
@@ -18,14 +18,12 @@
 #define BLE_UUID_EHSB_SERVICE             0x0001                          /**< The UUID of the Nordic UART Service. */
 
 uint8_t counter = 0;
-bool is_advertising = false;
 
 static ble_uuid_t m_adv_uuids[]          =                                /**< Universally unique service identifier. */
 {
     {BLE_UUID_EHSB_SERVICE, EHSB_SERVICE_UUID_TYPE}
 };
 
-                               /**< Parameters to be passed to the stack when starting advertising. */
 static void advertising_init(void)
 {
     uint32_t             err_code;
@@ -94,38 +92,28 @@ static void power_manage(void)
     APP_ERROR_CHECK(err_code);
 }
 
-//static void stop_advertising(void)
-//{
-//uint32_t err_code;
-//            err_code = sd_ble_gap_adv_stop();
-//            APP_ERROR_CHECK(err_code);
-//            NRF_LOG_INFO("stopped");  
-//}
-
 /**@brief Software interrupt 1 IRQ Handler, handles radio notification interrupts.
- */
+ This gets called everytime an advertisement event has happened and will stop advertising
+ after 5 advertising events*/
 void SWI1_IRQHandler(bool radio_evt)
 {
-//    uint32_t err_code;
+    uint32_t err_code;
     if (radio_evt)
     {
-//        static uint8_t counter = 0;
         counter += 1;
-        NRF_LOG_INFO("%d", counter);
-//        if(counter == 10)
-//        {
-//            NRF_LOG_INFO("hit");
-//            stop_advertising();
-//            err_code = sd_ble_gap_adv_stop();
-//            APP_ERROR_CHECK(err_code);
-//            NRF_LOG_INFO("stopped");
-//        }
+
+        if(counter == 5)
+        {
+            err_code = sd_ble_gap_adv_stop();
+            APP_ERROR_CHECK(err_code);
+        }
         
     }
 }
 
 /**@brief Function for initializing Radio Notification Software Interrupts.
- */
+ We will use this to limit the number of advertisement events and get a more realistic test
+ while testing with the development kits*/
 uint32_t radio_notification_init(uint32_t irq_priority, uint8_t notification_type, uint8_t notification_distance)
 {
     uint32_t err_code;
@@ -160,7 +148,7 @@ int main(void)
 //    advertising_init();
     
     uint32_t err_code;
-    err_code = radio_notification_init(3, NRF_RADIO_NOTIFICATION_TYPE_INT_ON_INACTIVE, NRF_RADIO_NOTIFICATION_DISTANCE_NONE);   //for å sende eit visst antal pakkar
+    err_code = radio_notification_init(5, NRF_RADIO_NOTIFICATION_TYPE_INT_ON_INACTIVE, NRF_RADIO_NOTIFICATION_DISTANCE_NONE);   //Initializing Radio Notification Software Interrupts.
     APP_ERROR_CHECK(err_code);
 
     advertising_init();
@@ -169,12 +157,6 @@ int main(void)
 /**< Sleep between advertising intervals */
     for (;; )
     {
-        if(counter == 8)
-        {
-            err_code = sd_ble_gap_adv_stop();
-            APP_ERROR_CHECK(err_code);
-        }
-
         if (NRF_LOG_PROCESS() == false)
         {
             power_manage();
