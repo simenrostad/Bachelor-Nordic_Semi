@@ -98,8 +98,8 @@
 #define NEXT_CONN_PARAMS_UPDATE_DELAY   APP_TIMER_TICKS(30000)                      /**< Time between each call to sd_ble_gap_conn_param_update after the first call (30 seconds). */
 #define MAX_CONN_PARAMS_UPDATE_COUNT    3                                           /**< Number of attempts before giving up the connection parameter negotiation. */
 
-#define SCAN_INTERVAL           0x00A0                                              /**< Determines scan interval in units of 0.625 millisecond. */
-#define SCAN_WINDOW             0x0050                                              /**< Determines scan window in units of 0.625 millisecond. */
+#define SCAN_INTERVAL           0x0070                                              /**< Determines scan interval in units of 0.625 millisecond. */
+#define SCAN_WINDOW             0x0060                                              /**< Determines scan window in units of 0.625 millisecond. */
 #define SCAN_TIMEOUT            0x0000                                              /**< Timeout when scanning. 0x0000 disables timeout. */
 
 #define UUID128_SIZE                    16
