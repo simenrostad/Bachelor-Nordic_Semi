@@ -91,7 +91,6 @@ static void log_init(void)
 /**@brief Function for doing power management. */
 static void power_manage(void)
 {
-    
     ret_code_t err_code = sd_app_evt_wait();
     APP_ERROR_CHECK(err_code);
 }
