@@ -1,6 +1,6 @@
 Output/ble_app_uart_pca10040_s132\ Debug/Obj/ble_advdata.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\ble\common\ble_advdata.c \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\ble\common\ble_advdata.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\ble\common\ble_advdata.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\ble\common\ble_advdata.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
@@ -33,7 +33,7 @@ Output/ble_app_uart_pca10040_s132\ Debug/Obj/ble_advdata.o: \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/nordic_common.h \
  ../../../../../../components/softdevice/s132/headers/ble_gap.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\ble\common\ble_srv_common.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\ble\common\ble_srv_common.h \
  ../../../../../../components/softdevice/s132/headers/ble_types.h \
  ../../../../../../components/softdevice/s132/headers/ble_gatt.h \
  ../../../../../../components/libraries/util/sdk_common.h \

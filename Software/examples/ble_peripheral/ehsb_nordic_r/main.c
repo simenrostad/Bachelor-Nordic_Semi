@@ -83,13 +83,12 @@
 
 #define APP_FEATURE_NOT_SUPPORTED       BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2        /**< Reply when unsupported features are requested. */
 
-#define DEVICE_NAME                     "Nordic_UART"                               /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAME                     "ehsb_nordic_r"                               /**< Name of device. Will be included in the advertising data. */
 #define NUS_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN                  /**< UUID type for the Nordic UART Service (vendor specific). */
 
 #define APP_BLE_OBSERVER_PRIO           3                                           /**< Application's BLE observer priority. You shouldn't need to modify this value. */
 
 #define APP_ADV_INTERVAL                64                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 40 ms). */
-#define APP_ADV_TIMEOUT_IN_SECONDS      180                                         /**< The advertising timeout (in units of seconds). */
 
 #define MIN_CONN_INTERVAL               MSEC_TO_UNITS(20, UNIT_1_25_MS)             /**< Minimum acceptable connection interval (20 ms), Connection interval uses 1.25 ms units. */
 #define MAX_CONN_INTERVAL               MSEC_TO_UNITS(75, UNIT_1_25_MS)             /**< Maximum acceptable connection interval (75 ms), Connection interval uses 1.25 ms units. */
@@ -112,18 +111,14 @@
 
 #define BLE_UUID_EHSB_SERVICE 0x0001                                                /**< The UUID of the Nordic UART Service. */
 
-
-
 BLE_NUS_DEF(m_nus);                                                                 /**< BLE NUS service instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                                           /**< GATT module instance. */
 BLE_ADVERTISING_DEF(m_advertising);                                                 /**< Advertising module instance. */
+APP_TIMER_DEF(m_adv_led_timer_id);
+APP_TIMER_DEF(m_scan_led_timer_id);
 
 static uint16_t   m_conn_handle          = BLE_CONN_HANDLE_INVALID;                 /**< Handle of the current connection. */
 static uint16_t   m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - 3;            /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
-
-uint8_t button_number = 0;
-// Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
-uint8_t whitelist[1][16] = {0};    
 
 static ble_uuid_t m_adv_uuids[]          =                                          /**< Universally unique service identifier. */
 
@@ -137,7 +132,6 @@ static ble_uuid_t const m_nus_uuid =
     .uuid = BLE_UUID_EHSB_SERVICE,
     .type = NUS_SERVICE_UUID_TYPE
 };
-
 
 /** @brief Parameters used when scanning. */
 static ble_gap_scan_params_t const m_scan_params =
@@ -171,7 +165,6 @@ void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
     app_error_handler(DEAD_BEEF, line_num, p_file_name);
 }
 
-
 /**@brief Function for the GAP initialization.
  *
  * @details This function will set up all the necessary GAP (Generic Access Profile) parameters of
@@ -201,18 +194,29 @@ static void gap_params_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
+static void adv_led_timeout_handler(void * p_context)
+{
+  nrf_gpio_pin_toggle(LED_1);
+}
+
+static void scan_led_timeout_handler(void * p_context)
+{
+  nrf_gpio_pin_toggle(LED_3);
+}
+
 static void scan_start(void)
 {
   sd_ble_gap_scan_start(&m_scan_params);
-  bsp_indication_set(BSP_INDICATE_ALERT_0);
+  app_timer_start(m_scan_led_timer_id, APP_TIMER_TICKS(1000), adv_led_timeout_handler); 
 }
 
 static void scan_stop(void)
 {
   sd_ble_gap_scan_stop();
-  bsp_indication_set(BSP_INDICATE_ALERT_OFF);
-}
+  app_timer_stop(m_scan_led_timer_id);
+  nrf_gpio_pin_set(LED_3);
 
+}
 
 /**@brief Function for handling the data from the Nordic UART Service.
  *
@@ -233,43 +237,20 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 
         NRF_LOG_DEBUG("Received data from BLE NUS. Writing data on UART.");
         NRF_LOG_HEXDUMP_DEBUG(p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
-        scan_start();
-//
-//
-//        if(p_evt->params.rx_data.p_data[0] == 'O' && p_evt->params.rx_data.p_data[1] == 'K')
-//        {
-//
-//        }
-//
-//        if (p_evt->params.rx_data.length == 16)
-//        {
-//
-//        memcpy(&whitelist[button_number], &p_evt->params.rx_data.p_data[0], 16);
-//
-//        NRF_LOG_INFO("whitelist: %x%x%x%x%x%x", 
-//                                    whitelist[0][0],
-//                                    whitelist[0][1],
-//                                    whitelist[0][2],
-//                                    whitelist[0][3],
-//                                    whitelist[0][4],
-//                                    whitelist[0][5]
-//                                    );
-//                        NRF_LOG_INFO("%x%x%x%x%x%x",
-//                                    whitelist[0][6],
-//                                    whitelist[0][7],
-//                                    whitelist[0][8],
-//                                    whitelist[0][9],
-//                                    whitelist[0][10],
-//                                    whitelist[0][11]
-//                                    );
-//                        NRF_LOG_INFO("%x%x%x%x",
-//                                    whitelist[0][12],
-//                                    whitelist[0][13],
-//                                    whitelist[0][14],
-//                                    whitelist[0][15]
-//                                    );
-//        }
 
+        if (memcmp(p_evt->params.rx_data.p_data, "stop_scan", sizeof("stop_scan")) == 0)
+        {
+        scan_stop();
+        NRF_LOG_INFO("Stop_scan");
+        nrf_gpio_pin_clear(LED_4);
+        }
+
+        if (memcmp(p_evt->params.rx_data.p_data, "start_scan", sizeof("start_scan")) == 0)
+        {
+        scan_start();
+        NRF_LOG_INFO("Start_scan");
+        nrf_gpio_pin_set(LED_4);
+        }
 
         for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
         {
@@ -341,7 +322,6 @@ static void conn_params_error_handler(uint32_t nrf_error)
     APP_ERROR_HANDLER(nrf_error);
 }
 
-
 /**@brief Function for initializing the Connection Parameters module.
  */
 static void conn_params_init(void)
@@ -362,50 +342,6 @@ static void conn_params_init(void)
 
     err_code = ble_conn_params_init(&cp_init);
     APP_ERROR_CHECK(err_code);
-}
-
-
-/**@brief Function for putting the chip into sleep mode.
- *
- * @note This function will not return.
- */
-static void sleep_mode_enter(void)
-{
-    uint32_t err_code = bsp_indication_set(BSP_INDICATE_IDLE);
-    APP_ERROR_CHECK(err_code);
-
-    // Prepare wakeup buttons.
-    err_code = bsp_btn_ble_sleep_mode_prepare();
-    APP_ERROR_CHECK(err_code);
-
-    // Go to system-off mode (this function will not return; wakeup will cause a reset).
-    err_code = sd_power_system_off();
-    APP_ERROR_CHECK(err_code);
-}
-
-
-/**@brief Function for handling advertising events.
- *
- * @details This function will be called for advertising events which are passed to the application.
- *
- * @param[in] ble_adv_evt  Advertising event.
- */
-static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
-{
-    uint32_t err_code;
-
-    switch (ble_adv_evt)
-    {
-        case BLE_ADV_EVT_FAST:
-            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING);
-            APP_ERROR_CHECK(err_code);
-            break;
-        case BLE_ADV_EVT_IDLE:
-            sleep_mode_enter();
-            break;
-        default:
-            break;
-    }
 }
 
 static bool is_uuid_present(ble_uuid_t               const * p_target_uuid,
@@ -447,6 +383,12 @@ static bool is_uuid_present(ble_uuid_t               const * p_target_uuid,
 static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 {
     uint32_t err_code;
+
+    uint8_t adv_rep_uuid[16] = {0};
+    uint8_t string[]     = "button_found";
+    uint16_t string_length = sizeof(string);
+    uint16_t adv_rep_uuid_length = sizeof(adv_rep_uuid);
+
     ble_gap_evt_t const * p_gap_evt = &p_ble_evt->evt.gap_evt;
 
     switch (p_ble_evt->header.evt_id)
@@ -456,7 +398,10 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
+            app_timer_stop(m_adv_led_timer_id);
             scan_start();
+            nrf_gpio_pin_set(LED_1);
+            nrf_gpio_pin_clear(LED_2);
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
@@ -464,65 +409,31 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             // LED indication will be changed when advertising starts.
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
             scan_stop();
+            nrf_gpio_pin_set(LED_2);
+            nrf_gpio_pin_set(LED_4);
+            app_timer_start(m_adv_led_timer_id, APP_TIMER_TICKS(1000), adv_led_timeout_handler);
             break;
-
 
         case BLE_GAP_EVT_ADV_REPORT:
         {
              ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
 
-             
-
-//             uint32_t string[] = "Button Found!!\n\r";
-//             uint16_t length = sizeof(string);
-
-//             memcpy(&whitelist[button_number], &p_adv_report->data[5], 16);
-
-
-//                    if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
-//                       && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
-//                    {
-                          
-              
-//              err_code = ble_nus_string_send(&m_nus, string, lenght);
-                          
-
-
-
-
-
-
-//
-//             uint8_t adv_uuid[16] = {0};
-//             memcpy(&adv_uuid[0], &p_adv_report->data[5], 16);
-//             
-//              
              if (is_uuid_present(&m_nus_uuid, p_adv_report))
              {
-                        scan_stop();
-                        err_code = ble_nus_string_send(&m_nus, "1234", 16);
-                        APP_ERROR_CHECK(err_code);
-                        bsp_indication_set(BSP_INDICATE_ALERT_3);
-
+                    err_code = ble_nus_string_send(&m_nus, string , &string_length);
+                    APP_ERROR_CHECK(err_code);
              }
-//
-//             for(int8_t i = 0; i < button_number; i++)
-//             {  
-//                 if(memcmp(adv_uuid, whitelist[i], sizeof(adv_uuid)) == 0)
-//                 {
-//                        scan_stop();
-//                        err_code = ble_nus_string_send(&m_nus, string, &length);
-//                        APP_ERROR_CHECK(err_code);
-//                        bsp_indication_set(BSP_INDICATE_ALERT_3);
-//                 }
-//     
-//             }
-//
-//
-//
+
+             else if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
+                     && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
+                  {
+                     memcpy(&adv_rep_uuid[0], &p_adv_report->data[5], 16);
+
+                     err_code = ble_nus_string_send(&m_nus, adv_rep_uuid , &adv_rep_uuid_length);
+                     APP_ERROR_CHECK(err_code);
+                  }
         }break;
 
-     
 #ifndef S140
         case BLE_GAP_EVT_PHY_UPDATE_REQUEST:
         {
@@ -653,7 +564,6 @@ void gatt_evt_handler(nrf_ble_gatt_t * p_gatt, nrf_ble_gatt_evt_t const * p_evt)
                   p_gatt->att_mtu_desired_periph);
 }
 
-
 /**@brief Function for initializing the GATT library. */
 void gatt_init(void)
 {
@@ -665,45 +575,6 @@ void gatt_init(void)
     err_code = nrf_ble_gatt_att_mtu_periph_set(&m_gatt, 64);
     APP_ERROR_CHECK(err_code);
 }
-
-
-/**@brief Function for handling events from the BSP module.
- *
- * @param[in]   event   Event generated by button press.
- */
-void bsp_event_handler(bsp_event_t event)
-{
-    uint32_t err_code;
-    switch (event)
-    {
-        case BSP_EVENT_SLEEP:
-            sleep_mode_enter();
-            break;
-
-        case BSP_EVENT_DISCONNECT:
-            err_code = sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
-            if (err_code != NRF_ERROR_INVALID_STATE)
-            {
-                APP_ERROR_CHECK(err_code);
-            }
-            break;
-
-        case BSP_EVENT_WHITELIST_OFF:
-            if (m_conn_handle == BLE_CONN_HANDLE_INVALID)
-            {
-                err_code = ble_advertising_restart_without_whitelist(&m_advertising);
-                if (err_code != NRF_ERROR_INVALID_STATE)
-                {
-                    APP_ERROR_CHECK(err_code);
-                }
-            }
-            break;
-
-        default:
-            break;
-    }
-}
-
 
 /**@brief   Function for handling app_uart events.
  *
@@ -757,7 +628,6 @@ void uart_event_handle(app_uart_evt_t * p_event)
 }
 /**@snippet [Handling the data received over UART] */
 
-
 /**@brief  Function for initializing the UART module.
  */
 /**@snippet [UART Initialization] */
@@ -797,16 +667,14 @@ static void advertising_init(void)
 
     init.advdata.name_type          = BLE_ADVDATA_FULL_NAME;
     init.advdata.include_appearance = false;
-    init.advdata.flags              = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
+    init.advdata.flags              = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
 
     init.srdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
     init.srdata.uuids_complete.p_uuids  = m_adv_uuids;
 
     init.config.ble_adv_fast_enabled  = true;
     init.config.ble_adv_fast_interval = APP_ADV_INTERVAL;
-    init.config.ble_adv_fast_timeout  = APP_ADV_TIMEOUT_IN_SECONDS;
-
-    init.evt_handler = on_adv_evt;
+    init.config.ble_adv_fast_timeout  = 0;
 
     err_code = ble_advertising_init(&m_advertising, &init);
     APP_ERROR_CHECK(err_code);
@@ -814,22 +682,28 @@ static void advertising_init(void)
     ble_advertising_conn_cfg_tag_set(&m_advertising, APP_BLE_CONN_CFG_TAG);
 }
 
+static void advertising_start(void)
+{
+    ret_code_t err_code;
+
+    err_code = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
+    APP_ERROR_CHECK(err_code);
+
+    app_timer_start(m_adv_led_timer_id, APP_TIMER_TICKS(1000), adv_led_timeout_handler);
+
+}
 
 /**@brief Function for initializing buttons and leds.
  *
  * @param[out] p_erase_bonds  Will be true if the clear bonding button was pressed to wake the application up.
  */
-static void buttons_leds_init(bool * p_erase_bonds)
+static void leds_init(void)
 {
-    bsp_event_t startup_event;
-
-    uint32_t err_code = bsp_init(BSP_INIT_LED | BSP_INIT_BUTTONS, bsp_event_handler);
-    APP_ERROR_CHECK(err_code);
-
-    err_code = bsp_btn_ble_init(NULL, &startup_event);
-    APP_ERROR_CHECK(err_code);
-
-    *p_erase_bonds = (startup_event == BSP_EVENT_CLEAR_BONDING_DATA);
+  for(int i = LED_1 ; i<=LED_4 ; i++)
+  {
+    nrf_gpio_cfg_output(i);
+    nrf_gpio_pin_set(i);
+  }
 }
 
 
@@ -843,6 +717,21 @@ static void log_init(void)
     NRF_LOG_DEFAULT_BACKENDS_INIT();
 }
 
+static void application_timer_init(void)
+{
+    ret_code_t err_code;
+
+    // Initialize timer module.
+    err_code = app_timer_init();
+    APP_ERROR_CHECK(err_code);
+
+    err_code = app_timer_create(&m_adv_led_timer_id, APP_TIMER_MODE_REPEATED, adv_led_timeout_handler);
+    APP_ERROR_CHECK(err_code);
+
+    err_code = app_timer_create(&m_scan_led_timer_id, APP_TIMER_MODE_REPEATED, scan_led_timeout_handler);
+    APP_ERROR_CHECK(err_code);
+}
+
 
 /**@brief Function for placing the application in low power state while waiting for events.
  */
@@ -852,22 +741,16 @@ static void power_manage(void)
     APP_ERROR_CHECK(err_code);
 }
 
-
 /**@brief Application main function.
  */
 int main(void)
 {
-    uint32_t err_code;
-    bool     erase_bonds;
-
-    // Initialize.
-    err_code = app_timer_init();
-    APP_ERROR_CHECK(err_code);
+    application_timer_init();
 
     uart_init();
     log_init();
 
-    buttons_leds_init(&erase_bonds);
+    leds_init();
     ble_stack_init();
     gap_params_init();
     gatt_init();
@@ -877,8 +760,7 @@ int main(void)
 
     printf("\r\nUART Start!\r\n");
     NRF_LOG_INFO("UART Start!");
-    err_code = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
-    APP_ERROR_CHECK(err_code);
+    advertising_start();
 
     // Enter main loop.
     for (;;)

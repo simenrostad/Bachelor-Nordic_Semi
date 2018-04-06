@@ -1,5 +1,5 @@
 Output/ble_app_uart_pca10040_s132\ Debug/Obj/nrf_fstorage_sd.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\fstorage\nrf_fstorage_sd.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\fstorage\nrf_fstorage_sd.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -26,8 +26,8 @@ Output/ble_app_uart_pca10040_s132\ Debug/Obj/nrf_fstorage_sd.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\fstorage\nrf_fstorage_sd.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\fstorage\nrf_fstorage.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\fstorage\nrf_fstorage_sd.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\fstorage\nrf_fstorage.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/experimental_section_vars/nrf_section.h \
  ../../../../../../components/libraries/util/nordic_common.h \

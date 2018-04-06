@@ -1,5 +1,5 @@
 Output/ble_app_uart_pca10040_s132\ Debug/Obj/ble_advertising.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\ble\ble_advertising\ble_advertising.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\ble\ble_advertising\ble_advertising.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
@@ -39,7 +39,7 @@ Output/ble_app_uart_pca10040_s132\ Debug/Obj/ble_advertising.o: \
  ../../../../../../components/softdevice/s132/headers/ble_gattc.h \
  ../../../../../../components/softdevice/s132/headers/ble_gatts.h \
  ../../../../../../components/libraries/util/app_util.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\ble\ble_advertising\ble_advertising.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\ble\ble_advertising\ble_advertising.h \
  ../../../../../../components/softdevice/s132/headers/ble_gattc.h \
  ../../../../../../components/softdevice/s132/headers/nrf_soc.h \
  ../../../../../../components/softdevice/s132/headers/nrf_error_soc.h \

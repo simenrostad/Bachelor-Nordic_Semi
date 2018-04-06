@@ -1,6 +1,6 @@
 Output/ble_app_uart_pca10040_s132\ Debug/Obj/bsp_btn_ble.o: \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\bsp\bsp_btn_ble.c \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\bsp\bsp_btn_ble.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\bsp\bsp_btn_ble.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\bsp\bsp_btn_ble.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  ../../../../../../components/softdevice/s132/headers/ble.h \
  ../../../../../../components/softdevice/s132/headers/ble_ranges.h \
@@ -25,7 +25,7 @@ Output/ble_app_uart_pca10040_s132\ Debug/Obj/bsp_btn_ble.o: \
  ../../../../../../components/device/nrf52_name_change.h \
  ../../../../../../components/device/compiler_abstraction.h \
  ../../../../../../components/softdevice/s132/headers/ble_gatts.h \
- C:\Users\Torus\Documents\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\bsp\bsp.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Software\components\libraries\bsp\bsp.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  ../../../../../../components/boards/boards.h \
  ../../../../../../components/drivers_nrf/hal/nrf_gpio.h \

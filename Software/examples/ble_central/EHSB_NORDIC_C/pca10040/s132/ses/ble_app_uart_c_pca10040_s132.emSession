@@ -68,7 +68,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="23" y="569" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="542" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="569" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="542" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="ble_ehsb_c_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="C:/Users/Torus/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/cli" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="ble_ehsb_c_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="C:/Users/Torus/Documents/GitHub/Bachelor-Nordic_Semi/Software/components/libraries/cli" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>
