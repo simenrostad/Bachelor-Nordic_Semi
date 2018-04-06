@@ -1,6 +1,6 @@
 Output/ble_app_uart_pca10040_s132\ Debug/Obj/bsp.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/libraries/bsp/bsp.c \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/libraries/bsp/bsp.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/sdk/components/libraries/bsp/bsp.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/sdk/components/libraries/bsp/bsp.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  ../../../../../../components/boards/boards.h \
@@ -34,7 +34,7 @@ Output/ble_app_uart_pca10040_s132\ Debug/Obj/bsp.o: \
  ../../../../../../components/libraries/util/app_error.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
  ../../../../../../components/libraries/util/nordic_common.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/libraries/bsp/bsp_config.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/sdk/components/libraries/bsp/bsp_config.h \
  ../../../../../../components/libraries/timer/app_timer.h \
  ../../../../../../components/libraries/util/app_util.h \
  ../../../../../../components/device/compiler_abstraction.h

@@ -1,6 +1,6 @@
 Output/ble_app_uart_pca10040_s132\ Debug/Obj/ble_conn_state.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/ble/common/ble_conn_state.c \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Software/sdk/components/ble/common/ble_conn_state.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/sdk/components/ble/common/ble_conn_state.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/sdk/components/ble/common/ble_conn_state.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  ../../../../../../components/softdevice/s132/headers/ble.h \
