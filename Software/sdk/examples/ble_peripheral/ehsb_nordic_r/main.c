@@ -83,7 +83,7 @@
 
 #define APP_FEATURE_NOT_SUPPORTED       BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2        /**< Reply when unsupported features are requested. */
 
-#define DEVICE_NAME                     "Nordic_UART"                               /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAME                     "ehsb_nordic_r"                               /**< Name of device. Will be included in the advertising data. */
 #define NUS_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN                  /**< UUID type for the Nordic UART Service (vendor specific). */
 
 #define APP_BLE_OBSERVER_PRIO           3                                           /**< Application's BLE observer priority. You shouldn't need to modify this value. */
@@ -114,6 +114,8 @@
 BLE_NUS_DEF(m_nus);                                                                 /**< BLE NUS service instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                                           /**< GATT module instance. */
 BLE_ADVERTISING_DEF(m_advertising);                                                 /**< Advertising module instance. */
+APP_TIMER_DEF(m_adv_led_timer_id);
+APP_TIMER_DEF(m_scan_led_timer_id);
 
 static uint16_t   m_conn_handle          = BLE_CONN_HANDLE_INVALID;                 /**< Handle of the current connection. */
 static uint16_t   m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - 3;            /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
@@ -192,16 +194,28 @@ static void gap_params_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
+static void adv_led_timeout_handler(void * p_context)
+{
+  nrf_gpio_pin_toggle(LED_1);
+}
+
+static void scan_led_timeout_handler(void * p_context)
+{
+  nrf_gpio_pin_toggle(LED_3);
+}
+
 static void scan_start(void)
 {
   sd_ble_gap_scan_start(&m_scan_params);
-  bsp_indication_set(BSP_INDICATE_ALERT_0);
+  app_timer_start(m_scan_led_timer_id, APP_TIMER_TICKS(1000), adv_led_timeout_handler); 
 }
 
 static void scan_stop(void)
 {
   sd_ble_gap_scan_stop();
-  bsp_indication_set(BSP_INDICATE_ALERT_OFF);
+  app_timer_stop(m_scan_led_timer_id);
+  nrf_gpio_pin_set(LED_3);
+
 }
 
 /**@brief Function for handling the data from the Nordic UART Service.
@@ -227,11 +241,15 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
         if (memcmp(p_evt->params.rx_data.p_data, "stop_scan", sizeof("stop_scan")) == 0)
         {
         scan_stop();
+        NRF_LOG_INFO("Stop_scan");
+        nrf_gpio_pin_clear(LED_4);
         }
 
         if (memcmp(p_evt->params.rx_data.p_data, "start_scan", sizeof("start_scan")) == 0)
         {
         scan_start();
+        NRF_LOG_INFO("Start_scan");
+        nrf_gpio_pin_set(LED_4);
         }
 
         for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
@@ -326,50 +344,6 @@ static void conn_params_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-
-/**@brief Function for putting the chip into sleep mode.
- *
- * @note This function will not return.
- */
-static void sleep_mode_enter(void)
-{
-    uint32_t err_code = bsp_indication_set(BSP_INDICATE_IDLE);
-    APP_ERROR_CHECK(err_code);
-
-    // Prepare wakeup buttons.
-    err_code = bsp_btn_ble_sleep_mode_prepare();
-    APP_ERROR_CHECK(err_code);
-
-    // Go to system-off mode (this function will not return; wakeup will cause a reset).
-    err_code = sd_power_system_off();
-    APP_ERROR_CHECK(err_code);
-}
-
-
-/**@brief Function for handling advertising events.
- *
- * @details This function will be called for advertising events which are passed to the application.
- *
- * @param[in] ble_adv_evt  Advertising event.
- */
-static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
-{
-    uint32_t err_code;
-
-    switch (ble_adv_evt)
-    {
-        case BLE_ADV_EVT_FAST:
-            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING);
-            APP_ERROR_CHECK(err_code);
-            break;
-        case BLE_ADV_EVT_IDLE:
-            sleep_mode_enter();
-            break;
-        default:
-            break;
-    }
-}
-
 static bool is_uuid_present(ble_uuid_t               const * p_target_uuid,
                             ble_gap_evt_adv_report_t const * p_adv_report)
 {
@@ -412,6 +386,8 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 
     uint8_t adv_rep_uuid[16] = {0};
     uint8_t string[]     = "button_found";
+    uint16_t string_length = sizeof(string);
+    uint16_t adv_rep_uuid_length = sizeof(adv_rep_uuid);
 
     ble_gap_evt_t const * p_gap_evt = &p_ble_evt->evt.gap_evt;
 
@@ -422,7 +398,10 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
+            app_timer_stop(m_adv_led_timer_id);
             scan_start();
+            nrf_gpio_pin_set(LED_1);
+            nrf_gpio_pin_clear(LED_2);
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
@@ -430,6 +409,9 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             // LED indication will be changed when advertising starts.
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
             scan_stop();
+            nrf_gpio_pin_set(LED_2);
+            nrf_gpio_pin_set(LED_4);
+            app_timer_start(m_adv_led_timer_id, APP_TIMER_TICKS(1000), adv_led_timeout_handler);
             break;
 
         case BLE_GAP_EVT_ADV_REPORT:
@@ -438,7 +420,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 
              if (is_uuid_present(&m_nus_uuid, p_adv_report))
              {
-                    err_code = ble_nus_string_send(&m_nus, string , sizeof(string));
+                    err_code = ble_nus_string_send(&m_nus, string , &string_length);
                     APP_ERROR_CHECK(err_code);
              }
 
@@ -447,7 +429,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                   {
                      memcpy(&adv_rep_uuid[0], &p_adv_report->data[5], 16);
 
-                     err_code = ble_nus_string_send(&m_nus, adv_rep_uuid , sizeof(adv_rep_uuid));
+                     err_code = ble_nus_string_send(&m_nus, adv_rep_uuid , &adv_rep_uuid_length);
                      APP_ERROR_CHECK(err_code);
                   }
         }break;
@@ -594,43 +576,6 @@ void gatt_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-/**@brief Function for handling events from the BSP module.
- *
- * @param[in]   event   Event generated by button press.
- */
-void bsp_event_handler(bsp_event_t event)
-{
-    uint32_t err_code;
-    switch (event)
-    {
-        case BSP_EVENT_SLEEP:
-            sleep_mode_enter();
-            break;
-
-        case BSP_EVENT_DISCONNECT:
-            err_code = sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
-            if (err_code != NRF_ERROR_INVALID_STATE)
-            {
-                APP_ERROR_CHECK(err_code);
-            }
-            break;
-
-        case BSP_EVENT_WHITELIST_OFF:
-            if (m_conn_handle == BLE_CONN_HANDLE_INVALID)
-            {
-                err_code = ble_advertising_restart_without_whitelist(&m_advertising);
-                if (err_code != NRF_ERROR_INVALID_STATE)
-                {
-                    APP_ERROR_CHECK(err_code);
-                }
-            }
-            break;
-
-        default:
-            break;
-    }
-}
-
 /**@brief   Function for handling app_uart events.
  *
  * @details This function will receive a single character from the app_uart module and append it to
@@ -731,30 +676,34 @@ static void advertising_init(void)
     init.config.ble_adv_fast_interval = APP_ADV_INTERVAL;
     init.config.ble_adv_fast_timeout  = 0;
 
-    init.evt_handler = on_adv_evt;
-
     err_code = ble_advertising_init(&m_advertising, &init);
     APP_ERROR_CHECK(err_code);
 
     ble_advertising_conn_cfg_tag_set(&m_advertising, APP_BLE_CONN_CFG_TAG);
 }
 
+static void advertising_start(void)
+{
+    ret_code_t err_code;
+
+    err_code = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
+    APP_ERROR_CHECK(err_code);
+
+    app_timer_start(m_adv_led_timer_id, APP_TIMER_TICKS(1000), adv_led_timeout_handler);
+
+}
 
 /**@brief Function for initializing buttons and leds.
  *
  * @param[out] p_erase_bonds  Will be true if the clear bonding button was pressed to wake the application up.
  */
-static void buttons_leds_init(bool * p_erase_bonds)
+static void leds_init(void)
 {
-    bsp_event_t startup_event;
-
-    uint32_t err_code = bsp_init(BSP_INIT_LED | BSP_INIT_BUTTONS, bsp_event_handler);
-    APP_ERROR_CHECK(err_code);
-
-    err_code = bsp_btn_ble_init(NULL, &startup_event);
-    APP_ERROR_CHECK(err_code);
-
-    *p_erase_bonds = (startup_event == BSP_EVENT_CLEAR_BONDING_DATA);
+  for(int i = LED_1 ; i<=LED_4 ; i++)
+  {
+    nrf_gpio_cfg_output(i);
+    nrf_gpio_pin_set(i);
+  }
 }
 
 
@@ -766,6 +715,21 @@ static void log_init(void)
     APP_ERROR_CHECK(err_code);
 
     NRF_LOG_DEFAULT_BACKENDS_INIT();
+}
+
+static void application_timer_init(void)
+{
+    ret_code_t err_code;
+
+    // Initialize timer module.
+    err_code = app_timer_init();
+    APP_ERROR_CHECK(err_code);
+
+    err_code = app_timer_create(&m_adv_led_timer_id, APP_TIMER_MODE_REPEATED, adv_led_timeout_handler);
+    APP_ERROR_CHECK(err_code);
+
+    err_code = app_timer_create(&m_scan_led_timer_id, APP_TIMER_MODE_REPEATED, scan_led_timeout_handler);
+    APP_ERROR_CHECK(err_code);
 }
 
 
@@ -781,17 +745,12 @@ static void power_manage(void)
  */
 int main(void)
 {
-    uint32_t err_code;
-    bool     erase_bonds;
-
-    // Initialize.
-    err_code = app_timer_init();
-    APP_ERROR_CHECK(err_code);
+    application_timer_init();
 
     uart_init();
     log_init();
 
-    buttons_leds_init(&erase_bonds);
+    leds_init();
     ble_stack_init();
     gap_params_init();
     gatt_init();
@@ -801,8 +760,7 @@ int main(void)
 
     printf("\r\nUART Start!\r\n");
     NRF_LOG_INFO("UART Start!");
-    err_code = ble_advertising_start(&m_advertising, BLE_ADV_MODE_FAST);
-    APP_ERROR_CHECK(err_code);
+    advertising_start();
 
     // Enter main loop.
     for (;;)

@@ -20,7 +20,7 @@ static ble_uuid_t m_adv_uuids[]          =                                /**< U
     {BLE_UUID_EHSB_SERVICE, EHSB_SERVICE_UUID_TYPE}
 };
 
-                               /**< Parameters to be passed to the stack when starting advertising. */
+/**< Parameters to be passed to the stack when starting advertising. */
 static void advertising_init(void)
 {
     uint32_t             err_code;
@@ -35,6 +35,7 @@ static void advertising_init(void)
     advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
     advdata.uuids_complete.p_uuids  = m_adv_uuids;
 
+    // Add UUID to softdevice
     ble_uuid128_t ehsb_base_uuid = EHSB_BASE_UUID;
     err_code = sd_ble_uuid_vs_add(&ehsb_base_uuid, &m_adv_uuids[0].type);
     APP_ERROR_CHECK(err_code);
@@ -44,12 +45,13 @@ static void advertising_init(void)
 
     memset(&m_adv_params, 0, sizeof(m_adv_params));
 
-    m_adv_params.type        = BLE_GAP_ADV_TYPE_ADV_NONCONN_IND;          /**< Scannable undirected event, only allowed to respond to scan requests. */
+    m_adv_params.type        = BLE_GAP_ADV_TYPE_ADV_NONCONN_IND;          /**< Non connectable undirected. Device is only broadcasting its information.  */
     m_adv_params.p_peer_addr = NULL;                                      /**< Undirected advertisement. */
     m_adv_params.fp          = BLE_GAP_ADV_FP_ANY;                        /**< Allow scan requests and connect requests from any device. */
-    m_adv_params.interval    = BLE_GAP_ADV_INTERVAL_MIN;                  /**< Setting min advertising interval 20ms */
-    m_adv_params.timeout     = 0;                                         /**< Never time out. Want to send as soon as the chip is powered */
+    m_adv_params.interval    = BLE_GAP_ADV_INTERVAL_MIN;                  /**< Setting min advertising interval 20ms. Want to send as many packets possible in the shortest amount of time. */
+    m_adv_params.timeout     = 0;                                         /**< Never time out. Want to send as soon as the chip is powered. */
 
+    // Start advertising 128-bit UUID.
     err_code = sd_ble_gap_adv_start(&m_adv_params, APP_BLE_CONN_CFG_TAG);
     APP_ERROR_CHECK(err_code);
 }
@@ -59,6 +61,7 @@ static void ble_stack_init(void)
 {
     ret_code_t err_code;
 
+    //Enable the softdevice
     err_code = nrf_sdh_enable_request();
     APP_ERROR_CHECK(err_code);
 
@@ -71,6 +74,9 @@ static void ble_stack_init(void)
     // Enable BLE stack.
     err_code = nrf_sdh_ble_enable(&ram_start);
     APP_ERROR_CHECK(err_code);
+    
+    // Enable DCDC converter in softdevice
+    sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);
 }
 
 /**@brief Function for initializing logging. */
@@ -85,6 +91,7 @@ static void log_init(void)
 /**@brief Function for doing power management. */
 static void power_manage(void)
 {
+    
     ret_code_t err_code = sd_app_evt_wait();
     APP_ERROR_CHECK(err_code);
 }
@@ -94,7 +101,6 @@ int main(void)
     // Initialize.
     log_init();
     ble_stack_init();
-    sd_power_dcdc_mode_set( NRF_POWER_DCDC_ENABLE );
     advertising_init();
     
     NRF_LOG_INFO("Starting EHSB project");
