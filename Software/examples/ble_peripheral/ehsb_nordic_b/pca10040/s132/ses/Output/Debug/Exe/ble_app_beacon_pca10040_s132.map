@@ -4404,8 +4404,6 @@ Discarded input sections
                 0x0000000000000000        0x8 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
  .text.sd_ble_opt_get
                 0x0000000000000000        0x8 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
- .bss.is_advertising
-                0x0000000000000000        0x1 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
  .debug_macro   0x0000000000000000      0x904 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
  .debug_macro   0x0000000000000000      0x189 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
  .debug_macro   0x0000000000000000       0x22 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
@@ -9686,7 +9684,7 @@ OUTPUT(Output/Debug/Exe/ble_app_beacon_pca10040_s132.elf elf32-littlearm)
  .debug_line    0x00000000000103d3      0xbbb Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
  .debug_line    0x0000000000010f8e      0x868 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
 
-.debug_info     0x0000000000000000    0x32407
+.debug_info     0x0000000000000000    0x323f6
  .debug_info    0x0000000000000000       0xd4 Output/ble_app_beacon_pca10040_s132 Debug/Obj/thumb_crt0.o
  .debug_info    0x00000000000000d4     0x153d Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
  .debug_info    0x0000000000001611     0x170e Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
@@ -9710,15 +9708,15 @@ OUTPUT(Output/Debug/Exe/ble_app_beacon_pca10040_s132.elf elf32-littlearm)
  .debug_info    0x00000000000183cc     0x167a Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_drv_common.o
  .debug_info    0x0000000000019a46     0x2b37 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
  .debug_info    0x000000000001c57d     0x3747 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_drv_uart.o
- .debug_info    0x000000000001fcc4     0x44bc Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
- .debug_info    0x0000000000024180     0x1f33 Output/ble_app_beacon_pca10040_s132 Debug/Obj/SEGGER_RTT.o
- .debug_info    0x00000000000260b3     0x3701 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
- .debug_info    0x00000000000297b4       0xdb Output/ble_app_beacon_pca10040_s132 Debug/Obj/ses_nRF_Startup.o
- .debug_info    0x000000000002988f       0xdd Output/ble_app_beacon_pca10040_s132 Debug/Obj/ses_nrf52_Vectors.o
- .debug_info    0x000000000002996c     0x1083 Output/ble_app_beacon_pca10040_s132 Debug/Obj/system_nrf52.o
- .debug_info    0x000000000002a9ef     0x1f36 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh.o
- .debug_info    0x000000000002c925     0x46c2 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
- .debug_info    0x0000000000030fe7     0x1420 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
+ .debug_info    0x000000000001fcc4     0x44ab Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
+ .debug_info    0x000000000002416f     0x1f33 Output/ble_app_beacon_pca10040_s132 Debug/Obj/SEGGER_RTT.o
+ .debug_info    0x00000000000260a2     0x3701 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+ .debug_info    0x00000000000297a3       0xdb Output/ble_app_beacon_pca10040_s132 Debug/Obj/ses_nRF_Startup.o
+ .debug_info    0x000000000002987e       0xdd Output/ble_app_beacon_pca10040_s132 Debug/Obj/ses_nrf52_Vectors.o
+ .debug_info    0x000000000002995b     0x1083 Output/ble_app_beacon_pca10040_s132 Debug/Obj/system_nrf52.o
+ .debug_info    0x000000000002a9de     0x1f36 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh.o
+ .debug_info    0x000000000002c914     0x46c2 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
+ .debug_info    0x0000000000030fd6     0x1420 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
 
 .debug_abbrev   0x0000000000000000     0x4c2b
  .debug_abbrev  0x0000000000000000       0x12 Output/ble_app_beacon_pca10040_s132 Debug/Obj/thumb_crt0.o
@@ -9884,7 +9882,7 @@ OUTPUT(Output/Debug/Exe/ble_app_beacon_pca10040_s132.elf elf32-littlearm)
  .debug_frame   0x0000000000008174      0x300 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
 
 .debug_pubnames
-                0x0000000000000000    0x1585e
+                0x0000000000000000    0x1584b
  .debug_pubnames
                 0x0000000000000000      0x98c Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
  .debug_pubnames
@@ -9930,19 +9928,19 @@ OUTPUT(Output/Debug/Exe/ble_app_beacon_pca10040_s132.elf elf32-littlearm)
  .debug_pubnames
                 0x000000000000cead     0x18b5 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_drv_uart.o
  .debug_pubnames
-                0x000000000000e762     0x20be Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
+                0x000000000000e762     0x20ab Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
  .debug_pubnames
-                0x0000000000010820      0xc76 Output/ble_app_beacon_pca10040_s132 Debug/Obj/SEGGER_RTT.o
+                0x000000000001080d      0xc76 Output/ble_app_beacon_pca10040_s132 Debug/Obj/SEGGER_RTT.o
  .debug_pubnames
-                0x0000000000011496     0x12f1 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+                0x0000000000011483     0x12f1 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
  .debug_pubnames
-                0x0000000000012787      0x110 Output/ble_app_beacon_pca10040_s132 Debug/Obj/system_nrf52.o
+                0x0000000000012774      0x110 Output/ble_app_beacon_pca10040_s132 Debug/Obj/system_nrf52.o
  .debug_pubnames
-                0x0000000000012897     0x1265 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh.o
+                0x0000000000012884     0x1265 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh.o
  .debug_pubnames
-                0x0000000000013afc     0x13b6 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
+                0x0000000000013ae9     0x13b6 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
  .debug_pubnames
-                0x0000000000014eb2      0x9ac Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
+                0x0000000000014e9f      0x9ac Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
 
 .debug_pubtypes
                 0x0000000000000000     0x87db
@@ -10132,7 +10130,7 @@ OUTPUT(Output/Debug/Exe/ble_app_beacon_pca10040_s132.elf elf32-littlearm)
  .debug_macro   0x0000000000017a5b      0x208 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
  .debug_macro   0x0000000000017c63       0x16 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
 
-.debug_str      0x0000000000000000    0x7cae1
+.debug_str      0x0000000000000000    0x7cad2
  .debug_str     0x0000000000000000    0x68356 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
                                       0x69044 (size before relaxing)
  .debug_str     0x0000000000068356      0x298 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
@@ -10177,17 +10175,17 @@ OUTPUT(Output/Debug/Exe/ble_app_beacon_pca10040_s132.elf elf32-littlearm)
                                       0x6a814 (size before relaxing)
  .debug_str     0x0000000000071908      0xf2b Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_drv_uart.o
                                       0x6ab32 (size before relaxing)
- .debug_str     0x0000000000072833     0x7124 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
-                                      0x70aa2 (size before relaxing)
- .debug_str     0x0000000000079957      0x557 Output/ble_app_beacon_pca10040_s132 Debug/Obj/SEGGER_RTT.o
+ .debug_str     0x0000000000072833     0x7115 Output/ble_app_beacon_pca10040_s132 Debug/Obj/main.o
+                                      0x70a93 (size before relaxing)
+ .debug_str     0x0000000000079948      0x557 Output/ble_app_beacon_pca10040_s132 Debug/Obj/SEGGER_RTT.o
                                       0x627ba (size before relaxing)
- .debug_str     0x0000000000079eae     0x15a4 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
+ .debug_str     0x0000000000079e9f     0x15a4 Output/ble_app_beacon_pca10040_s132 Debug/Obj/ble_advdata.o
                                       0x6c89e (size before relaxing)
- .debug_str     0x000000000007b452      0x27a Output/ble_app_beacon_pca10040_s132 Debug/Obj/system_nrf52.o
+ .debug_str     0x000000000007b443      0x27a Output/ble_app_beacon_pca10040_s132 Debug/Obj/system_nrf52.o
                                       0x5b38c (size before relaxing)
- .debug_str     0x000000000007b6cc      0x40b Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh.o
+ .debug_str     0x000000000007b6bd      0x40b Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh.o
                                       0x69978 (size before relaxing)
- .debug_str     0x000000000007bad7      0xe84 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
+ .debug_str     0x000000000007bac8      0xe84 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
                                       0x6e900 (size before relaxing)
- .debug_str     0x000000000007c95b      0x186 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
+ .debug_str     0x000000000007c94c      0x186 Output/ble_app_beacon_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
                                       0x685df (size before relaxing)

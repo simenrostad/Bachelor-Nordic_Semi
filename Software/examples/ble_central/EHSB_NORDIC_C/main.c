@@ -74,12 +74,12 @@
 
 #define NUS_SERVICE_UUID_TYPE   BLE_UUID_TYPE_VENDOR_BEGIN              /**< UUID type for the Nordic UART Service (vendor specific). */
 
-#define SCAN_INTERVAL           0x00A0                                  /**< Determines scan interval in units of 0.625 millisecond. */
-#define SCAN_WINDOW             0x0050                                  /**< Determines scan window in units of 0.625 millisecond. */
+#define SCAN_INTERVAL           0x0070                                  /**< Determines scan interval in units of 0.625 millisecond. */
+#define SCAN_WINDOW             0x0060                                  /**< Determines scan window in units of 0.625 millisecond. */
 #define SCAN_TIMEOUT            0x0000                                  /**< Timout when scanning. 0x0000 disables timeout. */
 
-#define MIN_CONNECTION_INTERVAL MSEC_TO_UNITS(20, UNIT_1_25_MS)         /**< Determines minimum connection interval in millisecond. */
-#define MAX_CONNECTION_INTERVAL MSEC_TO_UNITS(75, UNIT_1_25_MS)         /**< Determines maximum connection interval in millisecond. */
+#define MIN_CONNECTION_INTERVAL MSEC_TO_UNITS(60, UNIT_1_25_MS)         /**< Determines minimum connection interval in millisecond. */
+#define MAX_CONNECTION_INTERVAL MSEC_TO_UNITS(200, UNIT_1_25_MS)         /**< Determines maximum connection interval in millisecond. */
 #define SLAVE_LATENCY           0                                       /**< Determines slave latency in counts of connection events. */
 #define SUPERVISION_TIMEOUT     MSEC_TO_UNITS(4000, UNIT_10_MS)         /**< Determines supervision time-out in units of 10 millisecond. */
 
@@ -110,6 +110,7 @@ bool add_button = false;
 bool new_button_added = false;
 bool existing_button = false;
 bool connected = false;
+bool whitelist_deleted = false;
 uint32_t button_number = 0;
 uint32_t flash_addr = 0x3f000;
 uint8_t delete_counter = 0;
@@ -209,6 +210,7 @@ static void delete_buttons_timeout_handler(void * p_context)
       app_timer_stop(delete_buttons_id);
       button_number = 0;
       flash_addr = 0x3f000;
+      whitelist_deleted = true;
       NRF_LOG_INFO("Deleted");
   }
 }
@@ -410,6 +412,9 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
             err_code = ble_nus_c_tx_notif_enable(p_ble_nus_c);
             APP_ERROR_CHECK(err_code);
             NRF_LOG_INFO("Connected to device with Nordic UART Service.");
+
+            //Relayer connected, start scan for stop button
+            scan_start();
  
             nrf_gpio_pin_clear(LED_3);
             connected = true;
@@ -417,7 +422,7 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
 
         case BLE_NUS_C_EVT_NUS_TX_EVT:
             ble_nus_chars_received_uart_print(p_ble_nus_evt->p_data, p_ble_nus_evt->data_len);
-            if(memcmp(p_ble_nus_evt->p_data, "button_f", sizeof("button_f")) == 0)
+            if(memcmp(p_ble_nus_evt->p_data, "button_found", sizeof("button_found")) == 0)
             {
                 nrf_gpio_pin_set(STOP_SIGN);
                 nrf_gpio_pin_clear(LED_4);
@@ -558,13 +563,13 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             if(!add_button)
             {                                
                 //If stop button is found: turn on stop sign(LED1 for now) and stop scanning
-//                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
-//                {                
-//                  nrf_gpio_pin_set(STOP_SIGN);
-//                  nrf_gpio_pin_clear(LED_2);
-//                  scan_stop();
-//                  reset = true;
-//                }
+                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
+                {                
+                  nrf_gpio_pin_set(STOP_SIGN);
+                  nrf_gpio_pin_clear(LED_2);
+                  scan_stop();
+                  reset = true;
+                }
             
                 //If relayer is found, connect
                 //else 
@@ -646,9 +651,6 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             NRF_LOG_INFO("Connected to target");
             err_code = ble_nus_c_handles_assign(&m_ble_nus_c, p_ble_evt->evt.gap_evt.conn_handle, NULL);
             APP_ERROR_CHECK(err_code);
-
-            //Relayer connected, start scan for stop button
-            scan_start();
 
             // start discovery of services. The NUS Client waits for a discovery result
             err_code = ble_db_discovery_start(&m_db_disc, p_ble_evt->evt.gap_evt.conn_handle);
@@ -842,17 +844,24 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
        {
           scan_start();
        }
+       if(button_number > 20)
+       {
+          NRF_LOG_INFO("\"Whitelist\" full");
+          scan_stop();
+          app_timer_stop(add_button_timer_id);
+          nrf_gpio_pin_clear(LED_2);
+          nrf_gpio_pin_clear(LED_4);
+          existing_button = true;
+       }
    }
    if(pin_no == BUTTON_2 && button_action == APP_BUTTON_RELEASE)
    {
       app_timer_stop(add_button_timer_id);
       nrf_gpio_pin_set(LED_4);
 
-      if(existing_button)
+      if(!scanning)
       {
-          nrf_gpio_pin_set(LED_2);
-          existing_button = false;
-          new_button_added = false;
+          scan_start();
       }
 
       if(new_button_added)
@@ -870,6 +879,13 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
 //          wait_for_flash_ready(&whitelist_storage);
       }
 
+      else if(existing_button)
+      {
+          nrf_gpio_pin_set(LED_2);
+          existing_button = false;
+          new_button_added = false;
+      }
+
       add_button = false;
    }
    if(pin_no == BUTTON_3 && button_action == APP_BUTTON_PUSH)
@@ -880,14 +896,18 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
    }
 
    if(pin_no == BUTTON_3 && button_action == APP_BUTTON_RELEASE)
-   {
+   {  
+        if(!whitelist_deleted)
+        {
+            app_timer_stop(delete_buttons_id);
+        }
+        scan_start();
         nrf_gpio_pin_set(LED_2);
         nrf_gpio_pin_set(LED_4);
         if(!connected)
         {
             nrf_gpio_pin_set(LED_3);
         }
-        scan_start();
         delete_counter = 0;
    }
 }
@@ -1027,9 +1047,6 @@ int main(void)
     ble_stack_init();
     gatt_init();
     nus_c_init();
-
-//    nrf_fstorage_api_t * p_fs_api;
-//    p_fs_api = &nrf_fstorage_sd;
    
     rc = nrf_fstorage_init(&whitelist_storage, &nrf_fstorage_sd, NULL);
     APP_ERROR_CHECK(rc);

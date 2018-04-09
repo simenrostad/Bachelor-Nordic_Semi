@@ -78,10 +78,6 @@
       <file file_name="../../../../../../components/libraries/bsp/bsp_btn_ble.c" />
       <file file_name="../../../../../../components/libraries/bsp/bsp_nfc.c" />
     </folder>
-    <folder Name="Application">
-      <file file_name="../../../main.c" />
-      <file file_name="../config/sdk_config.h" />
-    </folder>
     <folder Name="nRF_Segger_RTT">
       <file file_name="../../../../../../external/segger_rtt/SEGGER_RTT.c" />
       <file file_name="../../../../../../external/segger_rtt/SEGGER_RTT_Syscalls_SES.c" />
@@ -105,6 +101,10 @@
       <file file_name="../../../../../../components/softdevice/common/nrf_sdh.c" />
       <file file_name="../../../../../../components/softdevice/common/nrf_sdh_ble.c" />
       <file file_name="../../../../../../components/softdevice/common/nrf_sdh_soc.c" />
+    </folder>
+    <folder Name="Application">
+      <file file_name="../../../main.c" />
+      <file file_name="../config/sdk_config.h" />
     </folder>
   </project>
   <configuration
