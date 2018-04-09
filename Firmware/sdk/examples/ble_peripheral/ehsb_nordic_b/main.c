@@ -103,6 +103,7 @@ int main(void)
     advertising_init();
     
     NRF_LOG_INFO("Starting EHSB project");
+
 /**< Sleep between advertising intervals */
     for (;; )
     {
