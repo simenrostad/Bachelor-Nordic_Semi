@@ -7,7 +7,7 @@
 #include "nrf_log_default_backends.h"
 
 #define APP_BLE_CONN_CFG_TAG             1                                /**< A tag identifying the SoftDevice BLE configuration. */
-#define EHSB_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN       /**< UUID type for the Nordic UART Service (vendor specific). */  
+#define EHSB_SERVICE_UUID_TYPE           0x02                             /**< Vendor spesific UUID.*/  
 #define EHSB_BASE_UUID                   {{0x9F, 0xCA, 0xDC, 0x24, \
                                            0x0E, 0xE5, 0xA9, 0xE0, \
                                            0x93, 0xF3, 0xA3, 0xB5, \
