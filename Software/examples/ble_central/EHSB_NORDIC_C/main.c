@@ -79,7 +79,7 @@
 #define SCAN_TIMEOUT            0x0000                                  /**< Timout when scanning. 0x0000 disables timeout. */
 
 #define MIN_CONNECTION_INTERVAL MSEC_TO_UNITS(60, UNIT_1_25_MS)         /**< Determines minimum connection interval in millisecond. */
-#define MAX_CONNECTION_INTERVAL MSEC_TO_UNITS(200, UNIT_1_25_MS)         /**< Determines maximum connection interval in millisecond. */
+#define MAX_CONNECTION_INTERVAL MSEC_TO_UNITS(60, UNIT_1_25_MS)         /**< Determines maximum connection interval in millisecond. */
 #define SLAVE_LATENCY           0                                       /**< Determines slave latency in counts of connection events. */
 #define SUPERVISION_TIMEOUT     MSEC_TO_UNITS(4000, UNIT_10_MS)         /**< Determines supervision time-out in units of 10 millisecond. */
 
@@ -116,7 +116,7 @@ uint32_t flash_addr = 0x3f000;
 uint8_t delete_counter = 0;
 
 // Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
-uint8_t whitelist[3][16] = {0};
+uint8_t whitelist[20][16] = {0};
 
 static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt);
 
@@ -225,8 +225,6 @@ static void scan_start(void)
 
     app_timer_start(m_led_timer_id, APP_TIMER_TICKS(1000), led_timeout_handler);
     scanning = true;
-
-    NRF_LOG_INFO("scanning");
 }
 
 static void scan_stop(void)
@@ -235,7 +233,6 @@ static void scan_stop(void)
     app_timer_stop(m_led_timer_id);
     nrf_gpio_pin_set(LED_1);
     scanning = false;
-    NRF_LOG_INFO("not scanning");
 }
 
 /** Function for handling fstorage events*/
@@ -265,15 +262,6 @@ static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt)
             break;
     }
 }
-
-//void wait_for_flash_ready(nrf_fstorage_t const * p_fstorage)
-//{
-//    /* While fstorage is busy, sleep and wait for an event. */
-//    while (nrf_fstorage_is_busy(p_fstorage))
-//    {
-//        power_manage();
-//    }
-//}
 
 /**@brief Function for handling database discovery events.
  *
@@ -561,8 +549,32 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
            memcpy(&adv_uuid, &p_adv_report->data[5], 16);
 
             if(!add_button)
-            {                                
-                //If stop button is found: turn on stop sign(LED1 for now) and stop scanning
+            {   
+                //If not connected to relayer, check for relayer-UUID and connect if found
+                if(!connected)
+                {
+                    if (is_uuid_present(&m_nus_uuid, p_adv_report))
+                    {
+                        err_code = sd_ble_gap_connect(&p_adv_report->peer_addr,
+                                                      &m_scan_params,
+                                                      &m_connection_param,
+                                                      APP_BLE_CONN_CFG_TAG);
+                        if (err_code == NRF_SUCCESS)
+                        {
+                            // scan is automatically stopped by the connect
+                            NRF_LOG_INFO("Connecting to target %02x%02x%02x%02x%02x%02x",
+                                     p_adv_report->peer_addr.addr[0],
+                                     p_adv_report->peer_addr.addr[1],
+                                     p_adv_report->peer_addr.addr[2],
+                                     p_adv_report->peer_addr.addr[3],
+                                     p_adv_report->peer_addr.addr[4],
+                                     p_adv_report->peer_addr.addr[5]
+                                     );
+                        }
+                    }
+                }
+                
+                //If stop button is found: turn on stop sign and stop scanning
                 if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
                 {                
                   nrf_gpio_pin_set(STOP_SIGN);
@@ -571,28 +583,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                   reset = true;
                 }
             
-                //If relayer is found, connect
-                //else 
-                if (is_uuid_present(&m_nus_uuid, p_adv_report))
-                {
-                    err_code = sd_ble_gap_connect(&p_adv_report->peer_addr,
-                                                  &m_scan_params,
-                                                  &m_connection_param,
-                                                  APP_BLE_CONN_CFG_TAG);
-                    if (err_code == NRF_SUCCESS)
-                    {
-                        // scan is automatically stopped by the connect
-                        NRF_LOG_INFO("Connecting to target %02x%02x%02x%02x%02x%02x",
-                                 p_adv_report->peer_addr.addr[0],
-                                 p_adv_report->peer_addr.addr[1],
-                                 p_adv_report->peer_addr.addr[2],
-                                 p_adv_report->peer_addr.addr[3],
-                                 p_adv_report->peer_addr.addr[4],
-                                 p_adv_report->peer_addr.addr[5]
-                                 );
-                    }
-                }
-
+                //Compare received UUID to the entries, if any, in "whitelist
                 else
                 {
                      for(int8_t i = 0; i < button_number; i++)
@@ -638,7 +629,6 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                           err_code = nrf_fstorage_write(&whitelist_storage, flash_addr, whitelist[button_number], sizeof(whitelist[button_number]), NULL);
                           APP_ERROR_CHECK(err_code);
 
-//                          wait_for_flash_ready(&whitelist_storage);
                           NRF_LOG_INFO("Done.");
 
                           flash_addr += 0x10;
@@ -901,14 +891,16 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
         {
             app_timer_stop(delete_buttons_id);
         }
-        scan_start();
         nrf_gpio_pin_set(LED_2);
         nrf_gpio_pin_set(LED_4);
         if(!connected)
         {
             nrf_gpio_pin_set(LED_3);
         }
+        scan_start();
+
         delete_counter = 0;
+
    }
 }
 

@@ -9206,7 +9206,7 @@ Linker script and memory map
                 0x0000000000000001                . = ASSERT (((__init_rodata_start__ == __init_rodata_end__) || ((__init_rodata_end__ >= __FLASH_segment_start__) && (__init_rodata_end__ <= __FLASH_segment_end__))), error: .init_rodata is too large to fit in FLASH memory segment)
                 0x00000000000232f4                __text_load_start__ = ALIGN (__init_rodata_end__, 0x4)
 
-.text           0x00000000000232f4     0xb2dc
+.text           0x00000000000232f4     0xb2b8
                 0x00000000000232f4                __text_start__ = .
  *(.text .text.* .glue_7t .glue_7 .gnu.linkonce.t.* .gcc_except_table .ARM.extab* .gnu.linkonce.armextab.*)
  .glue_7        0x00000000000232f4        0x0 linker stubs
@@ -10223,112 +10223,112 @@ Linker script and memory map
  .text.delete_buttons_timeout_handler
                 0x000000000002ce40       0xa4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.scan_start
-                0x000000000002cee4       0x6c Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002cee4       0x50 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.scan_stop
-                0x000000000002cf50       0x40 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002cf34       0x28 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.fstorage_evt_handler
-                0x000000000002cf90       0x7c Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002cf5c       0x7c Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.db_disc_handler
-                0x000000000002d00c       0x1c Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002cfd8       0x1c Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.ble_nus_chars_received_uart_print
-                0x000000000002d028       0xa0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002cff4       0xa0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.uart_event_handle
-                0x000000000002d0c8      0x100 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
-                0x000000000002d0c8                uart_event_handle
+                0x000000000002d094      0x100 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002d094                uart_event_handle
  .text.ble_nus_c_evt_handler
-                0x000000000002d1c8      0x214 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002d194      0x214 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.shutdown_handler
-                0x000000000002d3dc       0x60 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002d3a8       0x60 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.is_uuid_present
-                0x000000000002d43c       0xac Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002d408       0xac Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.ble_evt_handler
-                0x000000000002d4e8      0x584 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002d4b4      0x594 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.ble_stack_init
-                0x000000000002da6c       0x74 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002da48       0x74 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.gatt_evt_handler
-                0x000000000002dae0       0x64 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
-                0x000000000002dae0                gatt_evt_handler
+                0x000000000002dabc       0x64 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002dabc                gatt_evt_handler
  .text.gatt_init
-                0x000000000002db44       0x58 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
-                0x000000000002db44                gatt_init
+                0x000000000002db20       0x58 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002db20                gatt_init
  .text.uart_init
-                0x000000000002db9c       0x68 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002db78       0x68 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.nus_c_init
-                0x000000000002dc04       0x40 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002dbe0       0x40 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.button_handler
-                0x000000000002dc44      0x2c0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
-                0x000000000002dc44                button_handler
+                0x000000000002dc20      0x2c0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002dc20                button_handler
  .text.buttons_init
-                0x000000000002df04       0x54 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002dee0       0x54 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.timer_init
-                0x000000000002df58       0x2c Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002df34       0x2c Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.application_timer_init
-                0x000000000002df84       0xac Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002df60       0xac Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.log_init
-                0x000000000002e030       0x34 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002e00c       0x34 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.power_init
-                0x000000000002e064       0x2c Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002e040       0x2c Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.db_discovery_init
-                0x000000000002e090       0x34 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002e06c       0x34 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .text.leds_init
-                0x000000000002e0c4       0x3a Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
- *fill*         0x000000000002e0fe        0x2 
+                0x000000000002e0a0       0x3a Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+ *fill*         0x000000000002e0da        0x2 
  .text.read_memory
-                0x000000000002e100       0xe4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
- .text.main     0x000000000002e1e4       0x98 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
-                0x000000000002e1e4                main
+                0x000000000002e0dc       0xe4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+ .text.main     0x000000000002e1c0       0x98 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002e1c0                main
  .text.libc.__int64_udivmod
-                0x000000000002e27c       0xd0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
-                0x000000000002e27c                __aeabi_uldivmod
-                0x000000000002e27c                __int64_udiv
-                0x000000000002e27c                __udivdi3
-                0x000000000002e27c                __int64_udivmod
+                0x000000000002e258       0xd0 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+                0x000000000002e258                __aeabi_uldivmod
+                0x000000000002e258                __int64_udiv
+                0x000000000002e258                __udivdi3
+                0x000000000002e258                __int64_udivmod
  .text.libc.__RAL_ascii_isctype
-                0x000000000002e34c       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002e328       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_toupper
-                0x000000000002e368        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002e344        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_tolower
-                0x000000000002e374        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002e350        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_iswctype
-                0x000000000002e380       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002e35c       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_towupper
-                0x000000000002e39c        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002e378        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_towlower
-                0x000000000002e3a8        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002e384        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_wctomb
-                0x000000000002e3b4        0xe C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002e3b4                __RAL_ascii_wctomb
+                0x000000000002e390        0xe C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002e390                __RAL_ascii_wctomb
  .text.libc.__RAL_ascii_mbtowc
-                0x000000000002e3c2       0x24 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002e3c2                __RAL_ascii_mbtowc
- *fill*         0x000000000002e3e6        0x2 
+                0x000000000002e39e       0x24 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002e39e                __RAL_ascii_mbtowc
+ *fill*         0x000000000002e3c2        0x2 
  .text.libc.__RAL_isctype
-                0x000000000002e3e8       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002e3e8                __RAL_isctype
+                0x000000000002e3c4       0x14 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002e3c4                __RAL_isctype
  .text.libc.isprint
-                0x000000000002e3fc        0xa C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002e3fc                isprint
+                0x000000000002e3d8        0xa C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002e3d8                isprint
  .text.libc.memcmp
-                0x000000000002e406       0x6a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002e406                memcmp
+                0x000000000002e3e2       0x6a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002e3e2                memcmp
  .text.libc.memcpy
-                0x000000000002e470       0x54 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x000000000002e470                __aeabi_memcpy
-                0x000000000002e470                memcpy
-                0x000000000002e47c                __aeabi_memcpy8
-                0x000000000002e47c                __aeabi_memcpy4
+                0x000000000002e44c       0x54 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x000000000002e44c                __aeabi_memcpy
+                0x000000000002e44c                memcpy
+                0x000000000002e458                __aeabi_memcpy8
+                0x000000000002e458                __aeabi_memcpy4
  .text.libc.memset
-                0x000000000002e4c4       0x68 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x000000000002e4c4                memset
+                0x000000000002e4a0       0x68 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x000000000002e4a0                memset
  .text.libc.strcpy
-                0x000000000002e52c       0x44 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x000000000002e52c                strcpy
+                0x000000000002e508       0x44 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x000000000002e508                strcpy
  .text.libc.strlen
-                0x000000000002e570       0x60 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x000000000002e570                strlen
-                0x000000000002e5d0                __text_end__ = (__text_start__ + SIZEOF (.text))
-                0x000000000000b2dc                __text_size__ = SIZEOF (.text)
-                0x000000000002e5d0                __text_load_end__ = __text_end__
+                0x000000000002e54c       0x60 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x000000000002e54c                strlen
+                0x000000000002e5ac                __text_end__ = (__text_start__ + SIZEOF (.text))
+                0x000000000000b2b8                __text_size__ = SIZEOF (.text)
+                0x000000000002e5ac                __text_load_end__ = __text_end__
 
 .vfp11_veneer   0x0000000100000000        0x0
  .vfp11_veneer  0x0000000100000000        0x0 linker stubs
@@ -10339,175 +10339,175 @@ Linker script and memory map
 .iplt           0x0000000100000000        0x0
  .iplt          0x0000000100000000        0x0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/thumb_crt0.o
                 0x0000000000000001                . = ASSERT (((__text_start__ == __text_end__) || ((__text_end__ >= __FLASH_segment_start__) && (__text_end__ <= __FLASH_segment_end__))), error: .text is too large to fit in FLASH memory segment)
-                0x000000000002e5d0                __sdh_soc_observers_load_start__ = ALIGN (__text_end__, 0x4)
+                0x000000000002e5ac                __sdh_soc_observers_load_start__ = ALIGN (__text_end__, 0x4)
 
 .sdh_soc_observers
-                0x000000000002e5d0       0x10
-                0x000000000002e5d0                __sdh_soc_observers_start__ = .
-                0x000000000002e5d0                __start_sdh_soc_observers = __sdh_soc_observers_start__
+                0x000000000002e5ac       0x10
+                0x000000000002e5ac                __sdh_soc_observers_start__ = .
+                0x000000000002e5ac                __start_sdh_soc_observers = __sdh_soc_observers_start__
  *(SORT(.sdh_soc_observers*))
  .sdh_soc_observers0
-                0x000000000002e5d0        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fstorage_sd.o
+                0x000000000002e5ac        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fstorage_sd.o
  .sdh_soc_observers0
-                0x000000000002e5d8        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_clock.o
-                0x000000000002e5e0                __sdh_soc_observers_end__ = (__sdh_soc_observers_start__ + SIZEOF (.sdh_soc_observers))
+                0x000000000002e5b4        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_clock.o
+                0x000000000002e5bc                __sdh_soc_observers_end__ = (__sdh_soc_observers_start__ + SIZEOF (.sdh_soc_observers))
                 0x0000000000000010                __sdh_soc_observers_size__ = SIZEOF (.sdh_soc_observers)
-                0x000000000002e5e0                __stop_sdh_soc_observers = __sdh_soc_observers_end__
-                0x000000000002e5e0                __sdh_soc_observers_load_end__ = __sdh_soc_observers_end__
+                0x000000000002e5bc                __stop_sdh_soc_observers = __sdh_soc_observers_end__
+                0x000000000002e5bc                __sdh_soc_observers_load_end__ = __sdh_soc_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_soc_observers_start__ == __sdh_soc_observers_end__) || ((__sdh_soc_observers_end__ >= __FLASH_segment_start__) && (__sdh_soc_observers_end__ <= __FLASH_segment_end__))), error: .sdh_soc_observers is too large to fit in FLASH memory segment)
-                0x000000000002e5e0                __pwr_mgmt_data_load_start__ = ALIGN (__sdh_soc_observers_end__, 0x4)
+                0x000000000002e5bc                __pwr_mgmt_data_load_start__ = ALIGN (__sdh_soc_observers_end__, 0x4)
 
-.pwr_mgmt_data  0x000000000002e5e0        0x4
-                0x000000000002e5e0                __pwr_mgmt_data_start__ = .
-                0x000000000002e5e0                __start_pwr_mgmt_data = __pwr_mgmt_data_start__
+.pwr_mgmt_data  0x000000000002e5bc        0x4
+                0x000000000002e5bc                __pwr_mgmt_data_start__ = .
+                0x000000000002e5bc                __start_pwr_mgmt_data = __pwr_mgmt_data_start__
  *(SORT(.pwr_mgmt_data*))
  .pwr_mgmt_data1
-                0x000000000002e5e0        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
-                0x000000000002e5e4                __pwr_mgmt_data_end__ = (__pwr_mgmt_data_start__ + SIZEOF (.pwr_mgmt_data))
+                0x000000000002e5bc        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002e5c0                __pwr_mgmt_data_end__ = (__pwr_mgmt_data_start__ + SIZEOF (.pwr_mgmt_data))
                 0x0000000000000004                __pwr_mgmt_data_size__ = SIZEOF (.pwr_mgmt_data)
-                0x000000000002e5e4                __stop_pwr_mgmt_data = __pwr_mgmt_data_end__
-                0x000000000002e5e4                __pwr_mgmt_data_load_end__ = __pwr_mgmt_data_end__
+                0x000000000002e5c0                __stop_pwr_mgmt_data = __pwr_mgmt_data_end__
+                0x000000000002e5c0                __pwr_mgmt_data_load_end__ = __pwr_mgmt_data_end__
                 0x0000000000000001                . = ASSERT (((__pwr_mgmt_data_start__ == __pwr_mgmt_data_end__) || ((__pwr_mgmt_data_end__ >= __FLASH_segment_start__) && (__pwr_mgmt_data_end__ <= __FLASH_segment_end__))), error: .pwr_mgmt_data is too large to fit in FLASH memory segment)
-                0x000000000002e5e4                __log_const_data_load_start__ = ALIGN (__pwr_mgmt_data_end__, 0x4)
+                0x000000000002e5c0                __log_const_data_load_start__ = ALIGN (__pwr_mgmt_data_end__, 0x4)
 
 .log_const_data
-                0x000000000002e5e4       0x60
-                0x000000000002e5e4                __log_const_data_start__ = .
-                0x000000000002e5e4                __start_log_const_data = __log_const_data_start__
+                0x000000000002e5c0       0x60
+                0x000000000002e5c0                __log_const_data_start__ = .
+                0x000000000002e5c0                __start_log_const_data = __log_const_data_start__
  *(SORT(.log_const_data*))
  .log_const_data_app
-                0x000000000002e5e4        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_frontend.o
-                0x000000000002e5e4                m_nrf_log_app_logs_data_const
+                0x000000000002e5c0        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_frontend.o
+                0x000000000002e5c0                m_nrf_log_app_logs_data_const
  .log_const_data_balloc
-                0x000000000002e5ec        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_balloc.o
-                0x000000000002e5ec                m_nrf_log_balloc_logs_data_const
+                0x000000000002e5c8        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_balloc.o
+                0x000000000002e5c8                m_nrf_log_balloc_logs_data_const
  .log_const_data_ble_db_disc
-                0x000000000002e5f4        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/ble_db_discovery.o
-                0x000000000002e5f4                m_nrf_log_ble_db_disc_logs_data_const
+                0x000000000002e5d0        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/ble_db_discovery.o
+                0x000000000002e5d0                m_nrf_log_ble_db_disc_logs_data_const
  .log_const_data_ble_gatt
-                0x000000000002e5fc        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_ble_gatt.o
-                0x000000000002e5fc                m_nrf_log_ble_gatt_logs_data_const
+                0x000000000002e5d8        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_ble_gatt.o
+                0x000000000002e5d8                m_nrf_log_ble_gatt_logs_data_const
  .log_const_data_ble_nus
-                0x000000000002e604        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/ble_nus_c.o
-                0x000000000002e604                m_nrf_log_ble_nus_logs_data_const
+                0x000000000002e5e0        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/ble_nus_c.o
+                0x000000000002e5e0                m_nrf_log_ble_nus_logs_data_const
  .log_const_data_clock
-                0x000000000002e60c        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_clock.o
-                0x000000000002e60c                m_nrf_log_clock_logs_data_const
+                0x000000000002e5e8        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_clock.o
+                0x000000000002e5e8                m_nrf_log_clock_logs_data_const
  .log_const_data_gpiote
-                0x000000000002e614        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
-                0x000000000002e614                m_nrf_log_gpiote_logs_data_const
+                0x000000000002e5f0        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
+                0x000000000002e5f0                m_nrf_log_gpiote_logs_data_const
  .log_const_data_nrf_sdh
-                0x000000000002e61c        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh.o
-                0x000000000002e61c                m_nrf_log_nrf_sdh_logs_data_const
+                0x000000000002e5f8        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh.o
+                0x000000000002e5f8                m_nrf_log_nrf_sdh_logs_data_const
  .log_const_data_nrf_sdh_ble
-                0x000000000002e624        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
-                0x000000000002e624                m_nrf_log_nrf_sdh_ble_logs_data_const
+                0x000000000002e600        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
+                0x000000000002e600                m_nrf_log_nrf_sdh_ble_logs_data_const
  .log_const_data_nrf_sdh_soc
-                0x000000000002e62c        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
-                0x000000000002e62c                m_nrf_log_nrf_sdh_soc_logs_data_const
+                0x000000000002e608        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
+                0x000000000002e608                m_nrf_log_nrf_sdh_soc_logs_data_const
  .log_const_data_pwr_mgmt
-                0x000000000002e634        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
-                0x000000000002e634                m_nrf_log_pwr_mgmt_logs_data_const
+                0x000000000002e610        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
+                0x000000000002e610                m_nrf_log_pwr_mgmt_logs_data_const
  .log_const_data_uart
-                0x000000000002e63c        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_uart.o
-                0x000000000002e63c                m_nrf_log_uart_logs_data_const
-                0x000000000002e644                __log_const_data_end__ = (__log_const_data_start__ + SIZEOF (.log_const_data))
+                0x000000000002e618        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_uart.o
+                0x000000000002e618                m_nrf_log_uart_logs_data_const
+                0x000000000002e620                __log_const_data_end__ = (__log_const_data_start__ + SIZEOF (.log_const_data))
                 0x0000000000000060                __log_const_data_size__ = SIZEOF (.log_const_data)
-                0x000000000002e644                __stop_log_const_data = __log_const_data_end__
-                0x000000000002e644                __log_const_data_load_end__ = __log_const_data_end__
+                0x000000000002e620                __stop_log_const_data = __log_const_data_end__
+                0x000000000002e620                __log_const_data_load_end__ = __log_const_data_end__
                 0x0000000000000001                . = ASSERT (((__log_const_data_start__ == __log_const_data_end__) || ((__log_const_data_end__ >= __FLASH_segment_start__) && (__log_const_data_end__ <= __FLASH_segment_end__))), error: .log_const_data is too large to fit in FLASH memory segment)
-                0x000000000002e644                __sdh_req_observers_load_start__ = ALIGN (__log_const_data_end__, 0x4)
+                0x000000000002e620                __sdh_req_observers_load_start__ = ALIGN (__log_const_data_end__, 0x4)
 
 .sdh_req_observers
-                0x000000000002e644        0x8
-                0x000000000002e644                __sdh_req_observers_start__ = .
-                0x000000000002e644                __start_sdh_req_observers = __sdh_req_observers_start__
+                0x000000000002e620        0x8
+                0x000000000002e620                __sdh_req_observers_start__ = .
+                0x000000000002e620                __start_sdh_req_observers = __sdh_req_observers_start__
  *(SORT(.sdh_req_observers*))
  .sdh_req_observers0
-                0x000000000002e644        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fstorage_sd.o
-                0x000000000002e644                m_req_obs
-                0x000000000002e64c                __sdh_req_observers_end__ = (__sdh_req_observers_start__ + SIZEOF (.sdh_req_observers))
+                0x000000000002e620        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fstorage_sd.o
+                0x000000000002e620                m_req_obs
+                0x000000000002e628                __sdh_req_observers_end__ = (__sdh_req_observers_start__ + SIZEOF (.sdh_req_observers))
                 0x0000000000000008                __sdh_req_observers_size__ = SIZEOF (.sdh_req_observers)
-                0x000000000002e64c                __stop_sdh_req_observers = __sdh_req_observers_end__
-                0x000000000002e64c                __sdh_req_observers_load_end__ = __sdh_req_observers_end__
+                0x000000000002e628                __stop_sdh_req_observers = __sdh_req_observers_end__
+                0x000000000002e628                __sdh_req_observers_load_end__ = __sdh_req_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_req_observers_start__ == __sdh_req_observers_end__) || ((__sdh_req_observers_end__ >= __FLASH_segment_start__) && (__sdh_req_observers_end__ <= __FLASH_segment_end__))), error: .sdh_req_observers is too large to fit in FLASH memory segment)
-                0x000000000002e64c                __sdh_state_observers_load_start__ = ALIGN (__sdh_req_observers_end__, 0x4)
+                0x000000000002e628                __sdh_state_observers_load_start__ = ALIGN (__sdh_req_observers_end__, 0x4)
 
 .sdh_state_observers
-                0x000000000002e64c       0x10
-                0x000000000002e64c                __sdh_state_observers_start__ = .
-                0x000000000002e64c                __start_sdh_state_observers = __sdh_state_observers_start__
+                0x000000000002e628       0x10
+                0x000000000002e628                __sdh_state_observers_start__ = .
+                0x000000000002e628                __start_sdh_state_observers = __sdh_state_observers_start__
  *(SORT(.sdh_state_observers*))
  .sdh_state_observers0
-                0x000000000002e64c        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fstorage_sd.o
+                0x000000000002e628        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fstorage_sd.o
  .sdh_state_observers0
-                0x000000000002e654        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_clock.o
-                0x000000000002e65c                __sdh_state_observers_end__ = (__sdh_state_observers_start__ + SIZEOF (.sdh_state_observers))
+                0x000000000002e630        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_clock.o
+                0x000000000002e638                __sdh_state_observers_end__ = (__sdh_state_observers_start__ + SIZEOF (.sdh_state_observers))
                 0x0000000000000010                __sdh_state_observers_size__ = SIZEOF (.sdh_state_observers)
-                0x000000000002e65c                __stop_sdh_state_observers = __sdh_state_observers_end__
-                0x000000000002e65c                __sdh_state_observers_load_end__ = __sdh_state_observers_end__
+                0x000000000002e638                __stop_sdh_state_observers = __sdh_state_observers_end__
+                0x000000000002e638                __sdh_state_observers_load_end__ = __sdh_state_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_state_observers_start__ == __sdh_state_observers_end__) || ((__sdh_state_observers_end__ >= __FLASH_segment_start__) && (__sdh_state_observers_end__ <= __FLASH_segment_end__))), error: .sdh_state_observers is too large to fit in FLASH memory segment)
-                0x000000000002e65c                __sdh_stack_observers_load_start__ = ALIGN (__sdh_state_observers_end__, 0x4)
+                0x000000000002e638                __sdh_stack_observers_load_start__ = ALIGN (__sdh_state_observers_end__, 0x4)
 
 .sdh_stack_observers
-                0x000000000002e65c       0x10
-                0x000000000002e65c                __sdh_stack_observers_start__ = .
-                0x000000000002e65c                __start_sdh_stack_observers = __sdh_stack_observers_start__
+                0x000000000002e638       0x10
+                0x000000000002e638                __sdh_stack_observers_start__ = .
+                0x000000000002e638                __start_sdh_stack_observers = __sdh_stack_observers_start__
  *(SORT(.sdh_stack_observers*))
  .sdh_stack_observers0
-                0x000000000002e65c        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
+                0x000000000002e638        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
  .sdh_stack_observers0
-                0x000000000002e664        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
-                0x000000000002e66c                __sdh_stack_observers_end__ = (__sdh_stack_observers_start__ + SIZEOF (.sdh_stack_observers))
+                0x000000000002e640        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
+                0x000000000002e648                __sdh_stack_observers_end__ = (__sdh_stack_observers_start__ + SIZEOF (.sdh_stack_observers))
                 0x0000000000000010                __sdh_stack_observers_size__ = SIZEOF (.sdh_stack_observers)
-                0x000000000002e66c                __stop_sdh_stack_observers = __sdh_stack_observers_end__
-                0x000000000002e66c                __sdh_stack_observers_load_end__ = __sdh_stack_observers_end__
+                0x000000000002e648                __stop_sdh_stack_observers = __sdh_stack_observers_end__
+                0x000000000002e648                __sdh_stack_observers_load_end__ = __sdh_stack_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_stack_observers_start__ == __sdh_stack_observers_end__) || ((__sdh_stack_observers_end__ >= __FLASH_segment_start__) && (__sdh_stack_observers_end__ <= __FLASH_segment_end__))), error: .sdh_stack_observers is too large to fit in FLASH memory segment)
-                0x000000000002e66c                __cli_command_load_start__ = ALIGN (__sdh_stack_observers_end__, 0x4)
+                0x000000000002e648                __cli_command_load_start__ = ALIGN (__sdh_stack_observers_end__, 0x4)
 
-.cli_command    0x000000000002e66c        0x0
-                0x000000000002e66c                __cli_command_start__ = .
-                0x000000000002e66c                __start_cli_command = __cli_command_start__
+.cli_command    0x000000000002e648        0x0
+                0x000000000002e648                __cli_command_start__ = .
+                0x000000000002e648                __start_cli_command = __cli_command_start__
  *(.cli_command*)
-                0x000000000002e66c                __cli_command_end__ = (__cli_command_start__ + SIZEOF (.cli_command))
+                0x000000000002e648                __cli_command_end__ = (__cli_command_start__ + SIZEOF (.cli_command))
                 0x0000000000000000                __cli_command_size__ = SIZEOF (.cli_command)
-                0x000000000002e66c                __stop_cli_command = __cli_command_end__
-                0x000000000002e66c                __cli_command_load_end__ = __cli_command_end__
+                0x000000000002e648                __stop_cli_command = __cli_command_end__
+                0x000000000002e648                __cli_command_load_end__ = __cli_command_end__
                 0x0000000000000001                . = ASSERT (((__cli_command_start__ == __cli_command_end__) || ((__cli_command_end__ >= __FLASH_segment_start__) && (__cli_command_end__ <= __FLASH_segment_end__))), error: .cli_command is too large to fit in FLASH memory segment)
-                0x000000000002e66c                __sdh_ble_observers_load_start__ = ALIGN (__cli_command_end__, 0x4)
+                0x000000000002e648                __sdh_ble_observers_load_start__ = ALIGN (__cli_command_end__, 0x4)
 
 .sdh_ble_observers
-                0x000000000002e66c       0x28
-                0x000000000002e66c                __sdh_ble_observers_start__ = .
-                0x000000000002e66c                __start_sdh_ble_observers = __sdh_ble_observers_start__
+                0x000000000002e648       0x28
+                0x000000000002e648                __sdh_ble_observers_start__ = .
+                0x000000000002e648                __start_sdh_ble_observers = __sdh_ble_observers_start__
  *(SORT(.sdh_ble_observers*))
  .sdh_ble_observers1
-                0x000000000002e66c        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/bsp_btn_ble.o
+                0x000000000002e648        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/bsp_btn_ble.o
  .sdh_ble_observers1
-                0x000000000002e674       0x10 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002e650       0x10 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .sdh_ble_observers2
-                0x000000000002e684        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002e660        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .sdh_ble_observers3
-                0x000000000002e68c        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
-                0x000000000002e694                __sdh_ble_observers_end__ = (__sdh_ble_observers_start__ + SIZEOF (.sdh_ble_observers))
+                0x000000000002e668        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002e670                __sdh_ble_observers_end__ = (__sdh_ble_observers_start__ + SIZEOF (.sdh_ble_observers))
                 0x0000000000000028                __sdh_ble_observers_size__ = SIZEOF (.sdh_ble_observers)
-                0x000000000002e694                __stop_sdh_ble_observers = __sdh_ble_observers_end__
-                0x000000000002e694                __sdh_ble_observers_load_end__ = __sdh_ble_observers_end__
+                0x000000000002e670                __stop_sdh_ble_observers = __sdh_ble_observers_end__
+                0x000000000002e670                __sdh_ble_observers_load_end__ = __sdh_ble_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_ble_observers_start__ == __sdh_ble_observers_end__) || ((__sdh_ble_observers_end__ >= __FLASH_segment_start__) && (__sdh_ble_observers_end__ <= __FLASH_segment_end__))), error: .sdh_ble_observers is too large to fit in FLASH memory segment)
-                0x000000000002e694                __nrf_sections_load_start__ = ALIGN (__sdh_ble_observers_end__, 0x4)
+                0x000000000002e670                __nrf_sections_load_start__ = ALIGN (__sdh_ble_observers_end__, 0x4)
 
-.nrf_sections   0x000000000002e694        0x0
-                0x000000000002e694                __nrf_sections_start__ = .
-                0x000000000002e694                __start_nrf_sections = __nrf_sections_start__
+.nrf_sections   0x000000000002e670        0x0
+                0x000000000002e670                __nrf_sections_start__ = .
+                0x000000000002e670                __start_nrf_sections = __nrf_sections_start__
  *(.nrf_sections .nrf_sections.*)
-                0x000000000002e694                __nrf_sections_end__ = (__nrf_sections_start__ + SIZEOF (.nrf_sections))
+                0x000000000002e670                __nrf_sections_end__ = (__nrf_sections_start__ + SIZEOF (.nrf_sections))
                 0x0000000000000000                __nrf_sections_size__ = SIZEOF (.nrf_sections)
-                0x000000000002e694                __nrf_sections_load_end__ = __nrf_sections_end__
+                0x000000000002e670                __nrf_sections_load_end__ = __nrf_sections_end__
                 0x0000000000000001                . = ASSERT (((__nrf_sections_start__ == __nrf_sections_end__) || ((__nrf_sections_end__ >= __FLASH_segment_start__) && (__nrf_sections_end__ <= __FLASH_segment_end__))), error: .nrf_sections is too large to fit in FLASH memory segment)
-                0x000000000002e694                __log_dynamic_data_load_start__ = ALIGN (__nrf_sections_end__, 0x4)
+                0x000000000002e670                __log_dynamic_data_load_start__ = ALIGN (__nrf_sections_end__, 0x4)
 
 .log_dynamic_data
-                0x00000000200026a8       0x90 load address 0x000000000002e694
+                0x00000000200026a8       0x90 load address 0x000000000002e670
                 0x00000000200026a8                __log_dynamic_data_start__ = .
  *(SORT(.log_dynamic_data*))
  .log_dynamic_data_app
@@ -10548,11 +10548,11 @@ Linker script and memory map
                 0x000000002000272c                m_nrf_log_uart_logs_data_dynamic
                 0x0000000020002738                __log_dynamic_data_end__ = (__log_dynamic_data_start__ + SIZEOF (.log_dynamic_data))
                 0x0000000000000090                __log_dynamic_data_size__ = SIZEOF (.log_dynamic_data)
-                0x000000000002e724                __log_dynamic_data_load_end__ = (__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data))
+                0x000000000002e700                __log_dynamic_data_load_end__ = (__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data))
                 0x0000000000000001                . = ASSERT (((__log_dynamic_data_load_start__ == __log_dynamic_data_load_end__) || ((__log_dynamic_data_load_end__ >= __FLASH_segment_start__) && (__log_dynamic_data_load_end__ <= __FLASH_segment_end__))), error: .log_dynamic_data is too large to fit in FLASH memory segment)
 
 .log_dynamic_data_run
-                0x00000000200026a8       0x90 load address 0x000000000002e694
+                0x00000000200026a8       0x90 load address 0x000000000002e670
                 0x00000000200026a8                __log_dynamic_data_run_start__ = .
                 0x00000000200026a8                __start_log_dynamic_data = __log_dynamic_data_run_start__
                 0x0000000020002738                . = MAX ((__log_dynamic_data_run_start__ + SIZEOF (.log_dynamic_data)), .)
@@ -10562,15 +10562,15 @@ Linker script and memory map
                 0x0000000020002738                __stop_log_dynamic_data = __log_dynamic_data_run_end__
                 0x0000000020002738                __log_dynamic_data_run_load_end__ = __log_dynamic_data_run_end__
                 0x0000000000000001                . = ASSERT (((__log_dynamic_data_run_start__ == __log_dynamic_data_run_end__) || ((__log_dynamic_data_run_end__ >= __RAM_segment_start__) && (__log_dynamic_data_run_end__ <= __RAM_segment_end__))), error: .log_dynamic_data_run is too large to fit in RAM memory segment)
-                0x000000000002e724                __cli_sorted_cmd_ptrs_load_start__ = ALIGN ((__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data)), 0x4)
+                0x000000000002e700                __cli_sorted_cmd_ptrs_load_start__ = ALIGN ((__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data)), 0x4)
 
 .cli_sorted_cmd_ptrs
-                0x0000000020002738        0x0 load address 0x000000000002e724
+                0x0000000020002738        0x0 load address 0x000000000002e700
                 0x0000000020002738                __cli_sorted_cmd_ptrs_start__ = .
  *(.cli_sorted_cmd_ptrs*)
                 0x0000000020002738                __cli_sorted_cmd_ptrs_end__ = (__cli_sorted_cmd_ptrs_start__ + SIZEOF (.cli_sorted_cmd_ptrs))
                 0x0000000000000000                __cli_sorted_cmd_ptrs_size__ = SIZEOF (.cli_sorted_cmd_ptrs)
-                0x000000000002e724                __cli_sorted_cmd_ptrs_load_end__ = (__cli_sorted_cmd_ptrs_load_start__ + SIZEOF (.cli_sorted_cmd_ptrs))
+                0x000000000002e700                __cli_sorted_cmd_ptrs_load_end__ = (__cli_sorted_cmd_ptrs_load_start__ + SIZEOF (.cli_sorted_cmd_ptrs))
                 0x0000000000000001                . = ASSERT (((__cli_sorted_cmd_ptrs_load_start__ == __cli_sorted_cmd_ptrs_load_end__) || ((__cli_sorted_cmd_ptrs_load_end__ >= __FLASH_segment_start__) && (__cli_sorted_cmd_ptrs_load_end__ <= __FLASH_segment_end__))), error: .cli_sorted_cmd_ptrs is too large to fit in FLASH memory segment)
 
 .cli_sorted_cmd_ptrs_run
@@ -10583,19 +10583,19 @@ Linker script and memory map
                 0x0000000020002738                __stop_cli_sorted_cmd_ptrs = __cli_sorted_cmd_ptrs_run_end__
                 0x0000000020002738                __cli_sorted_cmd_ptrs_run_load_end__ = __cli_sorted_cmd_ptrs_run_end__
                 0x0000000000000001                . = ASSERT (((__cli_sorted_cmd_ptrs_run_start__ == __cli_sorted_cmd_ptrs_run_end__) || ((__cli_sorted_cmd_ptrs_run_end__ >= __RAM_segment_start__) && (__cli_sorted_cmd_ptrs_run_end__ <= __RAM_segment_end__))), error: .cli_sorted_cmd_ptrs_run is too large to fit in RAM memory segment)
-                0x000000000002e724                __fs_data_load_start__ = ALIGN ((__cli_sorted_cmd_ptrs_load_start__ + SIZEOF (.cli_sorted_cmd_ptrs)), 0x4)
+                0x000000000002e700                __fs_data_load_start__ = ALIGN ((__cli_sorted_cmd_ptrs_load_start__ + SIZEOF (.cli_sorted_cmd_ptrs)), 0x4)
 
-.fs_data        0x0000000020002738       0x14 load address 0x000000000002e724
+.fs_data        0x0000000020002738       0x14 load address 0x000000000002e700
                 0x0000000020002738                __fs_data_start__ = .
  *(.fs_data*)
  .fs_data       0x0000000020002738       0x14 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
                 0x0000000020002738                whitelist_storage
                 0x000000002000274c                __fs_data_end__ = (__fs_data_start__ + SIZEOF (.fs_data))
                 0x0000000000000014                __fs_data_size__ = SIZEOF (.fs_data)
-                0x000000000002e738                __fs_data_load_end__ = (__fs_data_load_start__ + SIZEOF (.fs_data))
+                0x000000000002e714                __fs_data_load_end__ = (__fs_data_load_start__ + SIZEOF (.fs_data))
                 0x0000000000000001                . = ASSERT (((__fs_data_load_start__ == __fs_data_load_end__) || ((__fs_data_load_end__ >= __FLASH_segment_start__) && (__fs_data_load_end__ <= __FLASH_segment_end__))), error: .fs_data is too large to fit in FLASH memory segment)
 
-.fs_data_run    0x0000000020002738       0x14 load address 0x000000000002e724
+.fs_data_run    0x0000000020002738       0x14 load address 0x000000000002e700
                 0x0000000020002738                __fs_data_run_start__ = .
                 0x0000000020002738                __start_fs_data = __fs_data_run_start__
                 0x000000002000274c                . = MAX ((__fs_data_run_start__ + SIZEOF (.fs_data)), .)
@@ -10616,218 +10616,218 @@ Linker script and memory map
                 0x0000000000000000                __nrf_sections_run_end_size__ = SIZEOF (.nrf_sections_run_end)
                 0x000000002000274c                __nrf_sections_run_end_load_end__ = __nrf_sections_run_end_end__
                 0x0000000000000001                . = ASSERT (((__nrf_sections_run_end_start__ == __nrf_sections_run_end_end__) || ((__nrf_sections_run_end_end__ >= __RAM_segment_start__) && (__nrf_sections_run_end_end__ <= __RAM_segment_end__))), error: .nrf_sections_run_end is too large to fit in RAM memory segment)
-                0x000000000002e738                __dtors_load_start__ = ALIGN ((__fs_data_load_start__ + SIZEOF (.fs_data)), 0x4)
+                0x000000000002e714                __dtors_load_start__ = ALIGN ((__fs_data_load_start__ + SIZEOF (.fs_data)), 0x4)
 
-.dtors          0x000000000002e738        0x0
-                0x000000000002e738                __dtors_start__ = .
+.dtors          0x000000000002e714        0x0
+                0x000000000002e714                __dtors_start__ = .
  *(SORT(.dtors.*))
  *(.dtors)
  *(.fini_array)
  *(SORT(.fini_array.*))
-                0x000000000002e738                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
+                0x000000000002e714                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
                 0x0000000000000000                __dtors_size__ = SIZEOF (.dtors)
-                0x000000000002e738                __dtors_load_end__ = __dtors_end__
+                0x000000000002e714                __dtors_load_end__ = __dtors_end__
                 0x0000000000000001                . = ASSERT (((__dtors_start__ == __dtors_end__) || ((__dtors_end__ >= __FLASH_segment_start__) && (__dtors_end__ <= __FLASH_segment_end__))), error: .dtors is too large to fit in FLASH memory segment)
-                0x000000000002e738                __ctors_load_start__ = ALIGN (__dtors_end__, 0x4)
+                0x000000000002e714                __ctors_load_start__ = ALIGN (__dtors_end__, 0x4)
 
-.ctors          0x000000000002e738        0x0
-                0x000000000002e738                __ctors_start__ = .
+.ctors          0x000000000002e714        0x0
+                0x000000000002e714                __ctors_start__ = .
  *(SORT(.ctors.*))
  *(.ctors)
  *(.init_array)
  *(SORT(.init_array.*))
-                0x000000000002e738                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
+                0x000000000002e714                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
                 0x0000000000000000                __ctors_size__ = SIZEOF (.ctors)
-                0x000000000002e738                __ctors_load_end__ = __ctors_end__
+                0x000000000002e714                __ctors_load_end__ = __ctors_end__
                 0x0000000000000001                . = ASSERT (((__ctors_start__ == __ctors_end__) || ((__ctors_end__ >= __FLASH_segment_start__) && (__ctors_end__ <= __FLASH_segment_end__))), error: .ctors is too large to fit in FLASH memory segment)
-                0x000000000002e738                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
+                0x000000000002e714                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
 
-.rodata         0x000000000002e738     0x193c
-                0x000000000002e738                __rodata_start__ = .
+.rodata         0x000000000002e714     0x1920
+                0x000000000002e714                __rodata_start__ = .
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.nrf_log_backend_rtt_api
-                0x000000000002e738        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
-                0x000000000002e738                nrf_log_backend_rtt_api
- .rodata        0x000000000002e744       0x6d Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_default_backends.o
- *fill*         0x000000000002e7b1        0x3 
+                0x000000000002e714        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
+                0x000000000002e714                nrf_log_backend_rtt_api
+ .rodata        0x000000000002e720       0x6d Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_default_backends.o
+ *fill*         0x000000000002e78d        0x3 
  .rodata.mempool
-                0x000000000002e7b4       0x14 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_frontend.o
- .rodata        0x000000000002e7c8       0x75 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_frontend.o
- *fill*         0x000000000002e83d        0x3 
- .rodata        0x000000000002e840       0x92 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_str_formatter.o
- *fill*         0x000000000002e8d2        0x2 
+                0x000000000002e790       0x14 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_frontend.o
+ .rodata        0x000000000002e7a4       0x75 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_frontend.o
+ *fill*         0x000000000002e819        0x3 
+ .rodata        0x000000000002e81c       0x92 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_str_formatter.o
+ *fill*         0x000000000002e8ae        0x2 
  .rodata.m_detection_delay_timer_id
-                0x000000000002e8d4        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/app_button.o
- .rodata        0x000000000002e8d8       0x51 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/app_button.o
- *fill*         0x000000000002e929        0x3 
- .rodata        0x000000000002e92c       0x90 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/app_error_weak.o
- .rodata        0x000000000002e9bc       0x72 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/app_uart_fifo.o
- *fill*         0x000000000002ea2e        0x2 
- .rodata        0x000000000002ea30       0x56 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/app_util_platform.o
- *fill*         0x000000000002ea86        0x2 
- .rodata        0x000000000002ea88       0x59 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_balloc.o
- *fill*         0x000000000002eae1        0x3 
- .rodata        0x000000000002eae4       0x47 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fprintf.o
- *fill*         0x000000000002eb2b        0x1 
- .rodata        0x000000000002eb2c       0x4e Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fprintf_format.o
- *fill*         0x000000000002eb7a        0x2 
+                0x000000000002e8b0        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/app_button.o
+ .rodata        0x000000000002e8b4       0x51 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/app_button.o
+ *fill*         0x000000000002e905        0x3 
+ .rodata        0x000000000002e908       0x90 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/app_error_weak.o
+ .rodata        0x000000000002e998       0x72 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/app_uart_fifo.o
+ *fill*         0x000000000002ea0a        0x2 
+ .rodata        0x000000000002ea0c       0x56 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/app_util_platform.o
+ *fill*         0x000000000002ea62        0x2 
+ .rodata        0x000000000002ea64       0x59 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_balloc.o
+ *fill*         0x000000000002eabd        0x3 
+ .rodata        0x000000000002eac0       0x47 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fprintf.o
+ *fill*         0x000000000002eb07        0x1 
+ .rodata        0x000000000002eb08       0x4e Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fprintf_format.o
+ *fill*         0x000000000002eb56        0x2 
  .rodata._aV2C.7446
-                0x000000000002eb7c       0x10 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fprintf_format.o
- .rodata        0x000000000002eb8c       0x5e Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_memobj.o
- *fill*         0x000000000002ebea        0x2 
- .rodata        0x000000000002ebec       0xed Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
- *fill*         0x000000000002ecd9        0x3 
+                0x000000000002eb58       0x10 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fprintf_format.o
+ .rodata        0x000000000002eb68       0x5e Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_memobj.o
+ *fill*         0x000000000002ebc6        0x2 
+ .rodata        0x000000000002ebc8       0xed Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
+ *fill*         0x000000000002ecb5        0x3 
  .rodata.pwr_mgmt_data
-                0x000000000002ecdc        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
- .rodata        0x000000000002ece8       0x6a Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_section_iter.o
- *fill*         0x000000000002ed52        0x2 
+                0x000000000002ecb8        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
+ .rodata        0x000000000002ecc4       0x6a Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_section_iter.o
+ *fill*         0x000000000002ed2e        0x2 
  .rodata.m_unknown_str
-                0x000000000002ed54       0x13 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_strerror.o
- *fill*         0x000000000002ed67        0x1 
- .rodata        0x000000000002ed68      0x308 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_strerror.o
+                0x000000000002ed30       0x13 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_strerror.o
+ *fill*         0x000000000002ed43        0x1 
+ .rodata        0x000000000002ed44      0x308 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_strerror.o
  .rodata.nrf_strerror_array
-                0x000000000002f070       0xf0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_strerror.o
+                0x000000000002f04c       0xf0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_strerror.o
  .rodata.m_flash_info
-                0x000000000002f160        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fstorage_sd.o
+                0x000000000002f13c        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fstorage_sd.o
  .rodata.nrf_fstorage_sd
-                0x000000000002f16c       0x20 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fstorage_sd.o
-                0x000000000002f16c                nrf_fstorage_sd
- .rodata        0x000000000002f18c       0x7b Output/ble_ehsb_c_pca10040_s132 Debug/Obj/boards.o
- *fill*         0x000000000002f207        0x1 
+                0x000000000002f148       0x20 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_fstorage_sd.o
+                0x000000000002f148                nrf_fstorage_sd
+ .rodata        0x000000000002f168       0x7b Output/ble_ehsb_c_pca10040_s132 Debug/Obj/boards.o
+ *fill*         0x000000000002f1e3        0x1 
  .rodata.m_board_led_list
-                0x000000000002f208        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/boards.o
+                0x000000000002f1e4        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/boards.o
  .rodata.m_board_btn_list
-                0x000000000002f20c        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/boards.o
- .rodata        0x000000000002f210       0x5d Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_clock.o
- *fill*         0x000000000002f26d        0x3 
- .rodata        0x000000000002f270       0x57 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_common.o
- *fill*         0x000000000002f2c7        0x1 
- .rodata        0x000000000002f2c8       0x97 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
- *fill*         0x000000000002f35f        0x1 
- .rodata        0x000000000002f360       0x93 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_uart.o
- *fill*         0x000000000002f3f3        0x1 
- .rodata        0x000000000002f3f4       0x38 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/bsp.o
- .rodata        0x000000000002f42c       0x17 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/SEGGER_RTT.o
- *fill*         0x000000000002f443        0x1 
- .rodata        0x000000000002f444        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/ble_db_discovery.o
- .rodata        0x000000000002f450      0x13c Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_ble_gatt.o
- .rodata        0x000000000002f58c       0x47 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/ble_nus_c.o
- *fill*         0x000000000002f5d3        0x1 
- .rodata        0x000000000002f5d4       0xb0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh.o
+                0x000000000002f1e8        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/boards.o
+ .rodata        0x000000000002f1ec       0x5d Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_clock.o
+ *fill*         0x000000000002f249        0x3 
+ .rodata        0x000000000002f24c       0x57 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_common.o
+ *fill*         0x000000000002f2a3        0x1 
+ .rodata        0x000000000002f2a4       0x97 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
+ *fill*         0x000000000002f33b        0x1 
+ .rodata        0x000000000002f33c       0x93 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_drv_uart.o
+ *fill*         0x000000000002f3cf        0x1 
+ .rodata        0x000000000002f3d0       0x38 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/bsp.o
+ .rodata        0x000000000002f408       0x17 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/SEGGER_RTT.o
+ *fill*         0x000000000002f41f        0x1 
+ .rodata        0x000000000002f420        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/ble_db_discovery.o
+ .rodata        0x000000000002f42c      0x13c Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_ble_gatt.o
+ .rodata        0x000000000002f568       0x47 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/ble_nus_c.o
+ *fill*         0x000000000002f5af        0x1 
+ .rodata        0x000000000002f5b0       0xb0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh.o
  .rodata.sdh_req_observers
-                0x000000000002f684        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh.o
+                0x000000000002f660        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh.o
  .rodata.sdh_state_observers
-                0x000000000002f690        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh.o
+                0x000000000002f66c        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh.o
  .rodata.sdh_stack_observers
-                0x000000000002f69c        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh.o
- .rodata        0x000000000002f6a8      0x2f7 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
- *fill*         0x000000000002f99f        0x1 
+                0x000000000002f678        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh.o
+ .rodata        0x000000000002f684      0x2f7 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
+ *fill*         0x000000000002f97b        0x1 
  .rodata.sdh_ble_observers
-                0x000000000002f9a0        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
- .rodata        0x000000000002f9ac       0xb3 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
- *fill*         0x000000000002fa5f        0x1 
+                0x000000000002f97c        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
+ .rodata        0x000000000002f988       0xb3 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
+ *fill*         0x000000000002fa3b        0x1 
  .rodata.sdh_soc_observers
-                0x000000000002fa60        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
- .rodata        0x000000000002fa6c      0x3a3 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
- *fill*         0x000000000002fe0f        0x1 
+                0x000000000002fa3c        0xc Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
+ .rodata        0x000000000002fa48      0x387 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+ *fill*         0x000000000002fdcf        0x1 
  .rodata.m_led_timer_id
-                0x000000000002fe10        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002fdd0        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .rodata.add_button_timer_id
-                0x000000000002fe14        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002fdd4        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .rodata.delete_buttons_id
-                0x000000000002fe18        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002fdd8        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .rodata.m_connection_param
-                0x000000000002fe1c        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002fddc        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .rodata.m_scan_params
-                0x000000000002fe24        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002fde4        0x8 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .rodata.m_nus_uuid
-                0x000000000002fe2c        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002fdec        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .rodata.m_ehsb_uuid
-                0x000000000002fe30        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x000000000002fdf0        0x4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .rodata.libc.__RAL_ascii_ctype_map
-                0x000000000002fe34       0x80 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002fe34                __RAL_ascii_ctype_map
+                0x000000000002fdf4       0x80 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002fdf4                __RAL_ascii_ctype_map
  .rodata.libc.__RAL_ascii_ctype_mask
-                0x000000000002feb4        0xd C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- *fill*         0x000000000002fec1        0x3 
+                0x000000000002fe74        0xd C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ *fill*         0x000000000002fe81        0x3 
  .rodata.libc.__RAL_c_locale
-                0x000000000002fec4        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002fec4                __RAL_c_locale
+                0x000000000002fe84        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002fe84                __RAL_c_locale
  .rodata.libc.__RAL_c_locale_abbrev_day_names
-                0x000000000002fed0       0x1d C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002fed0                __RAL_c_locale_abbrev_day_names
- *fill*         0x000000000002feed        0x3 
+                0x000000000002fe90       0x1d C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002fe90                __RAL_c_locale_abbrev_day_names
+ *fill*         0x000000000002fead        0x3 
  .rodata.libc.__RAL_c_locale_abbrev_month_names
-                0x000000000002fef0       0x31 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002fef0                __RAL_c_locale_abbrev_month_names
- *fill*         0x000000000002ff21        0x3 
+                0x000000000002feb0       0x31 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002feb0                __RAL_c_locale_abbrev_month_names
+ *fill*         0x000000000002fee1        0x3 
  .rodata.libc.__RAL_c_locale_am_pm_indicator
-                0x000000000002ff24        0x7 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002ff24                __RAL_c_locale_am_pm_indicator
- *fill*         0x000000000002ff2b        0x1 
+                0x000000000002fee4        0x7 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002fee4                __RAL_c_locale_am_pm_indicator
+ *fill*         0x000000000002feeb        0x1 
  .rodata.libc.__RAL_c_locale_data
-                0x000000000002ff2c       0x58 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002ff2c                __RAL_c_locale_data
+                0x000000000002feec       0x58 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002feec                __RAL_c_locale_data
  .rodata.libc.__RAL_c_locale_date_format
-                0x000000000002ff84        0x9 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002ff84                __RAL_c_locale_date_format
- *fill*         0x000000000002ff8d        0x3 
+                0x000000000002ff44        0x9 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002ff44                __RAL_c_locale_date_format
+ *fill*         0x000000000002ff4d        0x3 
  .rodata.libc.__RAL_c_locale_date_time_format
-                0x000000000002ff90        0xf C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002ff90                __RAL_c_locale_date_time_format
- *fill*         0x000000000002ff9f        0x1 
+                0x000000000002ff50        0xf C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002ff50                __RAL_c_locale_date_time_format
+ *fill*         0x000000000002ff5f        0x1 
  .rodata.libc.__RAL_c_locale_day_names
-                0x000000000002ffa0       0x3a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002ffa0                __RAL_c_locale_day_names
- *fill*         0x000000000002ffda        0x2 
+                0x000000000002ff60       0x3a C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002ff60                __RAL_c_locale_day_names
+ *fill*         0x000000000002ff9a        0x2 
  .rodata.libc.__RAL_c_locale_month_names
-                0x000000000002ffdc       0x57 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x000000000002ffdc                __RAL_c_locale_month_names
- *fill*         0x0000000000030033        0x1 
+                0x000000000002ff9c       0x57 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002ff9c                __RAL_c_locale_month_names
+ *fill*         0x000000000002fff3        0x1 
  .rodata.libc.__RAL_c_locale_time_format
-                0x0000000000030034        0x9 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000030034                __RAL_c_locale_time_format
- *fill*         0x000000000003003d        0x3 
+                0x000000000002fff4        0x9 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000002fff4                __RAL_c_locale_time_format
+ *fill*         0x000000000002fffd        0x3 
  .rodata.libc.__RAL_codeset_ascii
-                0x0000000000030040       0x20 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000030040                __RAL_codeset_ascii
+                0x0000000000030000       0x20 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000030000                __RAL_codeset_ascii
  .rodata.libc.__RAL_data_empty_string
-                0x0000000000030060        0x1 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000030060                __RAL_data_empty_string
- *fill*         0x0000000000030061        0x3 
+                0x0000000000030020        0x1 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000030020                __RAL_data_empty_string
+ *fill*         0x0000000000030021        0x3 
  .rodata.libc.__RAL_data_utf8_period
-                0x0000000000030064        0x2 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000030064                __RAL_data_utf8_period
- *fill*         0x0000000000030066        0x2 
+                0x0000000000030024        0x2 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000030024                __RAL_data_utf8_period
+ *fill*         0x0000000000030026        0x2 
  .rodata.libc.__RAL_find_locale.str1.4
-                0x0000000000030068        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000030028        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
                                           0xa (size before relaxing)
-                0x0000000000030074                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
-                0x000000000000193c                __rodata_size__ = SIZEOF (.rodata)
-                0x0000000000030074                __rodata_load_end__ = __rodata_end__
+                0x0000000000030034                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
+                0x0000000000001920                __rodata_size__ = SIZEOF (.rodata)
+                0x0000000000030034                __rodata_load_end__ = __rodata_end__
 
-.rel.dyn        0x0000000000030074        0x0
- .rel.iplt      0x0000000000030074        0x0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/thumb_crt0.o
+.rel.dyn        0x0000000000030034        0x0
+ .rel.iplt      0x0000000000030034        0x0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/thumb_crt0.o
                 0x0000000000000001                . = ASSERT (((__rodata_start__ == __rodata_end__) || ((__rodata_end__ >= __FLASH_segment_start__) && (__rodata_end__ <= __FLASH_segment_end__))), error: .rodata is too large to fit in FLASH memory segment)
-                0x0000000000030074                __ARM.exidx_load_start__ = ALIGN (__rodata_end__, 0x4)
+                0x0000000000030034                __ARM.exidx_load_start__ = ALIGN (__rodata_end__, 0x4)
 
-.ARM.exidx      0x0000000000030074        0x0
-                0x0000000000030074                __ARM.exidx_start__ = .
-                0x0000000000030074                __exidx_start = __ARM.exidx_start__
+.ARM.exidx      0x0000000000030034        0x0
+                0x0000000000030034                __ARM.exidx_start__ = .
+                0x0000000000030034                __exidx_start = __ARM.exidx_start__
  *(.ARM.exidx .ARM.exidx.*)
-                0x0000000000030074                __ARM.exidx_end__ = (__ARM.exidx_start__ + SIZEOF (.ARM.exidx))
+                0x0000000000030034                __ARM.exidx_end__ = (__ARM.exidx_start__ + SIZEOF (.ARM.exidx))
                 0x0000000000000000                __ARM.exidx_size__ = SIZEOF (.ARM.exidx)
-                0x0000000000030074                __exidx_end = __ARM.exidx_end__
-                0x0000000000030074                __ARM.exidx_load_end__ = __ARM.exidx_end__
+                0x0000000000030034                __exidx_end = __ARM.exidx_end__
+                0x0000000000030034                __ARM.exidx_load_end__ = __ARM.exidx_end__
                 0x0000000000000001                . = ASSERT (((__ARM.exidx_start__ == __ARM.exidx_end__) || ((__ARM.exidx_end__ >= __FLASH_segment_start__) && (__ARM.exidx_end__ <= __FLASH_segment_end__))), error: .ARM.exidx is too large to fit in FLASH memory segment)
-                0x0000000000030074                __fast_load_start__ = ALIGN (__ARM.exidx_end__, 0x4)
+                0x0000000000030034                __fast_load_start__ = ALIGN (__ARM.exidx_end__, 0x4)
 
-.fast           0x000000002000274c        0x0 load address 0x0000000000030074
+.fast           0x000000002000274c        0x0 load address 0x0000000000030034
                 0x000000002000274c                __fast_start__ = .
  *(.fast .fast.*)
                 0x000000002000274c                __fast_end__ = (__fast_start__ + SIZEOF (.fast))
                 0x0000000000000000                __fast_size__ = SIZEOF (.fast)
-                0x0000000000030074                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
+                0x0000000000030034                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
                 0x0000000000000001                . = ASSERT (((__fast_load_start__ == __fast_load_end__) || ((__fast_load_end__ >= __FLASH_segment_start__) && (__fast_load_end__ <= __FLASH_segment_end__))), error: .fast is too large to fit in FLASH memory segment)
 
 .fast_run       0x000000002000274c        0x0
@@ -10837,9 +10837,9 @@ Linker script and memory map
                 0x0000000000000000                __fast_run_size__ = SIZEOF (.fast_run)
                 0x000000002000274c                __fast_run_load_end__ = __fast_run_end__
                 0x0000000000000001                . = ASSERT (((__fast_run_start__ == __fast_run_end__) || ((__fast_run_end__ >= __RAM_segment_start__) && (__fast_run_end__ <= __RAM_segment_end__))), error: .fast_run is too large to fit in RAM memory segment)
-                0x0000000000030074                __data_load_start__ = ALIGN ((__fast_load_start__ + SIZEOF (.fast)), 0x4)
+                0x0000000000030034                __data_load_start__ = ALIGN ((__fast_load_start__ + SIZEOF (.fast)), 0x4)
 
-.data           0x000000002000274c      0x350 load address 0x0000000000030074
+.data           0x000000002000274c      0x350 load address 0x0000000000030034
                 0x000000002000274c                __data_start__ = .
  *(.data .data.* .gnu.linkonce.d.*)
  .data.rtt_log_backend
@@ -10868,13 +10868,13 @@ Linker script and memory map
                 0x0000000020002a88                __RAL_global_locale
                 0x0000000020002a9c                __data_end__ = (__data_start__ + SIZEOF (.data))
                 0x0000000000000350                __data_size__ = SIZEOF (.data)
-                0x00000000000303c4                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
+                0x0000000000030384                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
 
 .igot.plt       0x0000000100000000        0x0
  .igot.plt      0x0000000100000000        0x0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/thumb_crt0.o
                 0x0000000000000001                . = ASSERT (((__data_load_start__ == __data_load_end__) || ((__data_load_end__ >= __FLASH_segment_start__) && (__data_load_end__ <= __FLASH_segment_end__))), error: .data is too large to fit in FLASH memory segment)
 
-.data_run       0x000000002000274c      0x350 load address 0x0000000000030074
+.data_run       0x000000002000274c      0x350 load address 0x0000000000030034
                 0x000000002000274c                __data_run_start__ = .
                 0x0000000020002a9c                . = MAX ((__data_run_start__ + SIZEOF (.data)), .)
  *fill*         0x000000002000274c      0x350 
@@ -10882,16 +10882,16 @@ Linker script and memory map
                 0x0000000000000350                __data_run_size__ = SIZEOF (.data_run)
                 0x0000000020002a9c                __data_run_load_end__ = __data_run_end__
                 0x0000000000000001                . = ASSERT (((__data_run_start__ == __data_run_end__) || ((__data_run_end__ >= __RAM_segment_start__) && (__data_run_end__ <= __RAM_segment_end__))), error: .data_run is too large to fit in RAM memory segment)
-                0x00000000000303c4                __tdata_load_start__ = ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4)
+                0x0000000000030384                __tdata_load_start__ = ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4)
 
-.tdata          0x0000000020002a9c        0x0 load address 0x00000000000303c4
+.tdata          0x0000000020002a9c        0x0 load address 0x0000000000030384
                 0x0000000020002a9c                __tdata_start__ = .
  *(.tdata .tdata.*)
                 0x0000000020002a9c                __tdata_end__ = (__tdata_start__ + SIZEOF (.tdata))
                 0x0000000000000000                __tdata_size__ = SIZEOF (.tdata)
-                0x00000000000303c4                __tdata_load_end__ = (__tdata_load_start__ + SIZEOF (.tdata))
-                0x00000000000303c4                __FLASH_segment_used_end__ = (ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4) + SIZEOF (.tdata))
-                0x00000000000303c4                __FLASH_segment_used_size__ = (__FLASH_segment_used_end__ - __FLASH_segment_start__)
+                0x0000000000030384                __tdata_load_end__ = (__tdata_load_start__ + SIZEOF (.tdata))
+                0x0000000000030384                __FLASH_segment_used_end__ = (ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4) + SIZEOF (.tdata))
+                0x0000000000030384                __FLASH_segment_used_size__ = (__FLASH_segment_used_end__ - __FLASH_segment_start__)
                 0x0000000000000001                . = ASSERT (((__tdata_load_start__ == __tdata_load_end__) || ((__tdata_load_end__ >= __FLASH_segment_start__) && (__tdata_load_end__ <= __FLASH_segment_end__))), error: .tdata is too large to fit in FLASH memory segment)
 
 .tdata_run      0x0000000020002a9c        0x0
@@ -10903,7 +10903,7 @@ Linker script and memory map
                 0x0000000000000001                . = ASSERT (((__tdata_run_start__ == __tdata_run_end__) || ((__tdata_run_end__ >= __RAM_segment_start__) && (__tdata_run_end__ <= __RAM_segment_end__))), error: .tdata_run is too large to fit in RAM memory segment)
                 0x0000000020002a9c                __bss_load_start__ = ALIGN (__tdata_run_end__, 0x4)
 
-.bss            0x0000000020002a9c     0x11fc
+.bss            0x0000000020002a9c     0x130c
                 0x0000000020002a9c                __bss_start__ = .
  *(.bss .bss.* .gnu.linkonce.b.*)
  .bss.m_string_buff
@@ -11066,50 +11066,50 @@ Linker script and memory map
                 0x000000002000396c                delete_counter
  *fill*         0x000000002000396d        0x3 
  .bss.whitelist
-                0x0000000020003970       0x30 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x0000000020003970      0x140 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
                 0x0000000020003970                whitelist
  .bss.index.10454
-                0x00000000200039a0        0x2 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
- *fill*         0x00000000200039a2        0x2 
+                0x0000000020003ab0        0x2 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+ *fill*         0x0000000020003ab2        0x2 
  .bss.data_array.10453
-                0x00000000200039a4       0xf4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x0000000020003ab4       0xf4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .bss.rx_buf.10566
-                0x0000000020003a98      0x100 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x0000000020003ba8      0x100 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .bss.tx_buf.10567
-                0x0000000020003b98      0x100 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                0x0000000020003ca8      0x100 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  *(COMMON)
-                0x0000000020003c98                __bss_end__ = (__bss_start__ + SIZEOF (.bss))
-                0x00000000000011fc                __bss_size__ = SIZEOF (.bss)
-                0x0000000020003c98                __bss_load_end__ = __bss_end__
+                0x0000000020003da8                __bss_end__ = (__bss_start__ + SIZEOF (.bss))
+                0x000000000000130c                __bss_size__ = SIZEOF (.bss)
+                0x0000000020003da8                __bss_load_end__ = __bss_end__
                 0x0000000000000001                . = ASSERT (((__bss_start__ == __bss_end__) || ((__bss_end__ >= __RAM_segment_start__) && (__bss_end__ <= __RAM_segment_end__))), error: .bss is too large to fit in RAM memory segment)
-                0x0000000020003c98                __tbss_load_start__ = ALIGN (__bss_end__, 0x4)
+                0x0000000020003da8                __tbss_load_start__ = ALIGN (__bss_end__, 0x4)
 
-.tbss           0x0000000020003c98        0x0
-                0x0000000020003c98                __tbss_start__ = .
+.tbss           0x0000000020003da8        0x0
+                0x0000000020003da8                __tbss_start__ = .
  *(.tbss .tbss.*)
-                0x0000000020003c98                __tbss_end__ = (__tbss_start__ + SIZEOF (.tbss))
+                0x0000000020003da8                __tbss_end__ = (__tbss_start__ + SIZEOF (.tbss))
                 0x0000000000000000                __tbss_size__ = SIZEOF (.tbss)
-                0x0000000020003c98                __tbss_load_end__ = __tbss_end__
+                0x0000000020003da8                __tbss_load_end__ = __tbss_end__
                 0x0000000000000001                . = ASSERT (((__tbss_start__ == __tbss_end__) || ((__tbss_end__ >= __RAM_segment_start__) && (__tbss_end__ <= __RAM_segment_end__))), error: .tbss is too large to fit in RAM memory segment)
-                0x0000000020003c98                __non_init_load_start__ = ALIGN (__tbss_end__, 0x4)
+                0x0000000020003da8                __non_init_load_start__ = ALIGN (__tbss_end__, 0x4)
 
-.non_init       0x0000000020003c98        0x0
-                0x0000000020003c98                __non_init_start__ = .
+.non_init       0x0000000020003da8        0x0
+                0x0000000020003da8                __non_init_start__ = .
  *(.non_init .non_init.*)
-                0x0000000020003c98                __non_init_end__ = (__non_init_start__ + SIZEOF (.non_init))
+                0x0000000020003da8                __non_init_end__ = (__non_init_start__ + SIZEOF (.non_init))
                 0x0000000000000000                __non_init_size__ = SIZEOF (.non_init)
-                0x0000000020003c98                __non_init_load_end__ = __non_init_end__
+                0x0000000020003da8                __non_init_load_end__ = __non_init_end__
                 0x0000000000000001                . = ASSERT (((__non_init_start__ == __non_init_end__) || ((__non_init_end__ >= __RAM_segment_start__) && (__non_init_end__ <= __RAM_segment_end__))), error: .non_init is too large to fit in RAM memory segment)
-                0x0000000020003c98                __heap_load_start__ = ALIGN (__non_init_end__, 0x4)
+                0x0000000020003da8                __heap_load_start__ = ALIGN (__non_init_end__, 0x4)
 
-.heap           0x0000000020003c98      0x200
-                0x0000000020003c98                __heap_start__ = .
+.heap           0x0000000020003da8      0x200
+                0x0000000020003da8                __heap_start__ = .
  *(.heap .heap.*)
-                0x0000000020003e98                . = ALIGN (MAX ((__heap_start__ + __HEAPSIZE__), .), 0x4)
- *fill*         0x0000000020003c98      0x200 
-                0x0000000020003e98                __heap_end__ = (__heap_start__ + SIZEOF (.heap))
+                0x0000000020003fa8                . = ALIGN (MAX ((__heap_start__ + __HEAPSIZE__), .), 0x4)
+ *fill*         0x0000000020003da8      0x200 
+                0x0000000020003fa8                __heap_end__ = (__heap_start__ + SIZEOF (.heap))
                 0x0000000000000200                __heap_size__ = SIZEOF (.heap)
-                0x0000000020003e98                __heap_load_end__ = __heap_end__
+                0x0000000020003fa8                __heap_load_end__ = __heap_end__
                 0x0000000000000001                . = ASSERT (((__heap_start__ == __heap_end__) || ((__heap_end__ >= __RAM_segment_start__) && (__heap_end__ <= __RAM_segment_end__))), error: .heap is too large to fit in RAM memory segment)
                 0x000000002000f800                __stack_load_start__ = (__RAM_segment_end__ - 0x800)
 
@@ -11331,7 +11331,7 @@ OUTPUT(Output/Debug/Exe/ble_ehsb_c_pca10040_s132.elf elf32-littlearm)
  .comment       0x000000000000004c       0x4d Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .comment       0x000000000000004c       0x4d C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
 
-.debug_line     0x0000000000000000    0x16cd9
+.debug_line     0x0000000000000000    0x16cd6
  .debug_line    0x0000000000000000      0x2b4 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/thumb_crt0.o
  .debug_line    0x00000000000002b4      0x946 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
  .debug_line    0x0000000000000bfa      0x8c1 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
@@ -11372,7 +11372,7 @@ OUTPUT(Output/Debug/Exe/ble_ehsb_c_pca10040_s132.elf elf32-littlearm)
  .debug_line    0x000000000001339b      0xb79 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh.o
  .debug_line    0x0000000000013f14      0xbc3 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
  .debug_line    0x0000000000014ad7      0x868 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
- .debug_line    0x000000000001533f     0x199a Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+ .debug_line    0x000000000001533f     0x1997 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
 
 .debug_info     0x0000000000000000    0x4892f
  .debug_info    0x0000000000000000       0xd0 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/thumb_crt0.o
@@ -11941,7 +11941,7 @@ OUTPUT(Output/Debug/Exe/ble_ehsb_c_pca10040_s132.elf elf32-littlearm)
  .debug_macro   0x0000000000019112       0x16 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
  .debug_macro   0x0000000000019128       0x10 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
 
-.debug_str      0x0000000000000000    0x819de
+.debug_str      0x0000000000000000    0x819dd
  .debug_str     0x0000000000000000    0x6832d Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
                                       0x69044 (size before relaxing)
  .debug_str     0x000000000006832d      0x291 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
@@ -12016,5 +12016,5 @@ OUTPUT(Output/Debug/Exe/ble_ehsb_c_pca10040_s132.elf elf32-littlearm)
                                       0x6e900 (size before relaxing)
  .debug_str     0x0000000000080a6e      0x186 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
                                       0x685df (size before relaxing)
- .debug_str     0x0000000000080bf4      0xdea Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
-                                      0x75652 (size before relaxing)
+ .debug_str     0x0000000000080bf4      0xde9 Output/ble_ehsb_c_pca10040_s132 Debug/Obj/main.o
+                                      0x75651 (size before relaxing)
