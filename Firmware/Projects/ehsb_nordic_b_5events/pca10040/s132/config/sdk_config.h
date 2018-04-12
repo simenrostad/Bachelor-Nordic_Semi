@@ -100,7 +100,7 @@
 // <i> Enable/disable central-specific Peer Manager functionality.
 
 #ifndef PM_CENTRAL_ENABLED
-#define PM_CENTRAL_ENABLED 0
+#define PM_CENTRAL_ENABLED 1
 #endif
 
 // </e>
@@ -375,7 +375,7 @@
 // <e> APP_USBD_CONFIG_LOG_ENABLED - Enable logging in the module
 //==========================================================
 #ifndef APP_USBD_CONFIG_LOG_ENABLED
-#define APP_USBD_CONFIG_LOG_ENABLED 0
+#define APP_USBD_CONFIG_LOG_ENABLED 1
 #endif
 // <o> APP_USBD_CONFIG_LOG_LEVEL  - Default Severity level
  
@@ -386,7 +386,7 @@
 // <4=> Debug 
 
 #ifndef APP_USBD_CONFIG_LOG_LEVEL
-#define APP_USBD_CONFIG_LOG_LEVEL 3
+#define APP_USBD_CONFIG_LOG_LEVEL 4
 #endif
 
 // <o> APP_USBD_CONFIG_INFO_COLOR  - ANSI escape code prefix.
@@ -567,7 +567,7 @@
 // <e> GPIOTE_ENABLED - nrf_drv_gpiote - GPIOTE peripheral driver
 //==========================================================
 #ifndef GPIOTE_ENABLED
-#define GPIOTE_ENABLED 0
+#define GPIOTE_ENABLED 1
 #endif
 // <o> GPIOTE_CONFIG_NUM_OF_LOW_POWER_EVENTS - Number of lower power input pins 
 #ifndef GPIOTE_CONFIG_NUM_OF_LOW_POWER_EVENTS
@@ -906,7 +906,7 @@
 // <i> This settings means only that components for DCDC regulator are installed and it can be enabled.
 
 #ifndef POWER_CONFIG_DEFAULT_DCDCEN
-#define POWER_CONFIG_DEFAULT_DCDCEN 1
+#define POWER_CONFIG_DEFAULT_DCDCEN 0
 #endif
 
 // <q> POWER_CONFIG_DEFAULT_DCDCENHV  - The default configuration of High Voltage DCDC regulator
@@ -1809,7 +1809,7 @@
 // <e> UART_ENABLED - nrf_drv_uart - UART/UARTE peripheral driver
 //==========================================================
 #ifndef UART_ENABLED
-#define UART_ENABLED 0
+#define UART_ENABLED 1
 #endif
 // <o> UART_DEFAULT_CONFIG_HWFC  - Hardware Flow Control
  
@@ -1997,7 +1997,7 @@
 // <e> APP_SCHEDULER_ENABLED - app_scheduler - Events scheduler
 //==========================================================
 #ifndef APP_SCHEDULER_ENABLED
-#define APP_SCHEDULER_ENABLED 0
+#define APP_SCHEDULER_ENABLED 1
 #endif
 // <q> APP_SCHEDULER_WITH_PAUSE  - Enabling pause feature
  
@@ -2018,7 +2018,7 @@
 // <e> APP_TIMER_ENABLED - app_timer - Application timer functionality
 //==========================================================
 #ifndef APP_TIMER_ENABLED
-#define APP_TIMER_ENABLED 0
+#define APP_TIMER_ENABLED 1
 #endif
 // <o> APP_TIMER_CONFIG_RTC_FREQUENCY  - Configure RTC prescaler.
  
@@ -2170,7 +2170,7 @@
  
 
 #ifndef BUTTON_ENABLED
-#define BUTTON_ENABLED 0
+#define BUTTON_ENABLED 1
 #endif
 
 // <q> CRC16_ENABLED  - crc16 - CRC16 calculation routines
@@ -3008,7 +3008,7 @@
 // <e> NRF_LOG_BACKEND_RTT_ENABLED - nrf_log_backend_rtt - Log RTT backend
 //==========================================================
 #ifndef NRF_LOG_BACKEND_RTT_ENABLED
-#define NRF_LOG_BACKEND_RTT_ENABLED 0
+#define NRF_LOG_BACKEND_RTT_ENABLED 1
 #endif
 // <o> NRF_LOG_BACKEND_RTT_TEMP_BUFFER_SIZE - Size of buffer for partially processed strings. 
 // <i> Size of the buffer is a trade-off between RAM usage and processing.
@@ -3025,7 +3025,7 @@
 // <e> NRF_LOG_BACKEND_UART_ENABLED - nrf_log_backend_uart - Log UART backend
 //==========================================================
 #ifndef NRF_LOG_BACKEND_UART_ENABLED
-#define NRF_LOG_BACKEND_UART_ENABLED 0
+#define NRF_LOG_BACKEND_UART_ENABLED 1
 #endif
 // <o> NRF_LOG_BACKEND_UART_TX_PIN - UART TX pin 
 #ifndef NRF_LOG_BACKEND_UART_TX_PIN
@@ -3073,7 +3073,7 @@
 // <e> NRF_LOG_ENABLED - Logging module for nRF5 SDK
 //==========================================================
 #ifndef NRF_LOG_ENABLED
-#define NRF_LOG_ENABLED 0
+#define NRF_LOG_ENABLED 1
 #endif
 // <e> NRF_LOG_USES_COLORS - If enabled then ANSI escape code for colors is prefixed to every string
 //==========================================================
@@ -3139,7 +3139,7 @@
 // <4=> Debug 
 
 #ifndef NRF_LOG_DEFAULT_LEVEL
-#define NRF_LOG_DEFAULT_LEVEL 1
+#define NRF_LOG_DEFAULT_LEVEL 3
 #endif
 
 // <q> NRF_LOG_DEFERRED  - Enable deffered logger.
@@ -4941,7 +4941,7 @@
 // <e> NRF_SDH_BLE_LOG_ENABLED - Enable logging in SoftDevice handler (BLE) module.
 //==========================================================
 #ifndef NRF_SDH_BLE_LOG_ENABLED
-#define NRF_SDH_BLE_LOG_ENABLED 0
+#define NRF_SDH_BLE_LOG_ENABLED 1
 #endif
 // <o> NRF_SDH_BLE_LOG_LEVEL  - Default Severity level
  
@@ -4992,7 +4992,7 @@
 // <e> NRF_SDH_LOG_ENABLED - Enable logging in SoftDevice handler module.
 //==========================================================
 #ifndef NRF_SDH_LOG_ENABLED
-#define NRF_SDH_LOG_ENABLED 0
+#define NRF_SDH_LOG_ENABLED 1
 #endif
 // <o> NRF_SDH_LOG_LEVEL  - Default Severity level
  
@@ -5043,7 +5043,7 @@
 // <e> NRF_SDH_SOC_LOG_ENABLED - Enable logging in SoftDevice handler (SoC) module.
 //==========================================================
 #ifndef NRF_SDH_SOC_LOG_ENABLED
-#define NRF_SDH_SOC_LOG_ENABLED 0
+#define NRF_SDH_SOC_LOG_ENABLED 1
 #endif
 // <o> NRF_SDH_SOC_LOG_LEVEL  - Default Severity level
  
@@ -5592,12 +5592,12 @@
 // <2=> NRF_CLOCK_LF_SRC_SYNTH 
 
 #ifndef NRF_SDH_CLOCK_LF_SRC
-#define NRF_SDH_CLOCK_LF_SRC 0
+#define NRF_SDH_CLOCK_LF_SRC 1
 #endif
 
 // <o> NRF_SDH_CLOCK_LF_RC_CTIV - SoftDevice calibration timer interval. 
 #ifndef NRF_SDH_CLOCK_LF_RC_CTIV
-#define NRF_SDH_CLOCK_LF_RC_CTIV 16
+#define NRF_SDH_CLOCK_LF_RC_CTIV 0
 #endif
 
 // <o> NRF_SDH_CLOCK_LF_RC_TEMP_CTIV - SoftDevice calibration timer interval under constant temperature. 
@@ -5605,7 +5605,7 @@
 // <i>  if the temperature has not changed.
 
 #ifndef NRF_SDH_CLOCK_LF_RC_TEMP_CTIV
-#define NRF_SDH_CLOCK_LF_RC_TEMP_CTIV 2
+#define NRF_SDH_CLOCK_LF_RC_TEMP_CTIV 0
 #endif
 
 // <o> NRF_SDH_CLOCK_LF_XTAL_ACCURACY  - External crystal clock accuracy used in the LL to compute timing windows.
@@ -5620,7 +5620,7 @@
 // <7=> NRF_CLOCK_LF_XTAL_ACCURACY_20_PPM 
 
 #ifndef NRF_SDH_CLOCK_LF_XTAL_ACCURACY
-#define NRF_SDH_CLOCK_LF_XTAL_ACCURACY 1
+#define NRF_SDH_CLOCK_LF_XTAL_ACCURACY 7
 #endif
 
 // </h> 

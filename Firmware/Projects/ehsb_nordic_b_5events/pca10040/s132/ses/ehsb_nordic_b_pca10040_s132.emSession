@@ -11,8 +11,8 @@
  <Memory3/>
  <Memory4/>
  <Project>
-  <ProjectSessionItem path="ehsb_nordic_b_pca10040_s132?"/>
-  <ProjectSessionItem path="ehsb_nordic_b_pca10040_s132?;ehsb_nordic_b_pca10040_s132"/>
+  <ProjectSessionItem path="ehsb_nordic_b_pca10040_s132"/>
+  <ProjectSessionItem path="ehsb_nordic_b_pca10040_s132;ehsb_nordic_b_pca10040_s132"/>
  </Project>
  <Register1/>
  <Register2/>
@@ -34,5 +34,5 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files/>
- <ARMCrossStudioWindow activeProject="ble_app_beacon_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="ehsb_nordic_b_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
