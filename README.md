@@ -1,11 +1,10 @@
-# Bachelor-Nordic_Semi
+# Bachelor@Nordic_Semi
 
 Energy Harvesting Stop Button (EHSB)
 
-We are working on a bachelor asgingment under guidence of Nordic Semi Conductor to make a EHSB
-using the NRF52 and  Bluetooth Low Energy (BLE).
+We are working on a bachelor assignment under the guidance of Nordic Semiconductor to make a energy harvesting stop button using the NRF52 SoC and Bluetooth Low Energy (BLE).
 
-The asginment is split in to tow piezes, Hardware And Software.
+The assignment is split in to two pieces, hardware and software.
 
 
 potetmos
