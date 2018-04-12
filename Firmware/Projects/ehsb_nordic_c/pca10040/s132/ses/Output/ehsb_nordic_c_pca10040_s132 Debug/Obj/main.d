@@ -1,9 +1,9 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/main.o: \
- C:\GitHub\Bachelor-Nordic_Semi\Software\Projects\ehsb_nordic_c\main.c \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/Projects/ehsb_nordic_c/main.c \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  ../../../../../External/components/libraries/util/nordic_common.h \
  ../../../../../External/components/libraries/util/app_error.h \
  ../../../../../External/components/device/nrf.h \
@@ -47,7 +47,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/main.o: \
  ../../../../../External/components/ble/common/ble_gatt_db.h \
  ../../../../../External/components/libraries/timer/app_timer.h \
  ../../../../../External/components/libraries/util/app_util.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
  ../../../../../External/components/libraries/bsp/bsp_btn_ble.h \
  ../../../../../External/components/libraries/bsp/bsp.h \
  ../../../../../External/components/boards/boards.h \
@@ -55,7 +55,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/main.o: \
  ../../../../../External/components/drivers_nrf/hal/nrf_peripherals.h \
  ../../../../../External/components/device/nrf52832_peripherals.h \
  ../../../../../External/components/libraries/util/nrf_assert.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdlib.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdlib.h \
  ../../../../../External/components/boards/pca10040.h \
  ../../../../../External/components/libraries/button/app_button.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gap.h \
@@ -68,7 +68,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/main.o: \
  ../../../../../External/components/softdevice/common/nrf_sdh_soc.h \
  ../../../../../External/components/libraries/pwr_mgmt/nrf_pwr_mgmt.h \
  ../../../../../External/components/ble/common/ble_advdata.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
  ../../../../../External/components/ble/ble_services/ble_nus_c/ble_nus_c.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gatt.h \
  ../../../../../External/components/ble/nrf_ble_gatt/nrf_ble_gatt.h \
