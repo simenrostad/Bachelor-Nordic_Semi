@@ -6,16 +6,16 @@
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
 
-#define APP_BLE_CONN_CFG_TAG             1                                /**< A tag identifying the SoftDevice BLE configuration. */
-#define EHSB_SERVICE_UUID_TYPE           0x02                             /**< Vendor spesific UUID.*/  
+#define APP_BLE_CONN_CFG_TAG               1                                /**< A tag identifying the SoftDevice BLE configuration. */
+#define EHSB_SERVICE_UUID_TYPE             0x02                             /**< Vendor spesific UUID.*/  
 #define EHSB_BASE_UUID                   {{0x9F, 0xCA, 0xDC, 0x24, \
                                            0x0E, 0xE5, 0xA9, 0xE0, \
                                            0x93, 0xF3, 0xA3, 0xB5, \
-                                           0x00, 0x00, 0x40, 0x6E}}       /**< Base UUID */
+                                           0x00, 0x00, 0x40, 0x6E}}         /**< Base UUID */
 
-#define BLE_UUID_EHSB_SERVICE             0x0001                          /**< The UUID of the Nordic UART Service. */
+#define BLE_UUID_EHSB_SERVICE             0x0001                            /**< The UUID of the Nordic UART Service. */
 
-static ble_uuid_t m_adv_uuids[]          =                                /**< Universally unique service identifier. */
+static ble_uuid_t m_adv_uuids[]          =                                  /**< Universally unique service identifier. */
 {
     {BLE_UUID_EHSB_SERVICE, EHSB_SERVICE_UUID_TYPE}
 };
@@ -102,7 +102,7 @@ int main(void)
     ble_stack_init();
     advertising_init();
     
-    NRF_LOG_INFO("Starting EHSB project");
+    NRF_LOG_INFO("Starting ehsb_nordic_b project");
 
 /**< Sleep between advertising intervals */
     for (;; )
