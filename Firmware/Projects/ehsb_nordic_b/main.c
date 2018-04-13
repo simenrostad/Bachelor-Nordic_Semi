@@ -79,15 +79,6 @@ static void ble_stack_init(void)
     sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);
 }
 
-/**@brief Function for initializing logging. */
-static void log_init(void)
-{
-    ret_code_t err_code = NRF_LOG_INIT(NULL);
-    APP_ERROR_CHECK(err_code);
-
-    NRF_LOG_DEFAULT_BACKENDS_INIT();
-}
-
 /**@brief Function for doing power management. */
 static void power_manage(void)
 {
@@ -98,11 +89,8 @@ static void power_manage(void)
 int main(void)
 {
     // Initialize.
-    log_init();
     ble_stack_init();
     advertising_init();
-    
-    NRF_LOG_INFO("Starting ehsb_nordic_b project");
 
 /**< Sleep between advertising intervals */
     for (;; )
