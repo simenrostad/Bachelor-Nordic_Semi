@@ -344,37 +344,6 @@ static void conn_params_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-static bool is_uuid_present(ble_uuid_t               const * p_target_uuid,
-                            ble_gap_evt_adv_report_t const * p_adv_report)
-{
-    ret_code_t   err_code;
-    ble_uuid_t   extracted_uuid;
-    uint16_t     index  = 0;
-    uint8_t    * p_data = (uint8_t *)p_adv_report->data;
-
-    while (index < p_adv_report->dlen)
-    {
-        uint8_t field_length = p_data[index];
-        uint8_t field_type   = p_data[index + 1];
-
-        if (   (field_type == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_MORE_AVAILABLE)
-                 || (field_type == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE))
-        {
-            err_code = sd_ble_uuid_decode(UUID128_SIZE, &p_data[index + 2], &extracted_uuid);
-            if (err_code == NRF_SUCCESS)
-            {
-                if (   (extracted_uuid.uuid == p_target_uuid->uuid)
-                    && (extracted_uuid.type == p_target_uuid->type))
-                {
-                    return true;
-                }
-            }
-        }
-        index += field_length + 1;
-    }
-    return false;
-}
-
 /**@brief Function for handling BLE events.
  *
  * @param[in]   p_ble_evt   Bluetooth stack event.
@@ -418,13 +387,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
         {
              ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
 
-             if (is_uuid_present(&m_nus_uuid, p_adv_report))
-             {
-                    err_code = ble_nus_string_send(&m_nus, string , &string_length);
-                    APP_ERROR_CHECK(err_code);
-             }
-
-             else if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
+             if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
                      && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
                   {
                      memcpy(&adv_rep_uuid[0], &p_adv_report->data[5], 16);
