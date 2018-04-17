@@ -74,6 +74,8 @@
 
 #define NUS_SERVICE_UUID_TYPE   BLE_UUID_TYPE_VENDOR_BEGIN              /**< UUID type for the Nordic UART Service (vendor specific). */
 
+//#define ORIGINAL_BUTTON_UUID   {0x9F, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x01, 0x00, 0x40, 0x6E}
+
 #define SCAN_INTERVAL           0x0070                                  /**< Determines scan interval in units of 0.625 millisecond. */
 #define SCAN_WINDOW             0x0060                                  /**< Determines scan window in units of 0.625 millisecond. */
 #define SCAN_TIMEOUT            0x0000                                  /**< Timout when scanning. 0x0000 disables timeout. */
@@ -111,12 +113,14 @@ bool new_button_added = false;
 bool existing_button = false;
 bool connected = false;
 bool whitelist_deleted = false;
-uint32_t button_number = 0;
+uint8_t button_number = 0;
 uint32_t flash_addr = 0x3f000;
 uint8_t delete_counter = 0;
 
 // Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
-uint8_t whitelist[20][16] = {0};
+uint8_t whitelist[30][16] = {0};
+//Add the original button for this system to "whitelist"
+//memcpy(&whitelist[0], ORIGINAL_BUTTON_UUID, 16);
 
 static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt);
 
@@ -161,11 +165,11 @@ static ble_uuid_t const m_nus_uuid =
 };
 
 /**@brief EHSB uuid. */
-static ble_uuid_t const m_ehsb_uuid =
-{
-    .uuid = BLE_EHSB_SERVICE,
-    .type = NUS_SERVICE_UUID_TYPE
-};
+//static ble_uuid_t const m_ehsb_uuid =
+//{
+//    .uuid = BLE_EHSB_SERVICE,
+//    .type = NUS_SERVICE_UUID_TYPE
+//};
 
 
 /**@brief Function for asserts in the SoftDevice.
@@ -410,16 +414,16 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
 
         case BLE_NUS_C_EVT_NUS_TX_EVT:
             ble_nus_chars_received_uart_print(p_ble_nus_evt->p_data, p_ble_nus_evt->data_len);
-            if(memcmp(p_ble_nus_evt->p_data, "button_found", sizeof("button_found")) == 0)
-            {
-                nrf_gpio_pin_set(STOP_SIGN);
-                nrf_gpio_pin_clear(LED_4);
-                scan_stop();
-                err_code = ble_nus_c_string_send(&m_ble_nus_c, streng, length);
-                APP_ERROR_CHECK(err_code);
-                reset = true;
-                reset_r = true;
-            }
+//            if(memcmp(p_ble_nus_evt->p_data, "button_found", sizeof("button_found")) == 0)
+//            {
+//                nrf_gpio_pin_set(STOP_SIGN);
+//                nrf_gpio_pin_clear(LED_4);
+//                scan_stop();
+//                err_code = ble_nus_c_string_send(&m_ble_nus_c, streng, length);
+//                APP_ERROR_CHECK(err_code);
+//                reset = true;
+//                reset_r = true;
+//            }
             if(p_ble_nus_evt->data_len == 16)
             {
                 if(!add_button)
@@ -575,16 +579,17 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                 }
                 
                 //If stop button is found: turn on stop sign and stop scanning
-                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
-                {                
-                  nrf_gpio_pin_set(STOP_SIGN);
-                  nrf_gpio_pin_clear(LED_2);
-                  scan_stop();
-                  reset = true;
-                }
+//                if (is_uuid_present(&m_ehsb_uuid, p_adv_report))
+//                {                
+//                  nrf_gpio_pin_set(STOP_SIGN);
+//                  nrf_gpio_pin_clear(LED_2);
+//                  scan_stop();
+//                  reset = true;
+//                }
             
-                //Compare received UUID to the entries, if any, in "whitelist
-                else
+                //Compare received UUID to the entries in "whitelist
+                if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
+                   && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
                 {
                      for(int8_t i = 0; i < button_number; i++)
                      {                                                
@@ -834,7 +839,7 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
        {
           scan_start();
        }
-       if(button_number > 20)
+       if(button_number > 30)
        {
           NRF_LOG_INFO("\"Whitelist\" full");
           scan_stop();
@@ -1001,9 +1006,9 @@ static void read_memory(void)
     err_code = nrf_fstorage_read(&whitelist_storage, 0x3e000, &button_number, 4);
     APP_ERROR_CHECK(err_code);
 
-    NRF_LOG_INFO("%d", button_number)
+    NRF_LOG_INFO("button_number: %d", button_number)
 
-    if(button_number == -1)
+    if(button_number == 255)
     {
         button_number = 0;
     }
