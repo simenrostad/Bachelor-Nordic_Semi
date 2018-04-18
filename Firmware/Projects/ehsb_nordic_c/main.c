@@ -74,8 +74,6 @@
 
 #define NUS_SERVICE_UUID_TYPE   BLE_UUID_TYPE_VENDOR_BEGIN              /**< UUID type for the Nordic UART Service (vendor specific). */
 
-//#define ORIGINAL_BUTTON_UUID   {0x9F, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x01, 0x00, 0x40, 0x6E}
-
 #define SCAN_INTERVAL           0x0070                                  /**< Determines scan interval in units of 0.625 millisecond. */
 #define SCAN_WINDOW             0x0060                                  /**< Determines scan window in units of 0.625 millisecond. */
 #define SCAN_TIMEOUT            0x0000                                  /**< Timout when scanning. 0x0000 disables timeout. */
@@ -119,8 +117,6 @@ uint8_t delete_counter = 0;
 
 // Create a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
 uint8_t whitelist[30][16] = {0};
-//Add the original button for this system to "whitelist"
-//memcpy(&whitelist[0], ORIGINAL_BUTTON_UUID, 16);
 
 static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt);
 
