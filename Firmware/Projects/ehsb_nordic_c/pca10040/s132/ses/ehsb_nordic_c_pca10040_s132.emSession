@@ -22,6 +22,7 @@
   <ProjectSessionItem path="ehsb_nordic_c_pca10040_s132"/>
   <ProjectSessionItem path="ehsb_nordic_c_pca10040_s132;ehsb_nordic_c_pca10040_s132"/>
   <ProjectSessionItem path="ehsb_nordic_c_pca10040_s132;ehsb_nordic_c_pca10040_s132;Application"/>
+  <ProjectSessionItem path="ehsb_nordic_c_pca10040_s132;ehsb_nordic_c_pca10040_s132;nRF_BLE"/>
   <ProjectSessionItem path="ehsb_nordic_c_pca10040_s132;ehsb_nordic_c_pca10040_s132;nRF_Libraries"/>
  </Project>
  <Register1>
@@ -52,9 +53,10 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="22" y="203" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="90" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="48" y="81" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="500" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../External/components/ble/ble_services/ble_nus_c/ble_nus_c.h" debugPath="../../../../../External/components/ble/ble_services/ble_nus_c/ble_nus_c.h" selected="0" top="78" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="332" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../External/components/libraries/pwr_mgmt/nrf_pwr_mgmt.c" debugPath="../../../../../External/components/libraries/pwr_mgmt/nrf_pwr_mgmt.c" selected="0" top="309" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="925" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../External/components/ble/ble_db_discovery/ble_db_discovery.c" debugPath="../../../../../External/components/ble/ble_db_discovery/ble_db_discovery.c" selected="0" top="899" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="ehsb_nordic_c_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>
