@@ -1,8 +1,8 @@
 Output/ehsb_nordic_r_pca10040_s132\ Release/Obj/main.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/Projects/ehsb_nordic_r/main.c \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Firmware\Projects\ehsb_nordic_r\main.c \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
  ../../../../../External/components/libraries/util/nordic_common.h \
  ../../../../../External/components/device/nrf.h \
  ../../../../../External/components/device/nrf52.h \
@@ -18,7 +18,7 @@ Output/ehsb_nordic_r_pca10040_s132\ Release/Obj/main.o: \
  ../../../../../External/components/device/compiler_abstraction.h \
  ../../../../../External/components/softdevice/s132/headers/ble_hci.h \
  ../../../../../External/components/ble/common/ble_advdata.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
  ../../../../../External/components/softdevice/s132/headers/ble.h \
  ../../../../../External/components/softdevice/s132/headers/ble_ranges.h \
  ../../../../../External/components/softdevice/s132/headers/ble_types.h \
@@ -31,7 +31,7 @@ Output/ehsb_nordic_r_pca10040_s132\ Release/Obj/main.o: \
  ../../../../../External/components/softdevice/s132/headers/ble_gattc.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gatts.h \
  ../../../../../External/components/libraries/util/app_util.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
  ../../../../../External/components/device/compiler_abstraction.h \
  ../../../../../External/components/libraries/util/nordic_common.h \
  ../../../../../External/components/ble/ble_advertising/ble_advertising.h \
@@ -49,7 +49,7 @@ Output/ehsb_nordic_r_pca10040_s132\ Release/Obj/main.o: \
  ../../../../../External/components/libraries/experimental_section_vars/nrf_section.h \
  ../../../../../External/components/libraries/util/nrf_assert.h \
  ../../../../../External/components/libraries/util/app_error.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
  ../../../../../External/components/libraries/util/sdk_errors.h \
  ../../../../../External/components/libraries/util/app_error_weak.h \
  ../../../../../External/components/softdevice/common/nrf_sdh_soc.h \
@@ -71,7 +71,7 @@ Output/ehsb_nordic_r_pca10040_s132\ Release/Obj/main.o: \
  ../../../../../External/components/drivers_nrf/hal/nrf_gpio.h \
  ../../../../../External/components/drivers_nrf/hal/nrf_peripherals.h \
  ../../../../../External/components/device/nrf52832_peripherals.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdlib.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdlib.h \
  ../../../../../External/components/boards/pca10040.h \
  ../../../../../External/components/libraries/button/app_button.h \
  ../../../../../External/components/drivers_nrf/hal/nrf_uart.h \

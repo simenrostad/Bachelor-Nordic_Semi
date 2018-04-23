@@ -1,8 +1,8 @@
 Output/ehsb_nordic_r_pca10040_s132\ Release/Obj/ble_conn_state.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_conn_state.c \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_conn_state.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Firmware\External\components\ble\common\ble_conn_state.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Firmware\External\components\ble\common\ble_conn_state.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  ../../../../../External/components/softdevice/s132/headers/ble.h \
  ../../../../../External/components/softdevice/s132/headers/ble_ranges.h \
  ../../../../../External/components/softdevice/s132/headers/ble_types.h \
@@ -28,13 +28,13 @@ Output/ehsb_nordic_r_pca10040_s132\ Release/Obj/ble_conn_state.o: \
  ../../../../../External/components/softdevice/s132/headers/ble_gatts.h \
  ../../../../../External/components/libraries/util/sdk_mapped_flags.h \
  ../../../../../External/components/libraries/util/app_util.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
  ../../../../../External/components/device/compiler_abstraction.h \
  ../../../../../External/components/libraries/util/nordic_common.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
  ../../../../../External/components/libraries/util/app_error.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdio.h \
  ../../../../../External/components/libraries/util/sdk_errors.h \
  ../../../../../External/components/softdevice/s132/headers/nrf_error.h \
  ../config/sdk_config.h \
