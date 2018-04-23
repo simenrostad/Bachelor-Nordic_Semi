@@ -35,9 +35,10 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="74" y="351" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="228" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="351" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="232" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="100" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../External/components/libraries/uart/app_uart.h" debugPath="../../../../../External/components/libraries/uart/app_uart.h" selected="0" top="80" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="37" y="949" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" debugPath="../config/sdk_config.h" selected="0" top="923" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="5600" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" debugPath="../config/sdk_config.h" selected="0" top="5580" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="261" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../External/components/softdevice/s132/headers/ble_gap.h" debugPath="../../../../../External/components/softdevice/s132/headers/ble_gap.h" selected="0" top="241" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="ehsb_nordic_r_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="ehsb_nordic_r_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
