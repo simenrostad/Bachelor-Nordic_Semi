@@ -109,7 +109,7 @@
 #define UART_TX_BUF_SIZE                256                                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE                256                                         /**< UART RX buffer size. */
 
-#define BLE_UUID_EHSB_SERVICE 0x0001                                                /**< The UUID of the Nordic UART Service. */
+//#define BLE_UUID_EHSB_SERVICE 0x0001                                                /**< The UUID of the Nordic UART Service. */
 
 BLE_NUS_DEF(m_nus);                                                                 /**< BLE NUS service instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                                           /**< GATT module instance. */
@@ -126,12 +126,12 @@ static ble_uuid_t m_adv_uuids[]          =                                      
     {BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}
 };
 
-/**@brief NUS uuid. */
-static ble_uuid_t const m_nus_uuid =
-{
-    .uuid = BLE_UUID_EHSB_SERVICE,
-    .type = NUS_SERVICE_UUID_TYPE
-};
+///**@brief NUS uuid. */
+//static ble_uuid_t const m_nus_uuid =
+//{
+//    .uuid = BLE_UUID_EHSB_SERVICE,
+//    .type = NUS_SERVICE_UUID_TYPE
+//};
 
 /** @brief Parameters used when scanning. */
 static ble_gap_scan_params_t const m_scan_params =
@@ -238,6 +238,23 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
         NRF_LOG_DEBUG("Received data from BLE NUS. Writing data on UART.");
         NRF_LOG_HEXDUMP_DEBUG(p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
 
+<<<<<<< HEAD
+        if (memcmp(p_evt->params.rx_data.p_data, "stop_scan", sizeof("stop_scan")) == 0)
+        {
+        scan_stop();                                                                       
+        NRF_LOG_INFO("Stop_scan");
+        nrf_gpio_pin_clear(LED_4);
+        }
+
+        if (memcmp(p_evt->params.rx_data.p_data, "start_scan", sizeof("start_scan")) == 0)
+        {
+        scan_start();
+        NRF_LOG_INFO("Start_scan");
+        nrf_gpio_pin_set(LED_4);
+        }
+
+=======
+>>>>>>> 2e8247becfd3464597bc88f607a8eb7711ae9048
         for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
         {
             do
@@ -340,8 +357,6 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
     uint32_t err_code;
 
     uint8_t adv_rep_uuid[16] = {0};
-    uint8_t string[]     = "button_found";
-    uint16_t string_length = sizeof(string);
     uint16_t adv_rep_uuid_length = sizeof(adv_rep_uuid);
 
     ble_gap_evt_t const * p_gap_evt = &p_ble_evt->evt.gap_evt;
@@ -374,7 +389,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
              ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
 
              if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
-                     && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
+                && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
                   {
                      memcpy(&adv_rep_uuid[0], &p_adv_report->data[5], 16);
 

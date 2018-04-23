@@ -101,6 +101,32 @@ BLE_DB_DISCOVERY_DEF(m_db_disc);                                        /**< DB 
 
 static uint16_t m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - OPCODE_LENGTH - HANDLE_LENGTH; /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
 
+<<<<<<< HEAD
+  bool reset = false;
+  bool reset_r = false;
+  bool scanning = false;
+  bool add_button = false;
+  bool new_button_added = false;
+  bool existing_button = false; 
+  bool connected = false;
+  bool whitelist_deleted = false;
+  uint32_t button_number = 0;
+  uint32_t flash_addr = 0x3f000;
+  uint8_t delete_counter = 0;
+
+  // Created a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
+  uint8_t whitelist[20][16] = {0};
+
+  static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt);
+
+  NRF_FSTORAGE_DEF(nrf_fstorage_t whitelist_storage) =
+  {
+      /* Set a handler for fstorage events. */
+      .evt_handler = fstorage_evt_handler,
+      .start_addr = 0x3e000,
+      .end_addr   = 0x3ffff,
+  }; 
+=======
 /* Initiating different bools used to ensure smooth running*/
 bool reset = false;
 bool scanning = false;
@@ -127,6 +153,7 @@ NRF_FSTORAGE_DEF(nrf_fstorage_t whitelist_storage) =
     .start_addr = 0x3e000,
     .end_addr   = 0x3ffff,
 }; 
+>>>>>>> 2e8247becfd3464597bc88f607a8eb7711ae9048
 
 /**@brief Connection parameters requested for connection. */
 static ble_gap_conn_params_t const m_connection_param =
@@ -186,26 +213,26 @@ static void add_button_timeout_handler(void * p_context)
   nrf_gpio_pin_toggle(LED_4);
 }
 
-static void delete_buttons_timeout_handler(void * p_context)
-{
-  nrf_gpio_pin_toggle(LED_1);
-  nrf_gpio_pin_toggle(LED_2);
-  nrf_gpio_pin_toggle(LED_3);
-  nrf_gpio_pin_toggle(LED_4);
-
-  delete_counter += 1;
-
-  if(delete_counter == 17)
+  static void delete_buttons_timeout_handler(void * p_context)
   {
-      nrf_fstorage_erase(&whitelist_storage, 0x3e000, 1, NULL);
-      nrf_fstorage_erase(&whitelist_storage, 0x3f000, 1, NULL);
-      app_timer_stop(delete_buttons_id);
-      button_number = 0;
-      flash_addr = 0x3f000;
-      whitelist_deleted = true;
-      NRF_LOG_INFO("Deleted");
+    nrf_gpio_pin_toggle(LED_1);
+    nrf_gpio_pin_toggle(LED_2);
+    nrf_gpio_pin_toggle(LED_3);
+    nrf_gpio_pin_toggle(LED_4);
+
+    delete_counter += 1;
+
+    if(delete_counter == 17)
+    {
+        nrf_fstorage_erase(&whitelist_storage, 0x3e000, 1, NULL);
+        nrf_fstorage_erase(&whitelist_storage, 0x3f000, 1, NULL);
+        app_timer_stop(delete_buttons_id);
+        button_number = 0;
+        flash_addr = 0x3f000;
+        whitelist_deleted = true;
+        NRF_LOG_INFO("Deleted");
+    }
   }
-}
 
 /**@brief Function to start scanning. */
 static void scan_start(void)
@@ -227,33 +254,33 @@ static void scan_stop(void)
     scanning = false;
 }
 
-/** Function for handling fstorage events*/
-static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt) 
-{
-    if (p_evt->result != NRF_SUCCESS)
-    {
-        NRF_LOG_INFO("--> Event received: ERROR while executing an fstorage operation.");
-        return;
-    }
+  /** Function for handling fstorage events*/
+  static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt) 
+  {
+      if (p_evt->result != NRF_SUCCESS)
+      {
+          NRF_LOG_INFO("--> Event received: ERROR while executing an fstorage operation.");
+          return;
+      }
 
-    switch (p_evt->id)
-    {
-        case NRF_FSTORAGE_EVT_WRITE_RESULT:
-        {
-            NRF_LOG_INFO("--> Event received: wrote %d bytes at address 0x%x.",
-                         p_evt->len, p_evt->addr);
-        } break;
+      switch (p_evt->id)
+      {
+          case NRF_FSTORAGE_EVT_WRITE_RESULT:
+          {
+              NRF_LOG_INFO("--> Event received: wrote %d bytes at address 0x%x.",
+                           p_evt->len, p_evt->addr);
+          } break;
 
-        case NRF_FSTORAGE_EVT_ERASE_RESULT:
-        {
-            NRF_LOG_INFO("--> Event received: erased %d page from address 0x%x.",
-                         p_evt->len, p_evt->addr);
-        } break;
+          case NRF_FSTORAGE_EVT_ERASE_RESULT:
+          {
+              NRF_LOG_INFO("--> Event received: erased %d page from address 0x%x.",
+                           p_evt->len, p_evt->addr);
+          } break;
 
-        default:
-            break;
-    }
-}
+          default:
+              break;
+      }
+  }
 
 /**@brief Function for handling database discovery events.
  *

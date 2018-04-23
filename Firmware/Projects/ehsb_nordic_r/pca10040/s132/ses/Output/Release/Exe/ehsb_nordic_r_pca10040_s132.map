@@ -4001,9 +4001,9 @@ Linker script and memory map
                 0x0000000020002fac        0x4 Output/ehsb_nordic_r_pca10040_s132 Release/Obj/bsp_btn_ble.o
  .bss.m_num_connections
                 0x0000000020002fb0        0x4 Output/ehsb_nordic_r_pca10040_s132 Release/Obj/bsp_btn_ble.o
- .bss.data_array.10993
+ .bss.data_array.10990
                 0x0000000020002fb4       0xf4 Output/ehsb_nordic_r_pca10040_s132 Release/Obj/main.o
- .bss.index.10994
+ .bss.index.10991
                 0x00000000200030a8        0x1 Output/ehsb_nordic_r_pca10040_s132 Release/Obj/main.o
  *fill*         0x00000000200030a9        0x3 
  .bss.m_adv_led_timer_id_data
@@ -4014,9 +4014,9 @@ Linker script and memory map
  .bss.m_nus     0x00000000200031b8       0x1c Output/ehsb_nordic_r_pca10040_s132 Release/Obj/main.o
  .bss.m_scan_led_timer_id_data
                 0x00000000200031d4       0x20 Output/ehsb_nordic_r_pca10040_s132 Release/Obj/main.o
- .bss.rx_buf.11011
+ .bss.rx_buf.11008
                 0x00000000200031f4      0x100 Output/ehsb_nordic_r_pca10040_s132 Release/Obj/main.o
- .bss.tx_buf.11012
+ .bss.tx_buf.11009
                 0x00000000200032f4      0x100 Output/ehsb_nordic_r_pca10040_s132 Release/Obj/main.o
  .bss._SEGGER_RTT
                 0x00000000200033f4       0x78 Output/ehsb_nordic_r_pca10040_s132 Release/Obj/SEGGER_RTT.o
