@@ -101,32 +101,6 @@ BLE_DB_DISCOVERY_DEF(m_db_disc);                                        /**< DB 
 
 static uint16_t m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - OPCODE_LENGTH - HANDLE_LENGTH; /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
 
-<<<<<<< HEAD
-  bool reset = false;
-  bool reset_r = false;
-  bool scanning = false;
-  bool add_button = false;
-  bool new_button_added = false;
-  bool existing_button = false; 
-  bool connected = false;
-  bool whitelist_deleted = false;
-  uint32_t button_number = 0;
-  uint32_t flash_addr = 0x3f000;
-  uint8_t delete_counter = 0;
-
-  // Created a two-dimensional array to hold the UUIDs that should be "whitelisted" as a global variable.
-  uint8_t whitelist[20][16] = {0};
-
-  static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt);
-
-  NRF_FSTORAGE_DEF(nrf_fstorage_t whitelist_storage) =
-  {
-      /* Set a handler for fstorage events. */
-      .evt_handler = fstorage_evt_handler,
-      .start_addr = 0x3e000,
-      .end_addr   = 0x3ffff,
-  }; 
-=======
 /* Initiating different bools used to ensure smooth running*/
 bool reset = false;
 bool scanning = false;
@@ -153,7 +127,6 @@ NRF_FSTORAGE_DEF(nrf_fstorage_t whitelist_storage) =
     .start_addr = 0x3e000,
     .end_addr   = 0x3ffff,
 }; 
->>>>>>> 2e8247becfd3464597bc88f607a8eb7711ae9048
 
 /**@brief Connection parameters requested for connection. */
 static ble_gap_conn_params_t const m_connection_param =
@@ -832,7 +805,9 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
    {
         deleting_whitelist = true;
         scan_stop();
+        nrf_gpio_pin_set(LED_2);
         nrf_gpio_pin_set(LED_3);
+        nrf_gpio_pin_set(LED_4);
         app_timer_start(delete_buttons_id, APP_TIMER_TICKS(250), delete_buttons_timeout_handler);
    }
 
@@ -841,6 +816,10 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
         if(!whitelist_deleted)
         {
             app_timer_stop(delete_buttons_id);
+            if(connected)
+            {
+                nrf_gpio_pin_clear(LED_3);
+            }
         }
         nrf_gpio_pin_set(LED_2);
         nrf_gpio_pin_set(LED_4);
