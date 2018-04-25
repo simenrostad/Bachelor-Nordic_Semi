@@ -1,0 +1,13 @@
+
+
+Disse målingen ble utført med en LTC3588 - 1
+
+satt til og ha disse instilingen der D0 og D1 er satt til gjord og gir oss da 1.8V ut.
+
+komponenten er :
+C1 = 47uF
+C2 = 4,7uF
+C3 = 1uF
+C4 = 47uF
+L1 = 22uH
+
