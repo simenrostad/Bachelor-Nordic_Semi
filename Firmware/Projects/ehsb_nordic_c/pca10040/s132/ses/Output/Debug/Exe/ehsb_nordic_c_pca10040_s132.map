@@ -11934,7 +11934,7 @@ OUTPUT(Output/Debug/Exe/ehsb_nordic_c_pca10040_s132.elf elf32-littlearm)
  .debug_macro   0x000000000001910c       0x16 Output/ehsb_nordic_c_pca10040_s132 Debug/Obj/main.o
  .debug_macro   0x0000000000019122       0x10 Output/ehsb_nordic_c_pca10040_s132 Debug/Obj/main.o
 
-.debug_str      0x0000000000000000    0x81a39
+.debug_str      0x0000000000000000    0x81a3b
  .debug_str     0x0000000000000000    0x6832a Output/ehsb_nordic_c_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
                                       0x69041 (size before relaxing)
  .debug_str     0x000000000006832a      0x29a Output/ehsb_nordic_c_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
@@ -12009,5 +12009,5 @@ OUTPUT(Output/Debug/Exe/ehsb_nordic_c_pca10040_s132.elf elf32-littlearm)
                                       0x6e8fd (size before relaxing)
  .debug_str     0x0000000000080aee      0x18f Output/ehsb_nordic_c_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
                                       0x685dc (size before relaxing)
- .debug_str     0x0000000000080c7d      0xdbc Output/ehsb_nordic_c_pca10040_s132 Debug/Obj/main.o
-                                      0x75611 (size before relaxing)
+ .debug_str     0x0000000000080c7d      0xdbe Output/ehsb_nordic_c_pca10040_s132 Debug/Obj/main.o
+                                      0x75613 (size before relaxing)
