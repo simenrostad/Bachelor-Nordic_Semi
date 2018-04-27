@@ -35,7 +35,11 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
+<<<<<<< HEAD
   <SessionOpenFile windowGroup="DockEditLeft" x="37" y="100" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="81" codecName="Default"/>
+=======
+  <SessionOpenFile windowGroup="DockEditLeft" x="37" y="101" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="78" codecName="Default"/>
+>>>>>>> 9845752c712d9506eacd12de682033ddf7168444
  </Files>
  <ARMCrossStudioWindow activeProject="ehsb_nordic_r_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
