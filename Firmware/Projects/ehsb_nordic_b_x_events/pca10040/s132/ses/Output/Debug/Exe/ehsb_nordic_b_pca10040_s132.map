@@ -9644,7 +9644,7 @@ OUTPUT(Output/Debug/Exe/ehsb_nordic_b_pca10040_s132.elf elf32-littlearm)
  .comment       0x000000000000004c       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
  .comment       0x000000000000004c       0x4d C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 3.34/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
 
-.debug_line     0x0000000000000000    0x11eaf
+.debug_line     0x0000000000000000    0x11eb0
  .debug_line    0x0000000000000000      0x2aa Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/thumb_crt0.o
  .debug_line    0x00000000000002aa      0x991 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
  .debug_line    0x0000000000000c3b      0x906 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
@@ -9668,15 +9668,15 @@ OUTPUT(Output/Debug/Exe/ehsb_nordic_b_pca10040_s132.elf elf32-littlearm)
  .debug_line    0x000000000000a0f7      0x821 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_common.o
  .debug_line    0x000000000000a918     0x12f1 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
  .debug_line    0x000000000000bc09     0x1307 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_uart.o
- .debug_line    0x000000000000cf10     0x11ec Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/main.o
- .debug_line    0x000000000000e0fc      0xac5 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT.o
- .debug_line    0x000000000000ebc1      0xca1 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_advdata.o
- .debug_line    0x000000000000f862       0xcf Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ses_nRF_Startup.o
- .debug_line    0x000000000000f931       0xd8 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ses_nrf52_Vectors.o
- .debug_line    0x000000000000fa09      0x44d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/system_nrf52.o
- .debug_line    0x000000000000fe56      0xbb8 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh.o
- .debug_line    0x0000000000010a0e      0xbfa Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
- .debug_line    0x0000000000011608      0x8a7 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
+ .debug_line    0x000000000000cf10     0x11ed Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/main.o
+ .debug_line    0x000000000000e0fd      0xac5 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT.o
+ .debug_line    0x000000000000ebc2      0xca1 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_advdata.o
+ .debug_line    0x000000000000f863       0xcf Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ses_nRF_Startup.o
+ .debug_line    0x000000000000f932       0xd8 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ses_nrf52_Vectors.o
+ .debug_line    0x000000000000fa0a      0x44d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/system_nrf52.o
+ .debug_line    0x000000000000fe57      0xbb8 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh.o
+ .debug_line    0x0000000000010a0f      0xbfa Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
+ .debug_line    0x0000000000011609      0x8a7 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
 
 .debug_info     0x0000000000000000    0x32453
  .debug_info    0x0000000000000000       0xd5 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/thumb_crt0.o
@@ -10124,7 +10124,7 @@ OUTPUT(Output/Debug/Exe/ehsb_nordic_b_pca10040_s132.elf elf32-littlearm)
  .debug_macro   0x0000000000017a5b      0x208 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
  .debug_macro   0x0000000000017c63       0x16 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
 
-.debug_str      0x0000000000000000    0x7cbc0
+.debug_str      0x0000000000000000    0x7cc1b
  .debug_str     0x0000000000000000    0x68358 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
                                       0x69046 (size before relaxing)
  .debug_str     0x0000000000068358      0x2a1 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
@@ -10169,17 +10169,17 @@ OUTPUT(Output/Debug/Exe/ehsb_nordic_b_pca10040_s132.elf elf32-littlearm)
                                       0x6a816 (size before relaxing)
  .debug_str     0x00000000000719be      0xf34 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_uart.o
                                       0x6ab34 (size before relaxing)
- .debug_str     0x00000000000728f2     0x710e Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/main.o
-                                      0x70a85 (size before relaxing)
- .debug_str     0x0000000000079a00      0x560 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT.o
+ .debug_str     0x00000000000728f2     0x7169 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/main.o
+                                      0x70a87 (size before relaxing)
+ .debug_str     0x0000000000079a5b      0x560 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT.o
                                       0x627bc (size before relaxing)
- .debug_str     0x0000000000079f60     0x15ad Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_advdata.o
+ .debug_str     0x0000000000079fbb     0x15ad Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_advdata.o
                                       0x6c8a0 (size before relaxing)
- .debug_str     0x000000000007b50d      0x283 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/system_nrf52.o
+ .debug_str     0x000000000007b568      0x283 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/system_nrf52.o
                                       0x5b38e (size before relaxing)
- .debug_str     0x000000000007b790      0x414 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh.o
+ .debug_str     0x000000000007b7eb      0x414 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh.o
                                       0x6997a (size before relaxing)
- .debug_str     0x000000000007bba4      0xe8d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
+ .debug_str     0x000000000007bbff      0xe8d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
                                       0x6e902 (size before relaxing)
- .debug_str     0x000000000007ca31      0x18f Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
+ .debug_str     0x000000000007ca8c      0x18f Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
                                       0x685e1 (size before relaxing)
