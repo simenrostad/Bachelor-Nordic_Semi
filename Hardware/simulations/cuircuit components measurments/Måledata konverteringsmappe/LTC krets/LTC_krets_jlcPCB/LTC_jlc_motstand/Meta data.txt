@@ -1,0 +1,12 @@
+LTC-3588 kretsen :
+konfig_ 1.8 volt
+
+
+Spolen(L1) = 100uH
+
+Storage kondensator (C1) = 100uF
+utgangs kondis (C4) = 22uF
+C2 = 4.7uF
+C3 = 1uF
+
+Last på 2 k
