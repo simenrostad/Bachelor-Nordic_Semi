@@ -74,12 +74,12 @@
 
 #define NUS_SERVICE_UUID_TYPE   BLE_UUID_TYPE_VENDOR_BEGIN              /**< UUID type for the Nordic UART Service (vendor specific). */
 
-#define SCAN_INTERVAL           0x0070                                  /**< Determines scan interval in units of 0.625 millisecond. */
-#define SCAN_WINDOW             0x0060                                  /**< Determines scan window in units of 0.625 millisecond. */
+#define SCAN_INTERVAL           0x00A0                                  /**< Determines scan interval in units of 0.625 millisecond. */
+#define SCAN_WINDOW             0x0090                                  /**< Determines scan window in units of 0.625 millisecond. */
 #define SCAN_TIMEOUT            0x0000                                  /**< Timout when scanning. 0x0000 disables timeout. */
 
-#define MIN_CONNECTION_INTERVAL MSEC_TO_UNITS(20, UNIT_1_25_MS)         /**< Determines minimum connection interval in millisecond. */
-#define MAX_CONNECTION_INTERVAL MSEC_TO_UNITS(75, UNIT_1_25_MS)         /**< Determines maximum connection interval in millisecond. */
+#define MIN_CONNECTION_INTERVAL MSEC_TO_UNITS(100, UNIT_1_25_MS)         /**< Determines minimum connection interval in millisecond. */
+#define MAX_CONNECTION_INTERVAL MSEC_TO_UNITS(100, UNIT_1_25_MS)         /**< Determines maximum connection interval in millisecond. */
 #define SLAVE_LATENCY           0                                       /**< Determines slave latency in counts of connection events. */
 #define SUPERVISION_TIMEOUT     MSEC_TO_UNITS(4000, UNIT_10_MS)         /**< Determines supervision time-out in units of 10 millisecond. */
 
@@ -92,8 +92,8 @@
 #define STOP_SIGN               22
 
 APP_TIMER_DEF(m_led_timer_id);                                           //  Macro for timer id
-APP_TIMER_DEF(add_button_timer_id);
-APP_TIMER_DEF(delete_buttons_id);
+APP_TIMER_DEF(m_add_uuid_timer_id);
+APP_TIMER_DEF(m_erase_whitelist_timer_id);
 
 BLE_NUS_C_DEF(m_ble_nus_c);                                             /**< BLE NUS service client instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                               /**< GATT module instance. */
@@ -104,15 +104,15 @@ static uint16_t m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - OPCODE_LENGT
 /* Initiating different bools used to ensure smooth running*/
 bool reset = false;
 bool scanning = false;
-bool add_button = false;
-bool deleting_whitelist = false;
-bool new_button_added = false;
-bool existing_button = false;
+bool add_uuid = false;
+bool erasing_whitelist = false;
+bool new_uuid_added = false;
+bool existing_uuid = false;
 bool connected = false;
-bool whitelist_deleted = false;
+bool whitelist_erased = false;
 
-/* Variables used for "whitelisting" stop buttons*/
-uint8_t button_number = 0;
+/* Variables used for "whitelisting" stop button UUIDs*/
+uint8_t uuid_number = 0;
 uint32_t flash_addr = 0x3f000;
 uint8_t delete_counter = 0;
 /* Two-dimensional array to hold the UUIDs that should be "whitelisted" */
@@ -181,12 +181,12 @@ static void led_timeout_handler(void * p_context)
   nrf_gpio_pin_toggle(LED_1);
 }
 
-static void add_button_timeout_handler(void * p_context)
+static void add_uuid_timeout_handler(void * p_context)
 {
   nrf_gpio_pin_toggle(LED_4);
 }
 
-  static void delete_buttons_timeout_handler(void * p_context)
+  static void erase_uuids_timeout_handler(void * p_context)
   {
     nrf_gpio_pin_toggle(LED_1);
     nrf_gpio_pin_toggle(LED_2);
@@ -199,10 +199,10 @@ static void add_button_timeout_handler(void * p_context)
     {
         nrf_fstorage_erase(&whitelist_storage, 0x3e000, 1, NULL);
         nrf_fstorage_erase(&whitelist_storage, 0x3f000, 1, NULL);
-        app_timer_stop(delete_buttons_id);
-        button_number = 0;
+        app_timer_stop(m_erase_whitelist_timer_id);
+        uuid_number = 0;
         flash_addr = 0x3f000;
-        whitelist_deleted = true;
+        whitelist_erased = true;
         NRF_LOG_INFO("Deleted");
     }
   }
@@ -377,7 +377,7 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
             APP_ERROR_CHECK(err_code);
             NRF_LOG_INFO("Connected to device with Nordic UART Service.");
 
-            //Relayer connected, start scan for stop button
+            //Relayer connected, start scan for stop buttons
             scan_start();
  
             nrf_gpio_pin_clear(LED_3);
@@ -386,9 +386,9 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
 
         case BLE_NUS_C_EVT_NUS_TX_EVT:
             ble_nus_chars_received_uart_print(p_ble_nus_evt->p_data, p_ble_nus_evt->data_len);
-            if(p_ble_nus_evt->data_len == 16 && !add_button && !deleting_whitelist)
+            if(p_ble_nus_evt->data_len == 16 && !add_uuid && !erasing_whitelist)
             {
-                  for(uint8_t i = 0; i < button_number; i++)
+                  for(uint8_t i = 0; i < uuid_number; i++)
                   {
                       if(memcmp(p_ble_nus_evt->p_data, whitelist[i], 16) == 0)
                       {
@@ -503,7 +503,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
            uint8_t adv_uuid[16] = {0};
            memcpy(&adv_uuid, &p_adv_report->data[5], 16);
 
-            if(!add_button)
+            if(!add_uuid)
             {   
                 //If not connected to relayer, check for relayer-UUID and connect if found
                 if(!connected)
@@ -535,7 +535,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                     if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
                        && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
                     {
-                         for(int8_t i = 0; i < button_number; i++)
+                         for(int8_t i = 0; i < uuid_number; i++)
                          {                                                
                             if(memcmp(adv_uuid, whitelist[i], sizeof(adv_uuid)) == 0)
                             {
@@ -547,35 +547,35 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                     }
                 }
             }
-            else if(add_button)
+            else if(add_uuid)
             {
                 if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -35 \
                    && p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
                    && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
                 {
-                      for(uint8_t i = 0; i < button_number; i++)
+                      for(uint8_t i = 0; i < uuid_number; i++)
                       {
                           if(memcmp(adv_uuid, whitelist[i], sizeof(adv_uuid)) == 0)
                           {
-                              app_timer_stop(add_button_timer_id);
+                              app_timer_stop(m_add_uuid_timer_id);
                               nrf_gpio_pin_set(LED_4);
                               nrf_gpio_pin_clear(LED_2);
-                              existing_button = true;
-                              new_button_added = true;
+                              existing_uuid = true;
+                              new_uuid_added = true;
                               NRF_LOG_INFO("hit");
                           }
                       }
-                      if(!new_button_added)
+                      if(!new_uuid_added)
                       {
                           //Copy the UUID from advertisement report to the next slot in whitelist
-                          memcpy(&whitelist[button_number], &p_adv_report->data[5], 16);
+                          memcpy(&whitelist[uuid_number], &p_adv_report->data[5], 16);
 
-                          app_timer_stop(add_button_timer_id);
+                          app_timer_stop(m_add_uuid_timer_id);
                           nrf_gpio_pin_clear(LED_4);
-                          new_button_added = true;
+                          new_uuid_added = true;
 
-                          NRF_LOG_INFO("Writing \"%x\" to flash.", whitelist[button_number]);
-                          err_code = nrf_fstorage_write(&whitelist_storage, flash_addr, whitelist[button_number], sizeof(whitelist[button_number]), NULL);
+                          NRF_LOG_INFO("Writing \"%x\" to flash.", whitelist[uuid_number]);
+                          err_code = nrf_fstorage_write(&whitelist_storage, flash_addr, whitelist[uuid_number], sizeof(whitelist[uuid_number]), NULL);
                           APP_ERROR_CHECK(err_code);
 
                           NRF_LOG_INFO("Done.");
@@ -762,60 +762,60 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
    }
    if(pin_no == BUTTON_2 && button_action == APP_BUTTON_PUSH)
    {
-       if(button_number > 30)
+       if(uuid_number > 30)
        {
           NRF_LOG_INFO("\"Whitelist\" full");
           nrf_gpio_pin_clear(LED_2);
           nrf_gpio_pin_clear(LED_4);
-          existing_button = true;
+          existing_uuid = true;
        }
        else
        {
-          app_timer_start(add_button_timer_id, APP_TIMER_TICKS(500), add_button_timeout_handler);
-          add_button = true;
+          app_timer_start(m_add_uuid_timer_id, APP_TIMER_TICKS(500), add_uuid_timeout_handler);
+          add_uuid = true;
        }
    }
    if(pin_no == BUTTON_2 && button_action == APP_BUTTON_RELEASE)
    {
-      app_timer_stop(add_button_timer_id);
+      app_timer_stop(m_add_uuid_timer_id);
       nrf_gpio_pin_set(LED_4);
-      if(new_button_added)
+      if(new_uuid_added)
       {
-          button_number += 1;
-          new_button_added = false;
+          uuid_number += 1;
+          new_uuid_added = false;
 
           err_code = nrf_fstorage_erase(&whitelist_storage, 0x3e000, 1, NULL);
           APP_ERROR_CHECK(err_code);
 
-          NRF_LOG_INFO("Writing \"%x\" to flash.", button_number);
-          err_code = nrf_fstorage_write(&whitelist_storage, 0x3e000, &button_number, 4, NULL);
+          NRF_LOG_INFO("Writing \"%x\" to flash.", uuid_number);
+          err_code = nrf_fstorage_write(&whitelist_storage, 0x3e000, &uuid_number, 4, NULL);
           APP_ERROR_CHECK(err_code);
       }
 
-      else if(existing_button)
+      else if(existing_uuid)
       {
           nrf_gpio_pin_set(LED_2);
-          existing_button = false;
-          new_button_added = false;
+          existing_uuid = false;
+          new_uuid_added = false;
       }
 
-      add_button = false;
+      add_uuid = false;
    }
    if(pin_no == BUTTON_3 && button_action == APP_BUTTON_PUSH)
    {
-        deleting_whitelist = true;
+        erasing_whitelist = true;
         scan_stop();
         nrf_gpio_pin_set(LED_2);
         nrf_gpio_pin_set(LED_3);
         nrf_gpio_pin_set(LED_4);
-        app_timer_start(delete_buttons_id, APP_TIMER_TICKS(250), delete_buttons_timeout_handler);
+        app_timer_start(m_erase_whitelist_timer_id, APP_TIMER_TICKS(250), erase_uuids_timeout_handler);
    }
 
    if(pin_no == BUTTON_3 && button_action == APP_BUTTON_RELEASE)
    {  
-        if(!whitelist_deleted)
+        if(!whitelist_erased)
         {
-            app_timer_stop(delete_buttons_id);
+            app_timer_stop(m_erase_whitelist_timer_id);
             if(connected)
             {
                 nrf_gpio_pin_clear(LED_3);
@@ -828,7 +828,7 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
             nrf_gpio_pin_set(LED_3);
         }
         scan_start();
-        deleting_whitelist = false;
+        erasing_whitelist = false;
         delete_counter = 0;
    }
 }
@@ -882,10 +882,10 @@ static void application_timer_init(void)
     err_code = app_timer_create(&m_led_timer_id, APP_TIMER_MODE_REPEATED, led_timeout_handler);
     APP_ERROR_CHECK(err_code);
 
-    err_code = app_timer_create(&add_button_timer_id, APP_TIMER_MODE_REPEATED, add_button_timeout_handler);
+    err_code = app_timer_create(&m_add_uuid_timer_id, APP_TIMER_MODE_REPEATED, add_uuid_timeout_handler);
     APP_ERROR_CHECK(err_code);
 
-    err_code = app_timer_create(&delete_buttons_id, APP_TIMER_MODE_REPEATED, delete_buttons_timeout_handler);
+    err_code = app_timer_create(&m_erase_whitelist_timer_id, APP_TIMER_MODE_REPEATED, erase_uuids_timeout_handler);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -929,27 +929,21 @@ static void read_memory(void)
 {
     ret_code_t err_code;
 
-    err_code = nrf_fstorage_read(&whitelist_storage, 0x3e000, &button_number, 4);
+    err_code = nrf_fstorage_read(&whitelist_storage, 0x3e000, &uuid_number, 4);
     APP_ERROR_CHECK(err_code);
 
-    NRF_LOG_INFO("button_number: %d", button_number)
-
-    if(button_number == 255)
+    if(uuid_number == 255)
     {
-        button_number = 0;
+        uuid_number = 0;
     }
     else
     {
-        
-        for(uint8_t i = 0; i < button_number; i++)
+        for(uint8_t i = 0; i < uuid_number; i++)
         {
             nrf_fstorage_read(&whitelist_storage, flash_addr, &whitelist[i], 16);
             flash_addr += 0x10;
         }
     } 
-     
-   NRF_LOG_INFO("%x", flash_addr);
-   NRF_LOG_INFO("%d", button_number);
 }
 
 

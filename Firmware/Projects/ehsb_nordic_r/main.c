@@ -101,7 +101,7 @@
 #define MAX_CONN_PARAMS_UPDATE_COUNT    3                                           /**< Number of attempts before giving up the connection parameter negotiation. */
 
 #define SCAN_INTERVAL           0x00A0                                              /**< Determines scan interval in units of 0.625 millisecond. */
-#define SCAN_WINDOW             0x0080                                              /**< Determines scan window in units of 0.625 millisecond. */
+#define SCAN_WINDOW             0x0090                                              /**< Determines scan window in units of 0.625 millisecond. */
 #define SCAN_TIMEOUT            0x0000                                              /**< Timeout when scanning. 0x0000 disables timeout. */
 
 #define UUID128_SIZE                    16
@@ -354,7 +354,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
             app_timer_stop(m_adv_led_timer_id);
-            nrf_delay_us(10000);
+            nrf_delay_us(2000);
             scan_start();
             nrf_gpio_pin_set(LED_1);
             nrf_gpio_pin_clear(LED_2);
