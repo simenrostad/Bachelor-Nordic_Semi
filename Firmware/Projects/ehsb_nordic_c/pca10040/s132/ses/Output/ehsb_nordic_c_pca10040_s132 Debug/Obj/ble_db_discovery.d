@@ -1,10 +1,10 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/ble_db_discovery.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/ble_db_discovery/ble_db_discovery.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Firmware\External\components\ble\ble_db_discovery\ble_db_discovery.c \
  ../../../../../External/components/libraries/util/sdk_common.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
  ../config/sdk_config.h \
  ../../../../../External/components/libraries/util/nordic_common.h \
  ../../../../../External/components/device/compiler_abstraction.h \
@@ -12,7 +12,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/ble_db_discovery.o: \
  ../../../../../External/components/libraries/util/sdk_errors.h \
  ../../../../../External/components/softdevice/s132/headers/nrf_error.h \
  ../../../../../External/components/libraries/util/app_util.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
  ../../../../../External/components/device/nrf.h \
  ../../../../../External/components/device/nrf52.h \
  ../../../../../External/components/toolchain/cmsis/include/core_cm4.h \
@@ -26,7 +26,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/ble_db_discovery.o: \
  ../../../../../External/components/device/nrf52_name_change.h \
  ../../../../../External/components/device/compiler_abstraction.h \
  ../../../../../External/components/libraries/util/sdk_macros.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/ble_db_discovery/ble_db_discovery.h \
+ C:\GitHub\Bachelor-Nordic_Semi\Firmware\External\components\ble\ble_db_discovery\ble_db_discovery.h \
  ../../../../../External/components/softdevice/s132/headers/ble.h \
  ../../../../../External/components/softdevice/s132/headers/ble_ranges.h \
  ../../../../../External/components/softdevice/s132/headers/ble_types.h \
@@ -40,7 +40,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/ble_db_discovery.o: \
  ../../../../../External/components/softdevice/s132/headers/ble_gatts.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gattc.h \
  ../../../../../External/components/ble/common/ble_gatt_db.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdlib.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdlib.h \
  ../../../../../External/components/ble/common/ble_srv_common.h \
  ../../../../../External/components/softdevice/s132/headers/ble_types.h \
  ../../../../../External/components/libraries/util/app_util.h \

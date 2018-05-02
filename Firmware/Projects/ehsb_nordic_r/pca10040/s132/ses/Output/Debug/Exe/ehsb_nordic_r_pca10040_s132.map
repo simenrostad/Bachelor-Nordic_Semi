@@ -5301,8 +5301,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x1a Output/ehsb_nordic_r_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
  .debug_macro   0x0000000000000000      0x904 Output/ehsb_nordic_r_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
  .debug_macro   0x0000000000000000      0xfb2 Output/ehsb_nordic_r_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
- .debug_line    0x0000000000000000       0xb3 Output/ehsb_nordic_r_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
- .debug_str     0x0000000000000000     0x6212 Output/ehsb_nordic_r_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
+ .debug_line    0x0000000000000000       0x99 Output/ehsb_nordic_r_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
+ .debug_str     0x0000000000000000     0x61f8 Output/ehsb_nordic_r_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_r_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_r_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
