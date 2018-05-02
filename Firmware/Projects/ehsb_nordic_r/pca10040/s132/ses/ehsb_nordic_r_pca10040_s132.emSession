@@ -35,8 +35,12 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
+<<<<<<< HEAD
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="373" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="354" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="261" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../External/components/softdevice/s132/headers/ble_gap.h" debugPath="../../../../../External/components/softdevice/s132/headers/ble_gap.h" selected="0" top="241" codecName="Default"/>
+=======
+  <SessionOpenFile windowGroup="DockEditLeft" x="38" y="103" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="78" codecName="Default"/>
+>>>>>>> 67587eaeb932c1444462172b1e2cff5e48505a4f
  </Files>
  <ARMCrossStudioWindow activeProject="ehsb_nordic_r_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

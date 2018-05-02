@@ -1,5 +1,5 @@
 Output/ehsb_nordic_b_pca10040_s132\ Debug/Obj/main.o: \
- C:\GitHub\Bachelor-Nordic_Semi\Firmware\Projects\ehsb_nordic_b_5events\main.c \
+ C:\GitHub\Bachelor-Nordic_Semi\Firmware\Projects\ehsb_nordic_b_x_events\main.c \
  ../../../../../External/components/softdevice/s132/headers/nrf_soc.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
