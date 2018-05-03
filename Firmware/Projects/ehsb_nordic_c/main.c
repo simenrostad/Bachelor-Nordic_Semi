@@ -176,36 +176,40 @@ void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
     app_error_handler(0xDEADBEEF, line_num, p_file_name);
 }
 
+/** Toggle LED 1 to visualize scanning*/
 static void led_timeout_handler(void * p_context)
 {
   nrf_gpio_pin_toggle(LED_1);
 }
 
+/** Toggle LED 4 to show that the central is in "add UUID-mode"*/
 static void add_uuid_timeout_handler(void * p_context)
 {
   nrf_gpio_pin_toggle(LED_4);
 }
 
-  static void erase_uuids_timeout_handler(void * p_context)
+/** Toggle all LEDs to show that the "whitelist" will be erased
+    and erase after 4 seconds*/
+static void erase_uuids_timeout_handler(void * p_context)
+{
+  nrf_gpio_pin_toggle(LED_1);
+  nrf_gpio_pin_toggle(LED_2);
+  nrf_gpio_pin_toggle(LED_3);
+  nrf_gpio_pin_toggle(LED_4);
+
+  delete_counter += 1;
+
+  if(delete_counter == 17)
   {
-    nrf_gpio_pin_toggle(LED_1);
-    nrf_gpio_pin_toggle(LED_2);
-    nrf_gpio_pin_toggle(LED_3);
-    nrf_gpio_pin_toggle(LED_4);
-
-    delete_counter += 1;
-
-    if(delete_counter == 17)
-    {
-        nrf_fstorage_erase(&whitelist_storage, 0x3e000, 1, NULL);
-        nrf_fstorage_erase(&whitelist_storage, 0x3f000, 1, NULL);
-        app_timer_stop(m_erase_whitelist_timer_id);
-        uuid_number = 0;
-        flash_addr = 0x3f000;
-        whitelist_erased = true;
-        NRF_LOG_INFO("Deleted");
-    }
+      nrf_fstorage_erase(&whitelist_storage, 0x3e000, 1, NULL);
+      nrf_fstorage_erase(&whitelist_storage, 0x3f000, 1, NULL);
+      app_timer_stop(m_erase_whitelist_timer_id);
+      uuid_number = 0;
+      flash_addr = 0x3f000;
+      whitelist_erased = true;
+      NRF_LOG_INFO("Deleted");
   }
+}
 
 /**@brief Function to start scanning. */
 static void scan_start(void)
@@ -219,6 +223,7 @@ static void scan_start(void)
     scanning = true;
 }
 
+/**@brief Function to stop scanning. */
 static void scan_stop(void)
 {
     sd_ble_gap_scan_stop();
@@ -227,33 +232,33 @@ static void scan_stop(void)
     scanning = false;
 }
 
-  /** Function for handling fstorage events*/
-  static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt) 
-  {
-      if (p_evt->result != NRF_SUCCESS)
-      {
-          NRF_LOG_INFO("--> Event received: ERROR while executing an fstorage operation.");
-          return;
-      }
+/** Function for handling fstorage events*/
+static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt) 
+{
+    if (p_evt->result != NRF_SUCCESS)
+    {
+        NRF_LOG_INFO("--> Event received: ERROR while executing an fstorage operation.");
+        return;
+    }
 
-      switch (p_evt->id)
-      {
-          case NRF_FSTORAGE_EVT_WRITE_RESULT:
-          {
-              NRF_LOG_INFO("--> Event received: wrote %d bytes at address 0x%x.",
-                           p_evt->len, p_evt->addr);
-          } break;
+    switch (p_evt->id)
+    {
+        case NRF_FSTORAGE_EVT_WRITE_RESULT:
+        {
+            NRF_LOG_INFO("--> Event received: wrote %d bytes at address 0x%x.",
+                         p_evt->len, p_evt->addr);
+        } break;
 
-          case NRF_FSTORAGE_EVT_ERASE_RESULT:
-          {
-              NRF_LOG_INFO("--> Event received: erased %d page from address 0x%x.",
-                           p_evt->len, p_evt->addr);
-          } break;
+        case NRF_FSTORAGE_EVT_ERASE_RESULT:
+        {
+            NRF_LOG_INFO("--> Event received: erased %d page from address 0x%x.",
+                         p_evt->len, p_evt->addr);
+        } break;
 
-          default:
-              break;
-      }
-  }
+        default:
+            break;
+    }
+}
 
 /**@brief Function for handling database discovery events.
  *
@@ -415,29 +420,29 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
  *
  * @param[in]   event       Shutdown type.
  */
-static bool shutdown_handler(nrf_pwr_mgmt_evt_t event)
-{
-    ret_code_t err_code;
+//static bool shutdown_handler(nrf_pwr_mgmt_evt_t event)
+//{
+//    ret_code_t err_code;
+//
+//    err_code = bsp_indication_set(BSP_INDICATE_IDLE);
+//    APP_ERROR_CHECK(err_code);
+//
+//    switch (event)
+//    {
+//        case NRF_PWR_MGMT_EVT_PREPARE_WAKEUP:
+//            // Prepare wakeup buttons.
+//            err_code = bsp_btn_ble_sleep_mode_prepare();
+//            APP_ERROR_CHECK(err_code);
+//            break;
+//
+//        default:
+//            break;
+//    }
+//
+//    return true;
+//}
 
-    err_code = bsp_indication_set(BSP_INDICATE_IDLE);
-    APP_ERROR_CHECK(err_code);
-
-    switch (event)
-    {
-        case NRF_PWR_MGMT_EVT_PREPARE_WAKEUP:
-            // Prepare wakeup buttons.
-            err_code = bsp_btn_ble_sleep_mode_prepare();
-            APP_ERROR_CHECK(err_code);
-            break;
-
-        default:
-            break;
-    }
-
-    return true;
-}
-
-NRF_PWR_MGMT_HANDLER_REGISTER(shutdown_handler, APP_SHUTDOWN_HANDLER_PRIORITY);
+//NRF_PWR_MGMT_HANDLER_REGISTER(shutdown_handler, APP_SHUTDOWN_HANDLER_PRIORITY);
 
 /**@brief Reads an advertising report and checks if a UUID is present in the service list.
  *
@@ -746,6 +751,7 @@ static void nus_c_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
+/** Function for handling button actions*/
 void button_handler(uint8_t pin_no, uint8_t button_action)
 {
    ret_code_t err_code;
@@ -968,9 +974,9 @@ int main(void)
 
     read_memory();
 
-    // Start scanning for peripherals and initiate connection
-    // with devices that advertise NUS/EHSB UUID.
-    NRF_LOG_INFO("BLE UART central example/EHSB Central started.");
+    /* Start scanning for peripherals and initiate connection
+       with devices that advertise NUS/EHSB UUID.*/
+    NRF_LOG_INFO("EHSB Central started.");
     scan_start();
 
 
