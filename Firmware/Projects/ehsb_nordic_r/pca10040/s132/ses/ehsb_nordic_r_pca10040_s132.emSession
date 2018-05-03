@@ -51,8 +51,18 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
+<<<<<<< HEAD
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="497" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="369" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="38" y="194" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../External/components/softdevice/s132/headers/nrf_soc.h" debugPath="../../../../../External/components/softdevice/s132/headers/nrf_soc.h" selected="0" top="121" codecName="Default"/>
+=======
+<<<<<<< HEAD
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="5604" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" debugPath="../config/sdk_config.h" selected="1" top="5596" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="0" top="267" codecName="Default"/>
+=======
+  <SessionOpenFile windowGroup="DockEditLeft" x="30" y="5604" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" debugPath="../config/sdk_config.h" selected="0" top="5597" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="165" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" debugPath="../../../main.c" selected="1" top="178" codecName="Default"/>
+>>>>>>> e23f2395a3ee3c1cea8bbd5e9eb7999fd0a052d4
+>>>>>>> c254d8b7436e607efb6452a6d4f0e1af15749033
  </Files>
  <ARMCrossStudioWindow activeProject="ehsb_nordic_r_pca10040_s132" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
