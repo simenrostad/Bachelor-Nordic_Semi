@@ -92,17 +92,17 @@
 
 #define APP_ADV_INTERVAL                64                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 40 ms). */
 
-#define MIN_CONN_INTERVAL               MSEC_TO_UNITS(25, UNIT_1_25_MS)             /**< Minimum acceptable connection interval (20 ms), Connection interval uses 1.25 ms units. */
-#define MAX_CONN_INTERVAL               MSEC_TO_UNITS(75, UNIT_1_25_MS)             /**< Maximum acceptable connection interval (75 ms), Connection interval uses 1.25 ms units. */
+#define MIN_CONN_INTERVAL               MSEC_TO_UNITS(100, UNIT_1_25_MS)             /**< Minimum acceptable connection interval (20 ms), Connection interval uses 1.25 ms units. */
+#define MAX_CONN_INTERVAL               MSEC_TO_UNITS(100, UNIT_1_25_MS)             /**< Maximum acceptable connection interval (75 ms), Connection interval uses 1.25 ms units. */
 #define SLAVE_LATENCY                   0                                           /**< Slave latency. */
 #define CONN_SUP_TIMEOUT                MSEC_TO_UNITS(4000, UNIT_10_MS)             /**< Connection supervisory timeout (4 seconds), Supervision Timeout uses 10 ms units. */
 #define FIRST_CONN_PARAMS_UPDATE_DELAY  APP_TIMER_TICKS(5000)                       /**< Time from initiating event (connect or start of notification) to first time sd_ble_gap_conn_param_update is called (5 seconds). */
 #define NEXT_CONN_PARAMS_UPDATE_DELAY   APP_TIMER_TICKS(30000)                      /**< Time between each call to sd_ble_gap_conn_param_update after the first call (30 seconds). */
 #define MAX_CONN_PARAMS_UPDATE_COUNT    3                                           /**< Number of attempts before giving up the connection parameter negotiation. */
 
-#define SCAN_INTERVAL           0x0070                                              /**< Determines scan interval in units of 0.625 millisecond. */
-#define SCAN_WINDOW             0x0060                                              /**< Determines scan window in units of 0.625 millisecond. */
-#define SCAN_TIMEOUT            0x0000                                              /**< Timeout when scanning. 0x0000 disables timeout. */
+#define SCAN_INTERVAL           0x00A0                                              /**< Determines scan interval in units of 0.625 millisecond. */
+#define SCAN_WINDOW             0x0090                                              /**< Determines scan window in units of 0.625 millisecond. */
+#define SCAN_TIMEOUT            0x0078                                              /**< Timeout when scanning in units of seconds. 0x0000 disables timeout. */
 
 #define UUID128_SIZE                    16
 
@@ -127,6 +127,8 @@ static ble_uuid_t m_adv_uuids[]          =                                      
 {
     {BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}
 };
+
+static bool m_start_scanning = false;
 
 ///**@brief NUS uuid. */
 //static ble_uuid_t const m_nus_uuid =
@@ -208,8 +210,19 @@ static void scan_led_timeout_handler(void * p_context)
 
 static void scan_start(void)
 {
-  sd_ble_gap_scan_start(&m_scan_params);
+  ret_code_t err_code;
+
+  err_code = sd_ble_gap_scan_start(&m_scan_params);
   app_timer_start(m_scan_led_timer_id, APP_TIMER_TICKS(1000), adv_led_timeout_handler); 
+
+  if (err_code == NRF_SUCCESS)
+  {
+    NRF_LOG_INFO("Scanning started");
+  }
+  else
+  {
+    NRF_LOG_INFO("Scanning failed to start because: 0x%08X", err_code);
+  }
 }
 
 static void scan_stop(void)
@@ -218,6 +231,7 @@ static void scan_stop(void)
   app_timer_stop(m_scan_led_timer_id);
   nrf_gpio_pin_set(LED_3);
 
+  NRF_LOG_INFO("Scanning stopped");
 }
 
 /**@brief Function for handling the data from the Nordic UART Service.
@@ -350,14 +364,12 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
     {
         case BLE_GAP_EVT_CONNECTED:
             NRF_LOG_INFO("Connected");
-            err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
-            APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
             app_timer_stop(m_adv_led_timer_id);
-            nrf_delay_us(2000);
-            scan_start();
             nrf_gpio_pin_set(LED_1);
             nrf_gpio_pin_clear(LED_2);
+
+            m_start_scanning = true;
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
@@ -383,6 +395,16 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                      APP_ERROR_CHECK(err_code);
                   }
         }break;
+
+        case BLE_GAP_EVT_TIMEOUT:
+            if (p_ble_evt->evt.gap_evt.params.timeout.src == BLE_GAP_TIMEOUT_SRC_SCAN)
+            {
+                if (m_conn_handle != BLE_CONN_HANDLE_INVALID)
+                {
+                    m_start_scanning = true;
+                }
+            }
+            break;
 
 #ifndef S140
         case BLE_GAP_EVT_PHY_UPDATE_REQUEST:
@@ -471,6 +493,17 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
         default:
             // No implementation needed.
             break;
+    }
+}
+
+void RADIO_NOTIFICATION_IRQHandler(void)
+{
+    if (m_start_scanning)
+    {
+        m_start_scanning = false;
+        nrf_delay_us(2000);
+        scan_start();
+        NRF_LOG_INFO("Start scan after radio event");
     }
 }
 
@@ -682,6 +715,25 @@ static void application_timer_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
+static void radio_notification_init(void)
+{
+    ret_code_t err_code;
+    uint32_t   softdevice_evt_irq_priority;
+
+    err_code = sd_nvic_GetPriority(SD_EVT_IRQn, &softdevice_evt_irq_priority);
+    APP_ERROR_CHECK(err_code);
+
+    // Make sure to use same IRQ priority as SD events to simplify state information handling
+    err_code = sd_nvic_SetPriority(RADIO_NOTIFICATION_IRQn, softdevice_evt_irq_priority);
+    APP_ERROR_CHECK(err_code);
+
+    err_code = sd_nvic_EnableIRQ(RADIO_NOTIFICATION_IRQn);
+    APP_ERROR_CHECK(err_code);
+
+    err_code = sd_radio_notification_cfg_set(NRF_RADIO_NOTIFICATION_TYPE_INT_ON_INACTIVE, NRF_RADIO_NOTIFICATION_DISTANCE_NONE);
+    APP_ERROR_CHECK(err_code);
+}
+
 
 /**@brief Function for placing the application in low power state while waiting for events.
  */
@@ -707,6 +759,7 @@ int main(void)
     services_init();
     advertising_init();
     conn_params_init();
+    radio_notification_init();
 
     printf("\r\nUART Start!\r\n");
     NRF_LOG_INFO("UART Start!");
