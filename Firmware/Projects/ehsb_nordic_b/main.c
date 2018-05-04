@@ -13,7 +13,7 @@
                                            0x93, 0xF3, 0xA3, 0xB5, \
                                            0x00, 0x00, 0x40, 0x6E}}         /**< Base UUID */
 
-#define BLE_UUID_EHSB_SERVICE             0x0001                            /**< The UUID of the Nordic UART Service. */
+#define BLE_UUID_EHSB_SERVICE             0x0001                            /**< The UUID of the EHSB Service. */
 
 static ble_uuid_t m_adv_uuids[]          =                                  /**< Universally unique service identifier. */
 {
@@ -45,11 +45,11 @@ static void advertising_init(void)
 
     memset(&m_adv_params, 0, sizeof(m_adv_params));
 
-    m_adv_params.type        = BLE_GAP_ADV_TYPE_ADV_NONCONN_IND;          /**< Non connectable undirected. Device is only broadcasting its information.  */
-    m_adv_params.p_peer_addr = NULL;                                      /**< Undirected advertisement. */
-    m_adv_params.fp          = BLE_GAP_ADV_FP_ANY;                        /**< Allow scan requests and connect requests from any device. */
-    m_adv_params.interval    = BLE_GAP_ADV_INTERVAL_MIN;                  /**< Setting min advertising interval 20ms. Want to send as many packets possible in the shortest amount of time. */
-    m_adv_params.timeout     = 0;                                         /**< Never time out. Want to send as soon as the chip is powered. */
+    m_adv_params.type        = BLE_GAP_ADV_TYPE_ADV_NONCONN_IND; /**< Non connectable undirected. Device is only broadcasting its information.  */
+    m_adv_params.p_peer_addr = NULL;                             /**< Undirected advertisement. */
+    m_adv_params.fp          = BLE_GAP_ADV_FP_ANY;               /**< Allow scan requests and connect requests from any device. */
+    m_adv_params.interval    = BLE_GAP_ADV_INTERVAL_MIN;         /**< Setting min advertising interval 20ms. Want to send as many packets possible in the shortest amount of time. */
+    m_adv_params.timeout     = 0;                                /**< Never time out. Want to send as soon as the chip is powered. */
 
     // Start advertising 128-bit UUID.
     err_code = sd_ble_gap_adv_start(&m_adv_params, APP_BLE_CONN_CFG_TAG);
@@ -93,11 +93,8 @@ int main(void)
     advertising_init();
 
 /**< Sleep between advertising intervals */
-    for (;; )
+    for (;;)
     {
-        if (NRF_LOG_PROCESS() == false)
-        {
-            power_manage();
-        }
+      power_manage();
     }
 }
