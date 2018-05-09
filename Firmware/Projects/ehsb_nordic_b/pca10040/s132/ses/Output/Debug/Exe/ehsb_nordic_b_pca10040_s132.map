@@ -131,7 +131,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
  .debug_line    0x0000000000000000      0x37e Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
- .debug_str     0x0000000000000000    0x646c4 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
+ .debug_str     0x0000000000000000    0x646c3 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_rtt.o
@@ -194,7 +194,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
  .debug_line    0x0000000000000000      0x381 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
- .debug_str     0x0000000000000000    0x646c7 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
+ .debug_str     0x0000000000000000    0x646c6 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_serial.o
@@ -257,7 +257,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_uart.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_uart.o
  .debug_line    0x0000000000000000      0x37f Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_uart.o
- .debug_str     0x0000000000000000    0x646c5 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_uart.o
+ .debug_str     0x0000000000000000    0x646c4 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_uart.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_uart.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_backend_uart.o
@@ -320,7 +320,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_default_backends.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_default_backends.o
  .debug_line    0x0000000000000000      0x383 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_default_backends.o
- .debug_str     0x0000000000000000    0x646c9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_default_backends.o
+ .debug_str     0x0000000000000000    0x646c8 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_default_backends.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_default_backends.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_default_backends.o
@@ -383,7 +383,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_frontend.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_frontend.o
  .debug_line    0x0000000000000000      0x37b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_frontend.o
- .debug_str     0x0000000000000000    0x646c1 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_frontend.o
+ .debug_str     0x0000000000000000    0x646c0 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_frontend.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_frontend.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_frontend.o
@@ -446,7 +446,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_str_formatter.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_str_formatter.o
  .debug_line    0x0000000000000000      0x380 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_str_formatter.o
- .debug_str     0x0000000000000000    0x646c6 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_str_formatter.o
+ .debug_str     0x0000000000000000    0x646c5 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_str_formatter.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_str_formatter.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_log_str_formatter.o
@@ -509,7 +509,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_button.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_button.o
  .debug_line    0x0000000000000000      0x367 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_button.o
- .debug_str     0x0000000000000000    0x646ad Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_button.o
+ .debug_str     0x0000000000000000    0x646ac Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_button.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_button.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_button.o
@@ -773,7 +773,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_scheduler.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_scheduler.o
  .debug_line    0x0000000000000000      0x36d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_scheduler.o
- .debug_str     0x0000000000000000    0x646b3 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_scheduler.o
+ .debug_str     0x0000000000000000    0x646b2 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_scheduler.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_scheduler.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_scheduler.o
@@ -836,7 +836,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_timer.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_timer.o
  .debug_line    0x0000000000000000      0x365 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_timer.o
- .debug_str     0x0000000000000000    0x646ab Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_timer.o
+ .debug_str     0x0000000000000000    0x646aa Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_timer.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_timer.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_timer.o
@@ -1048,7 +1048,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/hardfault_implementation.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/hardfault_implementation.o
  .debug_line    0x0000000000000000      0x378 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/hardfault_implementation.o
- .debug_str     0x0000000000000000    0x646be Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/hardfault_implementation.o
+ .debug_str     0x0000000000000000    0x646bd Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/hardfault_implementation.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/hardfault_implementation.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/hardfault_implementation.o
@@ -1188,7 +1188,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_atfifo.o
  .debug_macro   0x0000000000000000       0x20 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_atfifo.o
  .debug_line    0x0000000000000000      0x4ec Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_atfifo.o
- .debug_str     0x0000000000000000    0x64c1e Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_atfifo.o
+ .debug_str     0x0000000000000000    0x64c1d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_atfifo.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_atfifo.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_atfifo.o
@@ -1372,7 +1372,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x167 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_balloc.o
  .debug_macro   0x0000000000000000       0x68 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_balloc.o
  .debug_line    0x0000000000000000      0x8b9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_balloc.o
- .debug_str     0x0000000000000000    0x68a30 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_balloc.o
+ .debug_str     0x0000000000000000    0x68a2f Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_balloc.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_balloc.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_balloc.o
@@ -1452,7 +1452,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf.o
  .debug_macro   0x0000000000000000       0x10 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf.o
  .debug_line    0x0000000000000000      0x444 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf.o
- .debug_str     0x0000000000000000    0x64d43 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf.o
+ .debug_str     0x0000000000000000    0x64d42 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf.o
@@ -1540,7 +1540,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf_format.o
  .debug_macro   0x0000000000000000       0x10 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf_format.o
  .debug_line    0x0000000000000000      0x5bf Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf_format.o
- .debug_str     0x0000000000000000    0x64e28 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf_format.o
+ .debug_str     0x0000000000000000    0x64e27 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf_format.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf_format.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_fprintf_format.o
@@ -1734,7 +1734,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_memobj.o
  .debug_macro   0x0000000000000000       0x3b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_memobj.o
  .debug_line    0x0000000000000000      0x8d7 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_memobj.o
- .debug_str     0x0000000000000000    0x674ff Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_memobj.o
+ .debug_str     0x0000000000000000    0x674fe Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_memobj.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_memobj.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_memobj.o
@@ -1966,7 +1966,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x68 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
  .debug_macro   0x0000000000000000       0x30 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
  .debug_line    0x0000000000000000      0xc72 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
- .debug_str     0x0000000000000000    0x6a66c Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
+ .debug_str     0x0000000000000000    0x6a66b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_pwr_mgmt.o
@@ -2099,7 +2099,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_strerror.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_strerror.o
  .debug_line    0x0000000000000000      0x3c1 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_strerror.o
- .debug_str     0x0000000000000000    0x6478f Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_strerror.o
+ .debug_str     0x0000000000000000    0x6478e Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_strerror.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_strerror.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_strerror.o
@@ -2229,7 +2229,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x261 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/boards.o
  .debug_macro   0x0000000000000000      0x115 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/boards.o
  .debug_line    0x0000000000000000      0x694 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/boards.o
- .debug_str     0x0000000000000000    0x6226f Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/boards.o
+ .debug_str     0x0000000000000000    0x6226e Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/boards.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/boards.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/boards.o
@@ -2639,7 +2639,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
  .debug_line    0x0000000000000000      0x36d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
- .debug_str     0x0000000000000000    0x646b3 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
+ .debug_str     0x0000000000000000    0x646b2 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_gpiote.o
@@ -2702,7 +2702,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_uart.o
  .debug_macro   0x0000000000000000       0x4b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_uart.o
  .debug_line    0x0000000000000000      0x369 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_uart.o
- .debug_str     0x0000000000000000    0x646af Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_uart.o
+ .debug_str     0x0000000000000000    0x646ae Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_uart.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_uart.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_uart.o
@@ -2850,7 +2850,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x4a9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp.o
  .debug_macro   0x0000000000000000       0x28 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp.o
  .debug_line    0x0000000000000000      0x747 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp.o
- .debug_str     0x0000000000000000    0x6745c Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp.o
+ .debug_str     0x0000000000000000    0x6745b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp.o
@@ -3027,7 +3027,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x2e Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp_nfc.o
  .debug_macro   0x0000000000000000       0x7e Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp_nfc.o
  .debug_line    0x0000000000000000      0x7c3 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp_nfc.o
- .debug_str     0x0000000000000000    0x63d21 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp_nfc.o
+ .debug_str     0x0000000000000000    0x63d20 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp_nfc.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp_nfc.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/bsp_nfc.o
@@ -3582,7 +3582,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x47 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT.o
  .debug_macro   0x0000000000000000      0x115 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT.o
  .debug_line    0x0000000000000000      0xad5 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT.o
- .debug_str     0x0000000000000000    0x627e9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT.o
+ .debug_str     0x0000000000000000    0x627e8 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT.o
@@ -3755,7 +3755,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0xa6 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
  .debug_macro   0x0000000000000000       0xbe Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
  .debug_line    0x0000000000000000      0x741 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
- .debug_str     0x0000000000000000    0x62f25 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
+ .debug_str     0x0000000000000000    0x62f24 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_Syscalls_SES.o
@@ -3930,7 +3930,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x28 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_printf.o
  .debug_macro   0x0000000000000000       0x22 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_printf.o
  .debug_line    0x0000000000000000      0x845 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_printf.o
- .debug_str     0x0000000000000000    0x62579 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_printf.o
+ .debug_str     0x0000000000000000    0x62578 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_printf.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_printf.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/SEGGER_RTT_printf.o
@@ -4399,7 +4399,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x9b Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_srv_common.o
  .debug_macro   0x0000000000000000       0x2a Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_srv_common.o
  .debug_line    0x0000000000000000      0xb0f Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_srv_common.o
- .debug_str     0x0000000000000000    0x6c2db Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_srv_common.o
+ .debug_str     0x0000000000000000    0x6c2da Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_srv_common.o
  .comment       0x0000000000000000       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_srv_common.o
  .ARM.attributes
                 0x0000000000000000       0x39 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_srv_common.o
@@ -7910,7 +7910,7 @@ OUTPUT(Output/Debug/Exe/ehsb_nordic_b_pca10040_s132.elf elf32-littlearm)
  .comment       0x000000000000004c       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
  .comment       0x000000000000004c       0x4d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
 
-.debug_line     0x0000000000000000     0x76b3
+.debug_line     0x0000000000000000     0x76b6
  .debug_line    0x0000000000000000      0x2b4 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/thumb_crt0.o
  .debug_line    0x00000000000002b4      0x373 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_error.o
  .debug_line    0x0000000000000627      0x9c2 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_error_weak.o
@@ -7919,14 +7919,14 @@ OUTPUT(Output/Debug/Exe/ehsb_nordic_b_pca10040_s132.elf elf32-littlearm)
  .debug_line    0x0000000000001b08      0x43c Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_section_iter.o
  .debug_line    0x0000000000001f44      0xcc8 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_clock.o
  .debug_line    0x0000000000002c0c      0x831 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_common.o
- .debug_line    0x000000000000343d     0x1029 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/main.o
- .debug_line    0x0000000000004466      0xcb1 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_advdata.o
- .debug_line    0x0000000000005117       0xb5 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ses_nRF_Startup.o
- .debug_line    0x00000000000051cc       0xbe Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ses_nrf52_Vectors.o
- .debug_line    0x000000000000528a      0x45d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/system_nrf52.o
- .debug_line    0x00000000000056e7      0xb80 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh.o
- .debug_line    0x0000000000006267      0xbdd Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
- .debug_line    0x0000000000006e44      0x86f Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
+ .debug_line    0x000000000000343d     0x102c Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/main.o
+ .debug_line    0x0000000000004469      0xcb1 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_advdata.o
+ .debug_line    0x000000000000511a       0xb5 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ses_nRF_Startup.o
+ .debug_line    0x00000000000051cf       0xbe Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ses_nrf52_Vectors.o
+ .debug_line    0x000000000000528d      0x45d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/system_nrf52.o
+ .debug_line    0x00000000000056ea      0xb80 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh.o
+ .debug_line    0x000000000000626a      0xbdd Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
+ .debug_line    0x0000000000006e47      0x86f Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
 
 .debug_info     0x0000000000000000    0x1794b
  .debug_info    0x0000000000000000       0xc5 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/thumb_crt0.o
@@ -8148,30 +8148,30 @@ OUTPUT(Output/Debug/Exe/ehsb_nordic_b_pca10040_s132.elf elf32-littlearm)
  .debug_macro   0x000000000000374d      0x1f2 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
  .debug_macro   0x000000000000393f       0x16 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
 
-.debug_str      0x0000000000000000    0x74ec8
- .debug_str     0x0000000000000000    0x5f852 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_error.o
-                                      0x604b9 (size before relaxing)
- .debug_str     0x000000000005f852     0x930f Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_error_weak.o
-                                      0x69748 (size before relaxing)
- .debug_str     0x0000000000068b61      0x53d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_util_platform.o
-                                      0x620d8 (size before relaxing)
- .debug_str     0x000000000006909e       0x86 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_assert.o
-                                      0x604b2 (size before relaxing)
- .debug_str     0x0000000000069124      0x28e Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_section_iter.o
-                                      0x64fcc (size before relaxing)
- .debug_str     0x00000000000693b2     0x1508 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_clock.o
-                                      0x69627 (size before relaxing)
- .debug_str     0x000000000006a8ba      0xa37 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_common.o
-                                      0x67003 (size before relaxing)
- .debug_str     0x000000000006b2f1     0x6ee9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/main.o
-                                      0x7018e (size before relaxing)
- .debug_str     0x00000000000721da     0x15d0 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_advdata.o
-                                      0x6c8cd (size before relaxing)
- .debug_str     0x00000000000737aa      0x3d0 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/system_nrf52.o
+.debug_str      0x0000000000000000    0x74ec7
+ .debug_str     0x0000000000000000    0x5f851 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_error.o
+                                      0x604b8 (size before relaxing)
+ .debug_str     0x000000000005f851     0x930f Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_error_weak.o
+                                      0x69747 (size before relaxing)
+ .debug_str     0x0000000000068b60      0x53d Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/app_util_platform.o
+                                      0x620d7 (size before relaxing)
+ .debug_str     0x000000000006909d       0x86 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_assert.o
+                                      0x604b1 (size before relaxing)
+ .debug_str     0x0000000000069123      0x28e Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_section_iter.o
+                                      0x64fcb (size before relaxing)
+ .debug_str     0x00000000000693b1     0x1508 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_clock.o
+                                      0x69626 (size before relaxing)
+ .debug_str     0x000000000006a8b9      0xa37 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_drv_common.o
+                                      0x67002 (size before relaxing)
+ .debug_str     0x000000000006b2f0     0x6ee9 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/main.o
+                                      0x7018d (size before relaxing)
+ .debug_str     0x00000000000721d9     0x15d0 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/ble_advdata.o
+                                      0x6c8cc (size before relaxing)
+ .debug_str     0x00000000000737a9      0x3d0 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/system_nrf52.o
                                       0x5b3ba (size before relaxing)
- .debug_str     0x0000000000073b7a      0x437 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh.o
-                                      0x69695 (size before relaxing)
- .debug_str     0x0000000000073fb1      0xe0e Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
-                                      0x6e61f (size before relaxing)
- .debug_str     0x0000000000074dbf      0x109 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
-                                      0x682ec (size before relaxing)
+ .debug_str     0x0000000000073b79      0x437 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh.o
+                                      0x69694 (size before relaxing)
+ .debug_str     0x0000000000073fb0      0xe0e Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_ble.o
+                                      0x6e61e (size before relaxing)
+ .debug_str     0x0000000000074dbe      0x109 Output/ehsb_nordic_b_pca10040_s132 Debug/Obj/nrf_sdh_soc.o
+                                      0x682eb (size before relaxing)
