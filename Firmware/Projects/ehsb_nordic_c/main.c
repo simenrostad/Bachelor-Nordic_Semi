@@ -554,6 +554,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             }
             else if(add_uuid)
             {
+                //Check RSSI, flag and UUID type to ensure that advertising device is close and of right kind.
                 if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -35 \
                    && p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
                    && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
@@ -566,11 +567,9 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                               nrf_gpio_pin_set(LED_4);
                               nrf_gpio_pin_clear(LED_2);
                               existing_uuid = true;
-                              new_uuid_added = true;
-                              NRF_LOG_INFO("hit");
                           }
                       }
-                      if(!new_uuid_added)
+                      if(!new_uuid_added && !existing_uuid)
                       {
                           //Copy the UUID from advertisement report to the next slot in whitelist
                           memcpy(&whitelist[uuid_number], &p_adv_report->data[5], 16);
@@ -582,7 +581,6 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                           NRF_LOG_INFO("Writing \"%x\" to flash.", whitelist[uuid_number]);
                           err_code = nrf_fstorage_write(&whitelist_storage, flash_addr, whitelist[uuid_number], sizeof(whitelist[uuid_number]), NULL);
                           APP_ERROR_CHECK(err_code);
-
                           NRF_LOG_INFO("Done.");
 
                           flash_addr += 0x10;
@@ -802,7 +800,6 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
       {
           nrf_gpio_pin_set(LED_2);
           existing_uuid = false;
-          new_uuid_added = false;
       }
 
       add_uuid = false;
@@ -931,7 +928,7 @@ static void leds_init(void)
   nrf_gpio_pin_clear(STOP_SIGN);
 }
 
-static void read_memory(void)
+static void read_flash(void)
 {
     ret_code_t err_code;
 
@@ -972,7 +969,7 @@ int main(void)
     rc = nrf_fstorage_init(&whitelist_storage, &nrf_fstorage_sd, NULL);
     APP_ERROR_CHECK(rc);
 
-    read_memory();
+    read_flash();
 
     /* Start scanning for peripherals and initiate connection
        with devices that advertise NUS/EHSB UUID.*/
