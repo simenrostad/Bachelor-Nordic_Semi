@@ -102,7 +102,7 @@ void SWI1_IRQHandler(bool radio_evt)
     {
         counter += 1;
 
-        if(counter == 3)
+        if(counter == 1)
         {
             err_code = sd_ble_gap_adv_stop();
             APP_ERROR_CHECK(err_code);

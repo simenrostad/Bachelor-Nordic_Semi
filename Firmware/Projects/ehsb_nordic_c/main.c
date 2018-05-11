@@ -120,6 +120,7 @@ uint8_t whitelist[30][16] = {0};
 
 static void fstorage_evt_handler(nrf_fstorage_evt_t * p_evt);
 
+/**NRF FSTORAGE instance*/
 NRF_FSTORAGE_DEF(nrf_fstorage_t whitelist_storage) =
 {
     /* Set a handler for fstorage events. */
@@ -391,7 +392,8 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
 
         case BLE_NUS_C_EVT_NUS_TX_EVT:
             ble_nus_chars_received_uart_print(p_ble_nus_evt->p_data, p_ble_nus_evt->data_len);
-            if(p_ble_nus_evt->data_len == 16 && !add_uuid && !erasing_whitelist)
+            /**UUID received from relayer. Compare it to "whitelist"*/
+            if(p_ble_nus_evt->data_len == 16 && !add_uuid && !erasing_whitelist && !reset)
             {
                   for(uint8_t i = 0; i < uuid_number; i++)
                   {
@@ -412,37 +414,6 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
             break;
     }
 }
-/**@snippet [Handling events from the ble_nus_c module] */
-
-
-/**
- * @brief Function for shutdown events.
- *
- * @param[in]   event       Shutdown type.
- */
-//static bool shutdown_handler(nrf_pwr_mgmt_evt_t event)
-//{
-//    ret_code_t err_code;
-//
-//    err_code = bsp_indication_set(BSP_INDICATE_IDLE);
-//    APP_ERROR_CHECK(err_code);
-//
-//    switch (event)
-//    {
-//        case NRF_PWR_MGMT_EVT_PREPARE_WAKEUP:
-//            // Prepare wakeup buttons.
-//            err_code = bsp_btn_ble_sleep_mode_prepare();
-//            APP_ERROR_CHECK(err_code);
-//            break;
-//
-//        default:
-//            break;
-//    }
-//
-//    return true;
-//}
-
-//NRF_PWR_MGMT_HANDLER_REGISTER(shutdown_handler, APP_SHUTDOWN_HANDLER_PRIORITY);
 
 /**@brief Reads an advertising report and checks if a UUID is present in the service list.
  *
@@ -554,6 +525,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             }
             else if(add_uuid)
             {
+                //Check RSSI, flag and UUID type to ensure that advertising device is close and of right kind.
                 if(p_ble_evt->evt.gap_evt.params.adv_report.rssi > -35 \
                    && p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
                    && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
@@ -566,11 +538,9 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                               nrf_gpio_pin_set(LED_4);
                               nrf_gpio_pin_clear(LED_2);
                               existing_uuid = true;
-                              new_uuid_added = true;
-                              NRF_LOG_INFO("hit");
                           }
                       }
-                      if(!new_uuid_added)
+                      if(!new_uuid_added && !existing_uuid)
                       {
                           //Copy the UUID from advertisement report to the next slot in whitelist
                           memcpy(&whitelist[uuid_number], &p_adv_report->data[5], 16);
@@ -582,7 +552,6 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
                           NRF_LOG_INFO("Writing \"%x\" to flash.", whitelist[uuid_number]);
                           err_code = nrf_fstorage_write(&whitelist_storage, flash_addr, whitelist[uuid_number], sizeof(whitelist[uuid_number]), NULL);
                           APP_ERROR_CHECK(err_code);
-
                           NRF_LOG_INFO("Done.");
 
                           flash_addr += 0x10;
@@ -756,6 +725,7 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
 {
    ret_code_t err_code;
 
+   /**Button 1 turns of stop-sign and LEDs indicating button found*/
    if(pin_no == BUTTON_1 && button_action == APP_BUTTON_PUSH)
    {
       if(reset)
@@ -766,6 +736,10 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
           reset = false;
       }
    }
+   /**Button 2 is for adding a new UUID to the system.
+   A push of the button sets add_uuid = true
+   and release sets add_uuid = false, meaning that the button 
+   needs to be held down in order to add a new UUID*/
    if(pin_no == BUTTON_2 && button_action == APP_BUTTON_PUSH)
    {
        if(uuid_number > 30)
@@ -802,11 +776,11 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
       {
           nrf_gpio_pin_set(LED_2);
           existing_uuid = false;
-          new_uuid_added = false;
       }
 
       add_uuid = false;
    }
+   /**Holding button 3 erases "whitelist" after 4 seconds of toggling all LEDs*/
    if(pin_no == BUTTON_3 && button_action == APP_BUTTON_PUSH)
    {
         erasing_whitelist = true;
@@ -816,7 +790,6 @@ void button_handler(uint8_t pin_no, uint8_t button_action)
         nrf_gpio_pin_set(LED_4);
         app_timer_start(m_erase_whitelist_timer_id, APP_TIMER_TICKS(250), erase_uuids_timeout_handler);
    }
-
    if(pin_no == BUTTON_3 && button_action == APP_BUTTON_RELEASE)
    {  
         if(!whitelist_erased)
@@ -931,7 +904,8 @@ static void leds_init(void)
   nrf_gpio_pin_clear(STOP_SIGN);
 }
 
-static void read_memory(void)
+/**Function for reading UUIDs from flash and putting them in "whitelist" on start-up*/
+static void read_flash(void)
 {
     ret_code_t err_code;
 
@@ -972,7 +946,7 @@ int main(void)
     rc = nrf_fstorage_init(&whitelist_storage, &nrf_fstorage_sd, NULL);
     APP_ERROR_CHECK(rc);
 
-    read_memory();
+    read_flash();
 
     /* Start scanning for peripherals and initiate connection
        with devices that advertise NUS/EHSB UUID.*/
