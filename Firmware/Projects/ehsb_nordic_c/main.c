@@ -392,7 +392,8 @@ static void ble_nus_c_evt_handler(ble_nus_c_t * p_ble_nus_c, ble_nus_c_evt_t con
 
         case BLE_NUS_C_EVT_NUS_TX_EVT:
             ble_nus_chars_received_uart_print(p_ble_nus_evt->p_data, p_ble_nus_evt->data_len);
-            if(p_ble_nus_evt->data_len == 16 && !add_uuid && !erasing_whitelist)
+            /**UUID received from relayer. Compare it to "whitelist"*/
+            if(p_ble_nus_evt->data_len == 16 && !add_uuid && !erasing_whitelist && !reset)
             {
                   for(uint8_t i = 0; i < uuid_number; i++)
                   {
