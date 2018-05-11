@@ -90,7 +90,7 @@ int main(void)
 {
     // Initialize.
     ble_stack_init();
-//    advertising_init();
+    advertising_init();
 
 /**< Sleep between advertising intervals */
     for (;;)
