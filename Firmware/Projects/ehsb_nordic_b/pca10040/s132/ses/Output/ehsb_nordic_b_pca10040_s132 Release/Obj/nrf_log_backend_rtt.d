@@ -1,10 +1,10 @@
 Output/ehsb_nordic_b_pca10040_s132\ Release/Obj/nrf_log_backend_rtt.o: \
- C:\GitHub\Bachelor-Nordic_Semi\Firmware\External\components\libraries\experimental_log\src\nrf_log_backend_rtt.c \
+ /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/experimental_log/src/nrf_log_backend_rtt.c \
  ../../../../../External/components/libraries/util/sdk_common.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
  ../config/sdk_config.h \
  ../../../../../External/components/libraries/util/nordic_common.h \
  ../../../../../External/components/device/compiler_abstraction.h \
@@ -12,7 +12,7 @@ Output/ehsb_nordic_b_pca10040_s132\ Release/Obj/nrf_log_backend_rtt.o: \
  ../../../../../External/components/libraries/util/sdk_errors.h \
  ../../../../../External/components/softdevice/s132/headers/nrf_error.h \
  ../../../../../External/components/libraries/util/app_util.h \
- C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
  ../../../../../External/components/device/nrf.h \
  ../../../../../External/components/device/nrf52.h \
  ../../../../../External/components/toolchain/cmsis/include/core_cm4.h \

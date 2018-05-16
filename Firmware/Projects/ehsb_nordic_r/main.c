@@ -1,55 +1,4 @@
-/**
- * Copyright (c) 2014 - 2017, Nordic Semiconductor ASA
- * 
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- * 
- * 1. Redistributions of source code must retain the above copyright notice, this
- *    list of conditions and the following disclaimer.
- * 
- * 2. Redistributions in binary form, except as embedded into a Nordic
- *    Semiconductor ASA integrated circuit in a product or a software update for
- *    such product, must reproduce the above copyright notice, this list of
- *    conditions and the following disclaimer in the documentation and/or other
- *    materials provided with the distribution.
- * 
- * 3. Neither the name of Nordic Semiconductor ASA nor the names of its
- *    contributors may be used to endorse or promote products derived from this
- *    software without specific prior written permission.
- * 
- * 4. This software, with or without modification, must only be used with a
- *    Nordic Semiconductor ASA integrated circuit.
- * 
- * 5. Any software provided in binary form under this license must not be reverse
- *    engineered, decompiled, modified and/or disassembled.
- * 
- * THIS SOFTWARE IS PROVIDED BY NORDIC SEMICONDUCTOR ASA "AS IS" AND ANY EXPRESS
- * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY, NONINFRINGEMENT, AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL NORDIC SEMICONDUCTOR ASA OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
- * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
- */
-/** @file
- *
- * @defgroup ble_sdk_uart_over_ble_main main.c
- * @{
- * @ingroup  ble_sdk_app_nus_eval
- * @brief    UART over BLE application main file.
- *
- * This file contains the source code for a sample application that uses the Nordic UART service.
- * This application uses the @ref srvlib_conn_params module.
- */
-
-
-
+/**<Defines*/
 #include <stdint.h>
 #include <string.h>
 #include "nordic_common.h"
@@ -111,8 +60,6 @@
 #define UART_TX_BUF_SIZE                256                                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE                256                                         /**< UART RX buffer size. */
 
-//#define BLE_UUID_EHSB_SERVICE 0x0001                                                /**< The UUID of the Nordic UART Service. */
-
 BLE_NUS_DEF(m_nus);                                                                 /**< BLE NUS service instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                                           /**< GATT module instance. */
 BLE_ADVERTISING_DEF(m_advertising);                                                 /**< Advertising module instance. */
@@ -129,13 +76,6 @@ static ble_uuid_t m_adv_uuids[]          =                                      
 };
 
 static bool m_start_scanning = false;
-
-///**@brief NUS uuid. */
-//static ble_uuid_t const m_nus_uuid =
-//{
-//    .uuid = BLE_UUID_EHSB_SERVICE,
-//    .type = NUS_SERVICE_UUID_TYPE
-//};
 
 /** @brief Parameters used when scanning. */
 static ble_gap_scan_params_t const m_scan_params =
@@ -198,37 +138,37 @@ static void gap_params_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-static void adv_led_timeout_handler(void * p_context)
+static void adv_led_timeout_handler(void * p_context) //LED timeout handler for toggling LED_1 when advertising
 {
   nrf_gpio_pin_toggle(LED_1);
 }
 
-static void scan_led_timeout_handler(void * p_context)
+static void scan_led_timeout_handler(void * p_context) //LED timeout handler for toggling LED_3 when scanning
 {
   nrf_gpio_pin_toggle(LED_3);
 }
 
-static void scan_start(void)
+static void scan_start(void)  //Function to perform scan
 {
   ret_code_t err_code;
 
   err_code = sd_ble_gap_scan_start(&m_scan_params);
-  app_timer_start(m_scan_led_timer_id, APP_TIMER_TICKS(1000), adv_led_timeout_handler); 
+  app_timer_start(m_scan_led_timer_id, APP_TIMER_TICKS(1000), adv_led_timeout_handler);   //Timer that calls timeout handler function that toggles LED when scan starts
 
   if (err_code == NRF_SUCCESS)
   {
-    NRF_LOG_INFO("Scanning started");
+    NRF_LOG_INFO("Scanning started"); //Writes to RTT logging module
   }
   else
   {
-    NRF_LOG_INFO("Scanning failed to start because: 0x%08X", err_code);
+    NRF_LOG_INFO("Scanning failed to start because: 0x%08X", err_code); //Writes to RTT logging module
   }
 }
 
-static void scan_stop(void)
+static void scan_stop(void) //Function to stop scan
 {
   sd_ble_gap_scan_stop();
-  app_timer_stop(m_scan_led_timer_id);
+  app_timer_stop(m_scan_led_timer_id);  //stop timer that toggles LED when scanning
   nrf_gpio_pin_set(LED_3);
 
   NRF_LOG_INFO("Scanning stopped");
@@ -362,36 +302,36 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
 
     switch (p_ble_evt->header.evt_id)
     {
-        case BLE_GAP_EVT_CONNECTED:
+        case BLE_GAP_EVT_CONNECTED:                                 //Event that is generated when connected to Central
             NRF_LOG_INFO("Connected");
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
-            app_timer_stop(m_adv_led_timer_id);
-            nrf_gpio_pin_set(LED_1);
+            app_timer_stop(m_adv_led_timer_id);                     //Function that stops timer that toggles LED when advertising
+            nrf_gpio_pin_set(LED_1);                                //Set LED 1 that indicates connected to central
             nrf_gpio_pin_clear(LED_2);
 
             m_start_scanning = true;
             break;
 
-        case BLE_GAP_EVT_DISCONNECTED:
+        case BLE_GAP_EVT_DISCONNECTED:                              //Event that is generated when disconnected to Central
             NRF_LOG_INFO("Disconnected");
             // LED indication will be changed when advertising starts.
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
-            scan_stop();
+            scan_stop();                                            //Stop scanning for stop buttons when disconnected, the advertising will restart to try to connect to the central again
             nrf_gpio_pin_set(LED_2);
             nrf_gpio_pin_set(LED_4);
-            app_timer_start(m_adv_led_timer_id, APP_TIMER_TICKS(1000), adv_led_timeout_handler);
+            app_timer_start(m_adv_led_timer_id, APP_TIMER_TICKS(1000), adv_led_timeout_handler);    //Timer that indicates advertising
             break;
 
-        case BLE_GAP_EVT_ADV_REPORT:
+        case BLE_GAP_EVT_ADV_REPORT:                                //Event that gets generated by when an advertising report is ready
         {
-             ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;
+             ble_gap_evt_adv_report_t const * p_adv_report = &p_gap_evt->params.adv_report;   //Access advertising report
 
-             if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \
-                && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)
-                  {
-                     memcpy(&adv_rep_uuid[0], &p_adv_report->data[5], 16);
+             if(p_adv_report->data[2] == BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED \              /*Checks if the adv package carries a BR/RD not supported advertising flag*/
+                && p_adv_report->data[4] == BLE_GAP_AD_TYPE_128BIT_SERVICE_UUID_COMPLETE)     /*Checks if the adv package carries a complete 128-bit UUID*/
+                  { 
+                     memcpy(&adv_rep_uuid[0], &p_adv_report->data[5], 16);                    /*Copy UUID to the adv_rep_uuid variable*/
 
-                     err_code = ble_nus_string_send(&m_nus, adv_rep_uuid , &adv_rep_uuid_length);
+                     err_code = ble_nus_string_send(&m_nus, adv_rep_uuid , &adv_rep_uuid_length); /*Send content of variable to central via wireless uart string*/
                      APP_ERROR_CHECK(err_code);
                   }
         }break;
@@ -746,7 +686,7 @@ static void power_manage(void)
 /**@brief Application main function.
  */
 int main(void)
-{
+{   
     application_timer_init();
 
     uart_init();

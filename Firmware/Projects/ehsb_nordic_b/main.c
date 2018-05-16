@@ -1,3 +1,5 @@
+
+/**<Defines*/
 #include "nrf_soc.h"
 #include "nrf_sdh.h"
 #include "nrf_sdh_ble.h"
@@ -77,6 +79,7 @@ static void ble_stack_init(void)
     
     // Enable DCDC converter in softdevice
     sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);
+
 }
 
 /**@brief Function for doing power management. */
