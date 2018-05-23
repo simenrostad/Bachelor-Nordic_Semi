@@ -78,7 +78,7 @@ static void ble_stack_init(void)
     APP_ERROR_CHECK(err_code);
     
     // Enable DCDC converter in softdevice
-//    sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);
+    sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);
 
 }
 
