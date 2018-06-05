@@ -2,6 +2,14 @@
 
 Energy Harvesting Stop Button (EHSB)
 
+The gruop consists of:
+Jonathan Lange Lundaas
+Besart Olluri
+Tor André Melheim
+Simen Rømo
+Simon S. Røstad
+
+Fore ouer final batchlor thsisis we wrote abount the EHSB projeckt. here u will finde the thissis, poster and a powerpoint 
 inder project report u vill finde the thisis that was written as a batchlor
 and ther is also e psoter thet sumsupp the difrent aspect in a simplsitc way.
 
