@@ -19,7 +19,7 @@ The assignment is split in to two pieces, hardware and software.
 
 The Harware part consists of the folowing:
  - Finding a Energy source
- - desigin the curcutry and energy sorage
+ - design the circuit and energy storage
  - energy budget
  - power managment divices
  - whireless conectivity an antanna choise (tuning antanna)
