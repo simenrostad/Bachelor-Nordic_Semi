@@ -1,5 +1,5 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_atfifo.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/atomic_fifo/nrf_atfifo.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/atomic_fifo/nrf_atfifo.c \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/string.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/__crossworks.h \
  ../../../../../External/components/libraries/util/app_util.h \
@@ -20,7 +20,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_atfifo.o: \
  ../../../../../External/components/device/nrf51_to_nrf52.h \
  ../../../../../External/components/device/nrf52_name_change.h \
  ../../../../../External/components/device/compiler_abstraction.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/atomic_fifo/nrf_atfifo.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/atomic_fifo/nrf_atfifo.h \
  ../../../../../External/components/libraries/util/nordic_common.h \
  ../../../../../External/components/libraries/util/nrf_assert.h \
  ../../../../../External/components/libraries/util/app_error.h \
@@ -29,4 +29,4 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_atfifo.o: \
  ../../../../../External/components/softdevice/s132/headers/nrf_error.h \
  ../config/sdk_config.h \
  ../../../../../External/components/libraries/util/app_error_weak.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/atomic_fifo/nrf_atfifo_internal.h
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/atomic_fifo/nrf_atfifo_internal.h

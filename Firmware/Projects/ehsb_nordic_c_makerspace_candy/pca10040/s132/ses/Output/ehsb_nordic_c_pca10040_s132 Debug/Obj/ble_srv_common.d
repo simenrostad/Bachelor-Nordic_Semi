@@ -1,6 +1,6 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/ble_srv_common.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/ble/common/ble_srv_common.c \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/ble/common/ble_srv_common.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_srv_common.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_srv_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdbool.h \
  ../../../../../External/components/softdevice/s132/headers/ble_types.h \

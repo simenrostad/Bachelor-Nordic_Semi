@@ -1,7 +1,7 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/SEGGER_RTT_printf.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/external/segger_rtt/SEGGER_RTT_printf.c \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/external/segger_rtt/SEGGER_RTT.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/external/segger_rtt/SEGGER_RTT_Conf.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/external/segger_rtt/SEGGER_RTT_printf.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/external/segger_rtt/SEGGER_RTT.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/external/segger_rtt/SEGGER_RTT_Conf.h \
  ../../../../../External/components/libraries/util/nordic_common.h \
  ../../../../../External/components/libraries/util/app_util_platform.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \

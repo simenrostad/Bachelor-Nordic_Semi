@@ -1,6 +1,6 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_memobj.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/experimental_memobj/nrf_memobj.c \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/experimental_memobj/nrf_memobj.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/experimental_memobj/nrf_memobj.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/experimental_memobj/nrf_memobj.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdlib.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/__crossworks.h \

@@ -1,5 +1,5 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_fprintf.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/external/fprintf/nrf_fprintf.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/external/fprintf/nrf_fprintf.c \
  ../../../../../External/components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdbool.h \
@@ -31,5 +31,5 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_fprintf.o: \
  ../../../../../External/components/libraries/util/app_error.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdio.h \
  ../../../../../External/components/libraries/util/app_error_weak.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/external/fprintf/nrf_fprintf_format.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/external/fprintf/nrf_fprintf.h
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/external/fprintf/nrf_fprintf_format.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/external/fprintf/nrf_fprintf.h

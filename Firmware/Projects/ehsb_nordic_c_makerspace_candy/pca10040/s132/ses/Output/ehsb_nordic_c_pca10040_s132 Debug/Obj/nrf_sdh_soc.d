@@ -1,5 +1,5 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_sdh_soc.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/softdevice/common/nrf_sdh_soc.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/softdevice/common/nrf_sdh_soc.c \
  ../../../../../External/components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdbool.h \
@@ -26,7 +26,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_sdh_soc.o: \
  ../../../../../External/components/device/nrf52_name_change.h \
  ../../../../../External/components/device/compiler_abstraction.h \
  ../../../../../External/components/libraries/util/sdk_macros.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/softdevice/common/nrf_sdh_soc.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/softdevice/common/nrf_sdh_soc.h \
  ../../../../../External/components/libraries/util/app_util.h \
  ../../../../../External/components/libraries/experimental_section_vars/nrf_section_iter.h \
  ../../../../../External/components/libraries/experimental_section_vars/nrf_section.h \
@@ -39,7 +39,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_sdh_soc.o: \
  ../../../../../External/components/softdevice/s132/headers/nrf_svc.h \
  ../../../../../External/components/softdevice/s132/headers/nrf_error_soc.h \
  ../../../../../External/components/softdevice/s132/headers/nrf_error.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/softdevice/common/nrf_sdh.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/softdevice/common/nrf_sdh.h \
  ../../../../../External/components/libraries/util/sdk_errors.h \
  ../../../../../External/components/libraries/util/app_error.h \
  ../../../../../External/components/libraries/experimental_log/nrf_log.h \

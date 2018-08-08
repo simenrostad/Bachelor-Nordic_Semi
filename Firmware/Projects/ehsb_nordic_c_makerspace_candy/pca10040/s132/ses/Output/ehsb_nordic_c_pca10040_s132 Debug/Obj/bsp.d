@@ -1,6 +1,6 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/bsp.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/bsp/bsp.c \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/bsp/bsp.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/bsp/bsp.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/bsp/bsp.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdbool.h \
  ../../../../../External/components/boards/boards.h \
@@ -34,7 +34,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/bsp.o: \
  ../../../../../External/components/libraries/util/app_error.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stddef.h \
  ../../../../../External/components/libraries/util/nordic_common.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/bsp/bsp_config.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/bsp/bsp_config.h \
  ../../../../../External/components/libraries/timer/app_timer.h \
  ../../../../../External/components/libraries/util/app_util.h \
  ../../../../../External/components/device/compiler_abstraction.h

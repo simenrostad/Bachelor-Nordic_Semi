@@ -1,5 +1,5 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/app_button.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/button/app_button.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/button/app_button.c \
  ../../../../../External/components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdbool.h \
@@ -26,7 +26,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/app_button.o: \
  ../../../../../External/components/device/nrf52_name_change.h \
  ../../../../../External/components/device/compiler_abstraction.h \
  ../../../../../External/components/libraries/util/sdk_macros.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/button/app_button.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/button/app_button.h \
  ../../../../../External/components/libraries/util/app_error.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdio.h \
  ../../../../../External/components/libraries/util/app_error_weak.h \

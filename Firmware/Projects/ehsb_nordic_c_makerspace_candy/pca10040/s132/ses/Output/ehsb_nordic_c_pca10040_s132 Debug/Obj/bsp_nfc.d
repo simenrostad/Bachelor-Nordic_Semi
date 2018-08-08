@@ -1,11 +1,11 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/bsp_nfc.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/bsp/bsp_nfc.c \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/bsp/bsp_nfc.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/bsp/bsp_nfc.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/bsp/bsp_nfc.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  ../../../../../External/components/libraries/util/sdk_errors.h \
  ../../../../../External/components/softdevice/s132/headers/nrf_error.h \
  ../config/sdk_config.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/bsp/bsp.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/bsp/bsp.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdbool.h \
  ../../../../../External/components/boards/boards.h \
  ../../../../../External/components/drivers_nrf/hal/nrf_gpio.h \

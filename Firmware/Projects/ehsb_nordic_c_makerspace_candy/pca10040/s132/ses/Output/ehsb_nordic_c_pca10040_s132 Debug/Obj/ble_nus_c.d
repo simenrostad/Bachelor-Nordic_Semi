@@ -1,5 +1,5 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/ble_nus_c.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/ble/ble_services/ble_nus_c/ble_nus_c.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/ble_services/ble_nus_c/ble_nus_c.c \
  ../../../../../External/components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdbool.h \
@@ -38,7 +38,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/ble_nus_c.o: \
  ../../../../../External/components/softdevice/s132/headers/ble_gatt.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gattc.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gatts.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/ble/ble_services/ble_nus_c/ble_nus_c.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/ble_services/ble_nus_c/ble_nus_c.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gatt.h \
  ../../../../../External/components/ble/ble_db_discovery/ble_db_discovery.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gattc.h \

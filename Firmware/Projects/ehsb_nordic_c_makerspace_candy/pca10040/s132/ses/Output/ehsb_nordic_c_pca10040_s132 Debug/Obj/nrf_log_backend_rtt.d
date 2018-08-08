@@ -1,5 +1,5 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_log_backend_rtt.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/experimental_log/src/nrf_log_backend_rtt.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/experimental_log/src/nrf_log_backend_rtt.c \
  ../../../../../External/components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdbool.h \
@@ -43,13 +43,13 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_log_backend_rtt.o: \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdio.h \
  ../../../../../External/components/libraries/util/app_error_weak.h \
  ../../../../../External/components/libraries/util/app_util.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/experimental_log/src/nrf_log_backend_serial.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/experimental_log/src/nrf_log_backend_serial.h \
  ../../../../../External/components/libraries/experimental_log/nrf_log_backend_interface.h \
  ../../../../../External/external/fprintf/nrf_fprintf.h \
  ../../../../../External/components/libraries/experimental_log/nrf_log_str_formatter.h \
  ../../../../../External/components/libraries/experimental_log/nrf_log_ctrl.h \
  ../../../../../External/components/libraries/experimental_log/src/nrf_log_ctrl_internal.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/experimental_log/src/nrf_log_internal.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/experimental_log/src/nrf_log_internal.h \
  ../../../../../External/external/segger_rtt/SEGGER_RTT_Conf.h \
  ../../../../../External/components/libraries/util/nordic_common.h \
  ../../../../../External/external/segger_rtt/SEGGER_RTT.h \

@@ -1,6 +1,6 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/app_util_platform.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/util/app_util_platform.c \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/util/app_util_platform.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/util/app_util_platform.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/util/app_util_platform.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  ../../../../../External/components/device/compiler_abstraction.h \
  ../../../../../External/components/device/nrf.h \
@@ -21,12 +21,12 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/app_util_platform.o: \
  ../../../../../External/components/softdevice/s132/headers/nrf_error_soc.h \
  ../../../../../External/components/softdevice/s132/headers/nrf_error.h \
  ../../../../../External/components/softdevice/s132/headers/nrf_nvic.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/util/nrf_assert.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/util/app_error.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/util/nrf_assert.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/util/app_error.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdio.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/__crossworks.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/util/sdk_errors.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/util/sdk_errors.h \
  ../../../../../External/components/softdevice/s132/headers/nrf_error.h \
  ../config/sdk_config.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/util/nordic_common.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/util/app_error_weak.h
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/util/nordic_common.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/util/app_error_weak.h

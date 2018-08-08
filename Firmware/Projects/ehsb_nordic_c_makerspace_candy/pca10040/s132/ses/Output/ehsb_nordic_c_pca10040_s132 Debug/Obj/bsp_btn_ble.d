@@ -1,6 +1,6 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/bsp_btn_ble.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/bsp/bsp_btn_ble.c \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/bsp/bsp_btn_ble.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/bsp/bsp_btn_ble.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/bsp/bsp_btn_ble.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  ../../../../../External/components/softdevice/s132/headers/ble.h \
  ../../../../../External/components/softdevice/s132/headers/ble_ranges.h \
@@ -25,7 +25,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/bsp_btn_ble.o: \
  ../../../../../External/components/device/nrf52_name_change.h \
  ../../../../../External/components/device/compiler_abstraction.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gatts.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/bsp/bsp.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/bsp/bsp.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdbool.h \
  ../../../../../External/components/boards/boards.h \
  ../../../../../External/components/drivers_nrf/hal/nrf_gpio.h \

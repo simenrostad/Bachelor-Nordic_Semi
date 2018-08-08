@@ -1,5 +1,5 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_log_frontend.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/experimental_log/src/nrf_log_frontend.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/experimental_log/src/nrf_log_frontend.c \
  ../../../../../External/components/libraries/util/sdk_common.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdbool.h \
@@ -43,7 +43,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/nrf_log_frontend.o: \
  ../../../../../External/components/libraries/strerror/nrf_strerror.h \
  ../../../../../External/components/libraries/util/sdk_errors.h \
  ../../../../../External/components/libraries/experimental_log/src/nrf_log_internal.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/libraries/experimental_log/src/nrf_log_internal.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/libraries/experimental_log/src/nrf_log_internal.h \
  ../../../../../External/components/libraries/experimental_log/nrf_log_ctrl.h \
  ../../../../../External/components/libraries/experimental_log/src/nrf_log_ctrl_internal.h \
  ../../../../../External/components/libraries/experimental_log/nrf_log_backend_interface.h \

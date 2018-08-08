@@ -1,6 +1,6 @@
 Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/ble_advdata.o: \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/ble/common/ble_advdata.c \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/ble/common/ble_advdata.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_advdata.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_advdata.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdbool.h \
  /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/string.h \
@@ -33,7 +33,7 @@ Output/ehsb_nordic_c_pca10040_s132\ Debug/Obj/ble_advdata.o: \
  ../../../../../External/components/device/compiler_abstraction.h \
  ../../../../../External/components/libraries/util/nordic_common.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gap.h \
- /Users/siljehaga/Desktop/Bachelor-Nordic_Semi-master/Firmware/External/components/ble/common/ble_srv_common.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_srv_common.h \
  ../../../../../External/components/softdevice/s132/headers/ble_types.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gatt.h \
  ../../../../../External/components/libraries/util/sdk_common.h \
