@@ -28,3 +28,5 @@ The Harware part consists of the folowing:
   - Firmware code for the central, relayer and stop button beacon units
   - Complete system communications
   - System optimization
+
+  The goal was to make shure that the energy harvested would be enhuf to power the nrf52 SoC.
