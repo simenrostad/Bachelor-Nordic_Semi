@@ -6,25 +6,27 @@ The group consists of:
 Jonathan Lange Lundaas
 Besart Olluri
 Tor André Melheim
-Simen Rømo
-Simon S. Røstad
+Simon Rømo
+Simen S. Røstad
 
-We are working on a bachelor assignment under the guidance of Nordic Semiconductor to make a energy harvesting stop button using the NRF52832 SoC and Bluetooth Low Energy (BLE).
+We wrote our Bachelor thesis at NTNU under the guidance of Nordic Semiconductor where the assignment was to make an energy harvesting stop button to replace todays stop buttons in buses, using the nRF52832 SoC and Bluetooth Low Energy (BLE).
 
-The assignment is split in to two pieces, hardware and software.
+The assignment was split into two main aspects, hardware and software.
 
-The Harware part consists of the folowing:
- - Finding a Energy source
- - design the circuit and energy storage
- - energy budget
- - power managment divices
- - whireless conectivity an antanna choise (tuning antanna)
- - mecanical consrutciton
- - producing an d makong the working prototype
- - prining casing and buttons
+The hardware aspect consists of the following:
+ - Finding a sufficient energy source
+ - Circuit design and energy storage
+ - Setting up an energy budget
+ - Power management
+ - Antenna tuning
+ - Mechanical consrutciton
+ - Production (Component orders and soldering)
+ - 3D-printing button chassis
   
   
-  The software part consist of the following:
+  The software aspect consists of the following:
   - Firmware code for the central, relayer and stop button beacon units
-  - Complete system communications
-  - System optimization
+  - Complete system communication
+  - System and code optimization
+
+  The final solution as of May 2018 was able to advertise five BLE events over the span of approximately 100ms by one push of the button, and is a proof of concept solution that can be utilized in the intended environment.
