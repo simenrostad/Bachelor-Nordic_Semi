@@ -1,10 +1,10 @@
 Output/ehsb_nordic_b_pca10040_s132\ Release/Obj/ble_advdata.o: \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_advdata.c \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_advdata.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdint.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stdbool.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/string.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/__crossworks.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_advdata.c \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_advdata.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdint.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stdbool.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/string.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/__crossworks.h \
  ../../../../../External/components/softdevice/s132/headers/ble.h \
  ../../../../../External/components/softdevice/s132/headers/ble_ranges.h \
  ../../../../../External/components/softdevice/s132/headers/ble_types.h \
@@ -29,11 +29,11 @@ Output/ehsb_nordic_b_pca10040_s132\ Release/Obj/ble_advdata.o: \
  ../../../../../External/components/device/compiler_abstraction.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gatts.h \
  ../../../../../External/components/libraries/util/app_util.h \
- /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.34/include/stddef.h \
+ /Applications/SEGGER\ Embedded\ Studio\ for\ ARM\ 3.40/include/stddef.h \
  ../../../../../External/components/device/compiler_abstraction.h \
  ../../../../../External/components/libraries/util/nordic_common.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gap.h \
- /Users/simenrostad/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_srv_common.h \
+ /Users/siljehaga/Documents/GitHub/Bachelor-Nordic_Semi/Firmware/External/components/ble/common/ble_srv_common.h \
  ../../../../../External/components/softdevice/s132/headers/ble_types.h \
  ../../../../../External/components/softdevice/s132/headers/ble_gatt.h \
  ../../../../../External/components/libraries/util/sdk_common.h \
